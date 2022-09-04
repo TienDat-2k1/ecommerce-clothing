@@ -1,0 +1,32 @@
+//  COLOR
+$color--primary: #d3a17e;
+$color--primary-light: #eeddcc;
+$color--primary-dark: #34251f;
+$color--primary-linear: linear-gradient(
+  $color--primary-light,
+  $color--primary-dark
+);
+
+$color--background: #e5e5e5;
+
+$color--grey-light-1: #f7f7f7;
+$color--grey-light-2: #eee;
+$color--grey-dark: #777;
+$color--grey-dark-2: #999;
+$color--grey-dark-3: #333;
+
+$color--accent-orange: #ffb168;
+$color--accent-red: #c20a0a;
+
+$color--white: #fff;
+$color--brown: #413531;
+$color--black: #000;
+
+// FONT SIZE
+$font-size--default: 1.6rem;
+
+// WIDTH
+$container--width-xl: 75%;
+$container--width-lg: 80%;
+$container--width-md: 86%;
+$container--width-sm: 90%;
