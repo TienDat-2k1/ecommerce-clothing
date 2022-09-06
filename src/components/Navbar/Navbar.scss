@@ -1,0 +1,105 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  @include responds(lg) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+    width: 60%;
+    background-color: $color--grey-dark-3;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  &--active {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__user {
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    color: $color--grey-light-2;
+
+    @include responds(lg) {
+      margin-top: 2rem;
+      display: flex;
+    }
+
+    & > img {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      object-fit: cover;
+      overflow: hidden;
+    }
+
+    & > h2 {
+      text-transform: capitalize;
+    }
+  }
+
+  &__user-icon {
+    font-size: 2.2rem;
+    // padding: 0.8rem;
+  }
+
+  &__list {
+    list-style: none;
+    color: $color--grey-light-1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    @include responds(lg) {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+
+  &__list-item {
+    width: 100%;
+    color: $color--grey-light-2;
+
+    @include responds(lg) {
+      &:not(:last-child) {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+
+  &__list--link {
+    color: currentColor;
+
+    @include responds(lg) {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 1.2rem 0;
+      &:hover {
+        background-color: $color--grey-dark-2;
+      }
+    }
+  }
+
+  &__list--link:link,
+  &__list--link:active {
+    text-decoration: none;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}

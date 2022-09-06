@@ -1,0 +1,61 @@
+@use '../../../sass/variables' as *;
+@use '../../../sass/mixins' as *;
+
+// Home Collection
+.collection {
+  padding: 4rem 0;
+
+  &__heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__title {
+    font-size: 6.8rem;
+    text-transform: capitalize;
+    font-family: $font-family--frankLibre;
+
+    @include responds(xl) {
+      font-size: 6rem;
+    }
+
+    @include responds(lg) {
+      font-size: 5.6rem;
+    }
+
+    @include responds(md) {
+      font-size: 5rem;
+    }
+  }
+
+  &__description {
+    max-width: 70%;
+    text-align: center;
+  }
+
+  &__top3 {
+    padding: 4rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    position: relative;
+
+    & > div:nth-of-type(1) {
+      width: 12rem;
+      height: 10rem;
+      top: 0;
+      left: 2rem;
+    }
+    & > div:nth-of-type(2) {
+      width: 12rem;
+      height: 10rem;
+      bottom: 0;
+      right: 2rem;
+    }
+  }
+}

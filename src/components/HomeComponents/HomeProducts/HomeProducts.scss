@@ -1,0 +1,67 @@
+@use '../../../sass/variables' as *;
+@use '../../../sass/mixins' as *;
+
+.home-products {
+  padding: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  &__heading {
+    font-family: $font-family--frankLibre;
+    font-size: 4.8rem;
+  }
+
+  &__types {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__type {
+    padding: 0.8rem 0;
+    font-family: $font-family--frankLibre;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 2.2rem;
+    cursor: pointer;
+    position: relative;
+
+    @include responds(lg) {
+      font-size: 1.6rem;
+    }
+
+    &:hover::after,
+    &--active::after {
+      width: 80% !important;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $color--primary-dark;
+      transition: all 0.3s;
+    }
+  }
+
+  &__grid {
+    padding: 2rem 0;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    font-size: 1.8rem;
+
+    @include responds(lg) {
+      font-size: 1.6rem;
+    }
+  }
+}

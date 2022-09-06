@@ -1,0 +1,21 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.home {
+  &__header {
+    background-color: $color--primary-light;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    position: relative;
+
+    @include responds(md) {
+      padding: 8rem 0;
+    }
+
+    @include responds(sm) {
+      padding: 5rem 0;
+    }
+
+    // height: 80rem;
+  }
+}

@@ -1,0 +1,137 @@
+@use '../../../sass/variables' as *;
+@use '../../../sass/mixins' as *;
+
+.home-header {
+  &__layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.4rem;
+
+    @include responds(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__layout-l,
+  &__layout-r {
+    height: 90%;
+    // transform: translateY(14rem);
+    padding-top: 4rem;
+  }
+
+  &__layout-l {
+    padding-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__layout-r {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  &__layout-r > div:first-child {
+    width: 42rem;
+    height: 54rem;
+    border-radius: 4px;
+    border-bottom-left-radius: 14rem;
+    box-shadow: 2rem 2.5rem 3rem rgba($color--accent-orange, 0.4);
+    overflow: hidden;
+    position: relative;
+
+    @include responds(lg) {
+      width: 38rem;
+      height: 46rem;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(
+        to top right,
+        rgba($color--black, 0.3),
+        rgba($color--black, 0.2),
+        rgba($color--black, 0.1),
+        rgba($color--black, 0.05) 50%,
+        rgba($color--black, 0)
+      );
+    }
+  }
+  &__layout-r > div > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+// Home header layout
+.layout {
+  &__title {
+    font-size: 7.8rem;
+    font-weight: 700;
+    font-family: $font-family--frankLibre;
+    font-style: normal;
+
+    @include responds(lg) {
+      font-size: 6.2rem;
+    }
+  }
+
+  &__description {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    max-width: 80%;
+  }
+
+  &__btn {
+    padding: 1.2rem 2rem !important;
+    font-size: 2.2rem;
+    background-color: $color--brown !important;
+    color: $color--white;
+    font-weight: 500;
+
+    box-shadow: 0 2rem 3rem rgba($color--primary-dark, 0.3);
+  }
+}
+
+// dot texture
+.home__header > div {
+  &:nth-child(1) {
+    top: 22%;
+    left: 12%;
+    width: 16rem;
+    height: 12rem;
+    transform: rotate(190deg);
+  }
+  &:nth-child(2) {
+    top: 22%;
+    right: 12%;
+    width: 14rem;
+    height: 10rem;
+    z-index: 2;
+
+    @include responds(md) {
+      top: 46%;
+      right: 16%;
+    }
+  }
+  &:nth-child(3) {
+    bottom: 15%;
+    right: 38%;
+    width: 16rem;
+    height: 12rem;
+    z-index: 2;
+
+    @include responds(md) {
+      bottom: 4%;
+      right: 60%;
+    }
+  }
+}

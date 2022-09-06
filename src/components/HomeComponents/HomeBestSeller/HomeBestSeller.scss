@@ -1,0 +1,48 @@
+@use '../../../sass/variables' as *;
+@use '../../../sass/mixins' as *;
+
+.best-seller {
+  padding: 4rem 0;
+  background: $color--primary-dark;
+  color: $color--grey-light-2;
+
+  @include responds(sm) {
+    display: none;
+  }
+}
+.seller-l {
+  flex: 0 0 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.seller-r {
+  flex: 1;
+  display: flex;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.seller {
+  &__container {
+    display: flex;
+  }
+
+  &__heading {
+    font-family: $font-family--frankLibre;
+    font-size: 5.2rem;
+  }
+
+  &__btn {
+    padding: 1.5rem 3.5rem;
+    border-color: $color--white !important;
+    color: $color--white;
+    font-size: 2.2rem;
+  }
+
+  &__slider-container {
+    padding: 4rem 0 !important;
+  }
+}
