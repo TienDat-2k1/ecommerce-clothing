@@ -1,8 +1,10 @@
 import './HomeHeader.scss';
 
 import HomeBG from '../../../assets/img/header-background.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const HomeHeader = () => {
+  const navigate = useNavigate();
   return (
     <section className="home__header">
       <div className="dot-texture"></div>
@@ -16,7 +18,14 @@ const HomeHeader = () => {
             minima neque quam officia excepturi odio aliquid ipsam expedita cum,
             debitis optio, mollitia alias dolore ab vero ea, eum libero!
           </p>
-          <button className="btn layout__btn">SHOP NOW</button>
+          <button
+            className="btn layout__btn"
+            onClick={() => {
+              navigate('/products');
+            }}
+          >
+            SHOP NOW
+          </button>
         </div>
         <div className="home-header__layout-r">
           <div>

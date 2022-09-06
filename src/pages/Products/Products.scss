@@ -1,0 +1,43 @@
+@use '../../sass/variables' as *;
+
+.products {
+  min-height: 100vh;
+  padding-top: 10rem;
+
+  &__filters {
+    padding: 4rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    & label {
+      font-family: $font-family--frankLibre;
+      font-size: 1.8rem;
+    }
+
+    & select {
+      padding: 0.4rem 0.8rem;
+      outline: none;
+      border-radius: 4px;
+    }
+  }
+
+  &__filters-l {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__filters-r {
+    display: flex;
+    gap: 2rem;
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  &__pagination {
+  }
+}

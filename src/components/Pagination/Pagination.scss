@@ -1,0 +1,35 @@
+@use '../../sass/variables' as *;
+
+.pagination {
+  padding: 4rem 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+
+  &__page {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    &--active {
+      background: rgba($color--accent-orange, 0.7);
+      color: $color--accent-red;
+    }
+
+    &--disable {
+      opacity: 0.5;
+    }
+
+    &--arrow {
+      cursor: pointer;
+    }
+  }
+}

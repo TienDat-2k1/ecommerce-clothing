@@ -5,6 +5,12 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  & a,
+  a:active {
+    text-decoration: none;
+    color: $color--black;
+  }
 }
 
 .header {
@@ -30,6 +36,7 @@
     text-transform: uppercase;
 
     margin-right: 4rem;
+    cursor: pointer;
 
     @include responds(lg) {
       margin-right: 2rem;

@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import ProductCard from '../../ProductCard/ProductCard';
 import './HomeProducts.scss';
 
 const HomeProducts = () => {
+  const navigate = useNavigate();
   return (
     <section className="home-products container">
       <h1 className="home-products__heading">Our Product</h1>
@@ -28,7 +30,14 @@ const HomeProducts = () => {
         <ProductCard />
         <ProductCard />
       </div>
-      <button className="btn home-products__btn">Show more</button>
+      <button
+        className="btn home-products__btn"
+        onClick={() => {
+          navigate('/products');
+        }}
+      >
+        Show more
+      </button>
     </section>
   );
 };

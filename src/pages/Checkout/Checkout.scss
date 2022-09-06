@@ -1,0 +1,49 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.checkout-container {
+  padding-top: 14rem;
+  width: 55%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto 0;
+
+  @include responds(lg) {
+    width: $container--width-lg;
+  }
+
+  @include responds(md) {
+    width: $container--width-md;
+  }
+
+  @include responds(sm) {
+    width: $container--width-sm;
+  }
+
+  .checkout-header {
+    width: 100%;
+    padding: 1rem 0;
+    // display: flex;
+    // justify-content: space-between;
+    border-bottom: 1px solid darkgrey;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    .header-block {
+      text-transform: capitalize;
+      // width: 23%;
+
+      &:last-child {
+        width: 8%;
+      }
+    }
+  }
+
+  .total {
+    margin-top: 3rem;
+    margin-left: auto;
+    font-size: 3.6rem;
+  }
+}

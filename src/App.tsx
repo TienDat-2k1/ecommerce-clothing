@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Footer from './components/Footer/Footer';
-import Header from './components/header/Header';
+import Checkout from './pages/Checkout/Checkout';
+import DetailProduct from './pages/DetailProduct/DetailProduct';
 import Home from './pages/Home/Home';
 import Products from './pages/Products/Products';
 import Main from './router/Main';
@@ -14,6 +14,8 @@ function App() {
         <Route path="/" element={<Main />}>
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
+          <Route path="products/:productId" element={<DetailProduct />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
       </Routes>
     </>

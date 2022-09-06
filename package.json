@@ -44,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "react-paginate": "^8.1.3"
   }
 }

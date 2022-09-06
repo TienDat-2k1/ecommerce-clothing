@@ -1,9 +1,12 @@
 import './ProductCard.scss';
 import { AiFillStar } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = () => {
+  const navigate = useNavigate();
   const productCardClickHandler = () => {
     console.log('onclick');
+    navigate('/products/n');
   };
   return (
     <figure className="product-card" onClick={productCardClickHandler}>
