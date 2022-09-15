@@ -6,13 +6,16 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import { FaBars } from 'react-icons/fa';
 
 import './Header.scss';
+import { useAppSelector } from '../../hooks/hooks';
 const Header = () => {
   const navigate = useNavigate();
   const [isNavActive, setIsNavActive] = useState(false);
+  const totalItem = useAppSelector(state => state.cart.totalItem);
 
   const activeNavHandler = () => {
     setIsNavActive(!isNavActive);
   };
+
   return (
     <header className="header">
       <div className="container header-container">
@@ -37,7 +40,7 @@ const Header = () => {
             }}
           >
             <BsCart4 className="header__icon" />
-            <span className="header__cart-count">3</span>
+            <span className="header__cart-count">{totalItem}</span>
           </div>
           <div
             className="header__feature header__feature-nav"

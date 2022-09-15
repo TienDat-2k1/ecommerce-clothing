@@ -1,9 +1,13 @@
 import axios from 'axios';
 
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/hooks';
+import { CartModel } from '../../Model/cartModel';
 import { ProductModel } from '../../Model/productModel';
+import { addCart } from '../../store/cart/cartSlice';
 import './DetailProduct.scss';
 
 type OptionsCart = {
@@ -14,6 +18,7 @@ type OptionsCart = {
 
 const DetailProduct = () => {
   const { productId } = useParams();
+  const dispatch = useDispatch();
 
   const [product, setProduct] = useState<ProductModel>();
   const [optionsCart, setOptionsCart] = useState<OptionsCart>({
@@ -44,6 +49,25 @@ const DetailProduct = () => {
     if (optionsCart.quantity > 1) {
       setOptionsCart({ ...optionsCart, quantity: optionsCart.quantity - 1 });
     }
+  };
+
+  const addToCartHandler = (product: ProductModel) => {
+    if (!optionsCart.size) return;
+
+    const cartProductPrice = Math.round(
+      product.price - (product.price * product.saleOff) / 100
+    );
+    const cartProduct: CartModel = {
+      ...optionsCart,
+      _id: productId || '',
+      name: (product && product.name) || '',
+      price: cartProductPrice,
+      imageCover: product.imageCover,
+      sizes: product.size,
+    };
+
+    console.log(cartProduct);
+    dispatch(addCart(cartProduct));
   };
 
   return (
@@ -100,7 +124,12 @@ const DetailProduct = () => {
                 <span>{optionsCart.quantity}</span>
                 <span onClick={increaseQuantityHandler}>+</span>
               </div>
-              <button className="btn product__btn">Add to cart</button>
+              <button
+                className="btn product__btn"
+                onClick={() => addToCartHandler(product)}
+              >
+                Add to cart
+              </button>
             </div>
           </div>
           <div className="product__description">

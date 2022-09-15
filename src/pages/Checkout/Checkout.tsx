@@ -1,7 +1,11 @@
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
+import { useAppSelector } from '../../hooks/hooks';
 import './Checkout.scss';
 
 const Checkout = () => {
+  const cartItems = useAppSelector(state => state.cart.cart);
+  const totalPrice = useAppSelector(state => state.cart.totalPrice);
+
   return (
     <div className="checkout-container">
       <div className="checkout-header">
@@ -10,6 +14,9 @@ const Checkout = () => {
         </div>
         <div className="header-block">
           <span>Description</span>
+        </div>
+        <div className="header-block">
+          <span>Size</span>
         </div>
         <div className="header-block">
           <span>Quantity</span>
@@ -22,10 +29,12 @@ const Checkout = () => {
         </div>
       </div>
       {/* List item */}
-      <CheckoutItem />
-      <CheckoutItem />
+      {cartItems &&
+        cartItems.map(cartItem => {
+          return <CheckoutItem key={cartItem._id} item={cartItem} />;
+        })}
 
-      <span className="total">Total: 1023$</span>
+      <span className="total">Total: {totalPrice}$</span>
     </div>
   );
 };

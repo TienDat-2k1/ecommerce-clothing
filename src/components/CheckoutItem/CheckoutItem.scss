@@ -11,10 +11,11 @@
   align-items: center;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  justify-items: center;
 
   @include responds(sm) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   .image-container {
@@ -54,6 +55,7 @@
     display: flex;
     .arrow {
       cursor: pointer;
+      user-select: none;
     }
 
     .value {

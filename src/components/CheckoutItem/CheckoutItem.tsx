@@ -1,21 +1,39 @@
+import { useDispatch } from 'react-redux';
+import { CartModel } from '../../Model/cartModel';
+import { addCart, removeItemCart } from '../../store/cart/cartSlice';
 import './CheckoutItem.scss';
 
-const CheckoutItem = () => {
+type CheckoutItemProps = {
+  item: CartModel;
+};
+
+const CheckoutItem = ({ item }: CheckoutItemProps) => {
+  const dispatch = useDispatch();
+  const increaseItem = (item: CartModel) => {
+    const product = { ...item, quantity: 1 };
+    dispatch(addCart(product));
+  };
+
+  const decreaseItem = (item: CartModel) => {
+    dispatch(removeItemCart({ ...item, quantity: 1 }));
+  };
   return (
     <div className="checkout-item-container">
       <div className="image-container">
-        <img
-          src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-          alt=""
-        />
+        <img src={item.imageCover} alt="imageCover" />
       </div>
-      <span className="name">Áo Khoác Classic Tối Giản M9</span>
+      <span className="name">{item.name}</span>
+      <span>{item.size}</span>
       <span className="quantity">
-        <div className="arrow">&#10094;</div>
-        <span className="value">1</span>
-        <div className="arrow">&#10095;</div>
+        <div className="arrow" onClick={() => decreaseItem(item)}>
+          &#10094;
+        </div>
+        <span className="value">{item.quantity}</span>
+        <div className="arrow" onClick={() => increaseItem(item)}>
+          &#10095;
+        </div>
       </span>
-      <span className="price">300</span>
+      <span className="price">{item.price}</span>
       <div className="remove-button">&#10005;</div>
     </div>
   );
