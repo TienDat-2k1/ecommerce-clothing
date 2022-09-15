@@ -69,9 +69,25 @@ const cartSlice = createSlice({
         return (acc += curr.quantity);
       }, 0);
     },
+    removeFromCart: (state, action: PayloadAction<CartModel>) => {
+      state.cart = state.cart.filter(
+        item =>
+          item._id === action.payload._id && item.size !== action.payload.size
+      );
+
+      //update totalPrice
+      state.totalPrice = state.cart.reduce((acc, curr) => {
+        return (acc += curr.price * curr.quantity);
+      }, 0);
+
+      // update totalItem
+      state.totalItem = state.cart.reduce((acc, curr) => {
+        return (acc += curr.quantity);
+      }, 0);
+    },
   },
 });
 
-export const { addCart, removeItemCart } = cartSlice.actions;
+export const { addCart, removeItemCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

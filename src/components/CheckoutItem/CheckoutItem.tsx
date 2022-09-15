@@ -1,6 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { CartModel } from '../../Model/cartModel';
-import { addCart, removeItemCart } from '../../store/cart/cartSlice';
+import {
+  addCart,
+  removeItemCart,
+  removeFromCart,
+} from '../../store/cart/cartSlice';
 import './CheckoutItem.scss';
 
 type CheckoutItemProps = {
@@ -17,6 +21,11 @@ const CheckoutItem = ({ item }: CheckoutItemProps) => {
   const decreaseItem = (item: CartModel) => {
     dispatch(removeItemCart({ ...item, quantity: 1 }));
   };
+
+  const removeFromCartHandler = (item: CartModel) => {
+    dispatch(removeFromCart(item));
+  };
+
   return (
     <div className="checkout-item-container">
       <div className="image-container">
@@ -34,7 +43,12 @@ const CheckoutItem = ({ item }: CheckoutItemProps) => {
         </div>
       </span>
       <span className="price">{item.price}</span>
-      <div className="remove-button">&#10005;</div>
+      <div
+        className="remove-button"
+        onClick={() => removeFromCartHandler(item)}
+      >
+        &#10005;
+      </div>
     </div>
   );
 };
