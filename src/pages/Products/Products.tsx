@@ -33,6 +33,7 @@ const Products = () => {
         </div>
       </div>
       <div className="products__grid">
+        {/* <ProductCard />
         <ProductCard />
         <ProductCard />
         <ProductCard />
@@ -45,8 +46,7 @@ const Products = () => {
         <ProductCard />
         <ProductCard />
         <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard /> */}
       </div>
       <Pagination />
     </main>

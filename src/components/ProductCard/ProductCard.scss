@@ -11,6 +11,8 @@
   display: flex;
   flex-direction: column;
 
+  position: relative;
+
   &:hover {
     transform: translateY(-4px);
     box-shadow: 1rem 2rem 3rem rgba($color--black, 0.1);
@@ -46,6 +48,8 @@
     height: 3.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-transform: capitalize;
+    padding-top: 0.5rem;
 
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -56,15 +60,52 @@
     margin-top: auto;
     font-size: 1.8rem;
     display: flex;
+    align-items: center;
     gap: 1.5rem;
   }
 
-  &__price-normal {
+  &__price-original {
     text-decoration: line-through;
     color: $color--accent-red;
+    font-weight: 400;
+    font-size: 1.6rem;
   }
 
   &__price-sale {
-    // font-weight: 600;
+    font-weight: 500;
+  }
+
+  &__saleOff {
+    position: absolute;
+    top: 0;
+    right: 0;
+    // width: 5rem;
+    text-align: center;
+    padding: 1rem 0.8rem;
+    font-size: 1.4rem;
+    background-color: $color--accent-orange;
+    border-top-right-radius: 4px;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 99%;
+      border-style: solid;
+      border-width: 1.25rem;
+    }
+
+    &::after {
+      left: 0;
+      border-color: $color--accent-orange transparent transparent
+        $color--accent-orange;
+    }
+
+    &::before {
+      right: 0;
+      border-color: $color--accent-orange $color--accent-orange transparent
+        transparent;
+    }
   }
 }

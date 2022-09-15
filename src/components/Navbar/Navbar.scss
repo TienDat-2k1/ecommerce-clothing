@@ -31,10 +31,16 @@
     justify-content: space-around;
     align-items: center;
     color: $color--grey-light-2;
+    text-align: center;
+    padding: 0 0.6rem;
 
     @include responds(lg) {
       margin-top: 2rem;
       display: flex;
+    }
+
+    @include responds(sm) {
+      font-size: 1.4rem;
     }
 
     & > img {
@@ -89,6 +95,7 @@
       width: 100%;
       text-align: center;
       padding: 1.2rem 0;
+      color: $color--white !important;
       &:hover {
         background-color: $color--grey-dark-2;
       }

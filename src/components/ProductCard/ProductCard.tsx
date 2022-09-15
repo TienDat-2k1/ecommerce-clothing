@@ -1,20 +1,23 @@
 import './ProductCard.scss';
 import { AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { ProductModel } from '../../Model/productModel';
+import Products from '../../pages/Products/Products';
 
-const ProductCard = () => {
+type ProductCardProps = {
+  product: ProductModel;
+};
+
+const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
   const productCardClickHandler = () => {
     console.log('onclick');
-    navigate('/products/n');
+    navigate(`/products/${product._id}`);
   };
   return (
     <figure className="product-card" onClick={productCardClickHandler}>
       <div className="product-card__image">
-        <img
-          src="https://images.unsplash.com/photo-1608753088972-14d0514ac678?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=350&q=80"
-          alt=""
-        />
+        <img src={product.imageCover} alt="" />
       </div>
       <div className="product-card__content">
         <div className="product-card__rates">
@@ -24,12 +27,15 @@ const ProductCard = () => {
           <AiFillStar className="product-card__icon" />
           <AiFillStar className="product-card__icon" />
         </div>
-        <h2 className="product-card__name">Pastel Long Sleeve</h2>
+        <h2 className="product-card__name">{product.name}</h2>
         <div className="product-card__price">
-          <span className="product-card__price-normal">$220</span>
-          <span className="product-card__price-sale">$140</span>
+          <span className="product-card__price-original">{`$${product.price}`}</span>
+          <span className="product-card__price-sale">{`$${Math.round(
+            product.price - (product.price * product.saleOff) / 100
+          )}`}</span>
         </div>
       </div>
+      <div className="product-card__saleOff">-{product.saleOff}%</div>
     </figure>
   );
 };

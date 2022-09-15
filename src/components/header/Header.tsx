@@ -46,7 +46,9 @@ const Header = () => {
             <FaBars className="header__icon" />
           </div>
           <div className="header__feature header__feature-login">
-            <button className="btn">LOGIN</button>
+            <Link to="/auth" className="btn">
+              LOGIN
+            </Link>
           </div>
         </div>
       </div>

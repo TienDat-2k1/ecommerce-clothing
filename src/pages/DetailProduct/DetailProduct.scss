@@ -67,6 +67,15 @@
     font-weight: 600;
   }
 
+  &__saleOff {
+    background-color: $color--primary;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.6rem;
+    border-radius: 1.2rem;
+
+    box-shadow: 1rem 0.2rem 3rem rgba($color--accent-orange, 0.8);
+  }
+
   &__size {
     cursor: default;
     display: flex;
@@ -115,6 +124,8 @@
     & > span:nth-of-type(2),
     & > span:nth-of-type(4) {
       padding: 1rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
     }
   }
 

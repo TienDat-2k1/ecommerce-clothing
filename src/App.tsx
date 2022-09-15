@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import SignInPage from './pages/auth/SignInPage';
 import Checkout from './pages/Checkout/Checkout';
 import DetailProduct from './pages/DetailProduct/DetailProduct';
 import Home from './pages/Home/Home';
@@ -16,6 +17,10 @@ function App() {
           <Route path="products" element={<Products />} />
           <Route path="products/:productId" element={<DetailProduct />} />
           <Route path="checkout" element={<Checkout />} />
+        </Route>
+        <Route path="/auth">
+          <Route index element={<SignInPage />} />
+          <Route path="sign-up" element={<SignInPage />} />
         </Route>
       </Routes>
     </>

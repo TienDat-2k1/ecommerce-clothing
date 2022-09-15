@@ -31,10 +31,19 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 
+    @include responds(sm) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     .header-block {
       text-transform: capitalize;
       // width: 23%;
 
+      &:nth-of-type(1) {
+        @include responds(sm) {
+          display: none;
+        }
+      }
       &:last-child {
         width: 8%;
       }
