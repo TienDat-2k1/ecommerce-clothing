@@ -55,9 +55,14 @@
     flex: 1;
     flex-direction: column;
     gap: 2rem;
+
+    & h4 {
+      color: $color--grey-dark;
+    }
   }
 
   &__title {
+    color: $color--grey-dark-3;
   }
 
   &__material {

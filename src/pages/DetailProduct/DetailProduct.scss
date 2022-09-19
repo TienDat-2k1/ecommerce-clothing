@@ -36,6 +36,10 @@
     gap: 2rem;
     font-size: 2.2rem;
 
+    & h4 {
+      color: $color--grey-dark;
+    }
+
     @include responds(sm) {
       font-size: 2rem;
     }
@@ -43,6 +47,7 @@
 
   &__name {
     font-family: $font-family--frankLibre;
+    color: $color--grey-dark-3;
   }
 
   &__material {

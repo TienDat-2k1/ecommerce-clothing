@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/hooks';
 import { CartModel } from '../../Model/cartModel';
 import { ProductModel } from '../../Model/productModel';
 import { addCart } from '../../store/cart/cartSlice';
@@ -81,7 +80,7 @@ const DetailProduct = () => {
             <div className="product__details">
               <h1 className="product__name">{product.name}</h1>
               <div className="product__material">
-                <span>Material: </span>
+                <h4>Material: </h4>
                 <span>{product.material}</span>
               </div>
               <div className="product__price">
@@ -101,7 +100,7 @@ const DetailProduct = () => {
                 )}
               </div>
               <div className="product__size">
-                <span>Size: </span>
+                <h4>Size: </h4>
                 {product.size.map((s, i) => (
                   <kbd
                     key={i}
@@ -111,13 +110,9 @@ const DetailProduct = () => {
                     {s}
                   </kbd>
                 ))}
-                {/* <kbd className="active">S</kbd>
-                <kbd>M</kbd>
-                <kbd>XL</kbd>
-                <kbd>XLL</kbd> */}
               </div>
               <div className="product__color">
-                <span>Color: </span>
+                <h4>Color: </h4>
                 <span
                   className="active"
                   style={{ backgroundColor: 'red' }}
@@ -125,7 +120,7 @@ const DetailProduct = () => {
                 <span style={{ backgroundColor: 'blue' }}></span>
               </div>
               <div className="product__quantity">
-                <span>Quantity:</span>
+                <h4>Quantity:</h4>
                 <span onClick={decreaseQuantityHandler}>-</span>
                 <span>{optionsCart.quantity}</span>
                 <span onClick={increaseQuantityHandler}>+</span>
