@@ -1,4 +1,4 @@
-import ProductCard from '../../ProductCard/ProductCard';
+import ProductCard from '../../Products/ProductCard/ProductCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Autoplay } from 'swiper';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import { useEffect, useState } from 'react';
 import { ProductModel } from '../../../Model/productModel';
+import Button from '../../UI/Button/Button';
 
 const HomeBestSeller = () => {
   const [top5Products, setTop5Products] = useState<ProductModel[]>();
@@ -28,7 +29,7 @@ const HomeBestSeller = () => {
         <div className="seller-l">
           <h1 className="seller__heading">Best Seller Product</h1>
           <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
-          <button className="btn seller__btn">SEE MORE</button>
+          <Button className="seller__btn">SEE MORE</Button>
         </div>
         <div className="seller-r">
           <Swiper

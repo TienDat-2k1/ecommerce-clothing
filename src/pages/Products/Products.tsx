@@ -1,7 +1,22 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
-import ProductCard from '../../components/ProductCard/ProductCard';
+import ProductCard from '../../components/Products/ProductCard/ProductCard';
+import { ProductModel } from '../../Model/productModel';
 import './Products.scss';
 const Products = () => {
+  const [products, setProducts] = useState<ProductModel[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await axios.get(
+        'http://localhost:5000/api/products?page=1&limit=20'
+      );
+      setProducts(res.data.data.products);
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <main className="products container">
       <div className="products__filters">
@@ -33,20 +48,9 @@ const Products = () => {
         </div>
       </div>
       <div className="products__grid">
-        {/* <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard /> */}
+        {products.map(product => (
+          <ProductCard key={product._id} product={product} />
+        ))}
       </div>
       <Pagination />
     </main>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import { BsCart4 } from 'react-icons/bs';
@@ -10,7 +10,21 @@ import { useAppSelector } from '../../hooks/hooks';
 const Header = () => {
   const navigate = useNavigate();
   const [isNavActive, setIsNavActive] = useState(false);
+  const [isCartHightLight, setIsCartHightLight] = useState(false);
+
   const totalItem = useAppSelector(state => state.cart.totalItem);
+
+  useEffect(() => {
+    if (totalItem === 0) return;
+
+    setIsCartHightLight(true);
+
+    const timer = setTimeout(() => {
+      setIsCartHightLight(false);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [totalItem]);
 
   const activeNavHandler = () => {
     setIsNavActive(!isNavActive);
@@ -40,7 +54,9 @@ const Header = () => {
             }}
           >
             <BsCart4 className="header__icon" />
-            <span className="header__cart-count">{totalItem}</span>
+            <div className={`header__cart-count ${isCartHightLight && 'bump'}`}>
+              {totalItem}
+            </div>
           </div>
           <div
             className="header__feature header__feature-nav"

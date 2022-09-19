@@ -51,10 +51,25 @@
 
   &__grid {
     padding: 2rem 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
+
+    @include responds(xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include responds(xl) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include responds(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    // @include responds(sm) {
+    //   grid-template-columns: repeat(1, 1fr);
+    // }
   }
 
   &__btn {

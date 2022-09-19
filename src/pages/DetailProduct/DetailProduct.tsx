@@ -85,14 +85,20 @@ const DetailProduct = () => {
                 <span>{product.material}</span>
               </div>
               <div className="product__price">
-                <span className="product__price-origin">${product.price}</span>
+                {!!product.saleOff && (
+                  <span className="product__price-origin">
+                    ${product.price}
+                  </span>
+                )}
                 <span className="product__price-sale">
                   $
                   {Math.round(
                     product.price - (product.price * product.saleOff) / 100
                   )}
                 </span>
-                <div className="product__saleOff">- {product.saleOff} %</div>
+                {!!product.saleOff && (
+                  <div className="product__saleOff">- {product.saleOff} %</div>
+                )}
               </div>
               <div className="product__size">
                 <span>Size: </span>

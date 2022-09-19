@@ -58,9 +58,20 @@
   }
 
   &__price-origin {
-    text-decoration: line-through;
     color: $color--accent-red;
     font-size: 2.4rem;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      top: 53%;
+      left: 0;
+      background-color: currentColor;
+    }
   }
 
   &__price-sale {

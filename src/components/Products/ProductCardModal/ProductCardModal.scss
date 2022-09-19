@@ -1,0 +1,148 @@
+@use '../../../sass/variables' as *;
+
+.product-modal {
+  width: 65vw;
+  position: relative;
+  padding: 1.5rem 0.8rem;
+
+  .content {
+    display: flex;
+    gap: 2rem;
+  }
+  .close {
+    position: absolute;
+    padding: 0.2rem 0.6rem;
+    top: -8px;
+    right: 0;
+
+    cursor: pointer;
+    font-size: 3.2rem;
+  }
+
+  &__images {
+    width: 40%;
+    overflow: hidden;
+  }
+
+  &__image-cover {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  &__image-list {
+    overflow: auto;
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__image-item {
+    width: 80px;
+    height: 100%;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+  }
+
+  &__contents {
+    width: fit-content;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__title {
+  }
+
+  &__material {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 2rem;
+
+    &--original {
+      font-size: 1.8rem;
+      color: $color--accent-red;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        top: 53%;
+        left: 0;
+        background-color: currentColor;
+      }
+    }
+
+    &--sale {
+      font-weight: 600;
+      font-size: 2.8rem;
+    }
+
+    &--saleOff {
+      font-size: 1.6rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      background-color: $color--primary;
+      box-shadow: 0 4px 12px rgba($color--primary, 0.8);
+    }
+  }
+
+  &__sizes {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    & > kbd {
+      min-width: 6rem;
+      padding: 0.2rem 0.4rem;
+      text-align: center;
+      border: 1px solid #000;
+      user-select: none;
+    }
+
+    & > .active {
+      background-color: rgba($color--accent-orange, 0.8);
+    }
+  }
+
+  &__colors {
+    display: none;
+  }
+
+  &__quantity {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    user-select: none;
+
+    & > span:nth-of-type(1),
+    & > span:nth-of-type(3) {
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+    }
+  }
+
+  &__actions {
+  }
+
+  &__btn {
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    padding: 1.6rem 3.2rem !important;
+  }
+}
