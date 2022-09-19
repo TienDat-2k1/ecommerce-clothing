@@ -41,7 +41,9 @@ const Button = <E extends React.ElementType>(
 
   return (
     <ButtonComponent
-      className={`btn ${className} ${disabled && 'disabled'}`}
+      className={`btn ${className ? className : ''} ${
+        disabled ? 'disabled' : ''
+      }`}
       {...otherProps}
       ref={ref}
     >

@@ -1,6 +1,114 @@
 @use '../../sass/variables' as *;
 
 .footer {
-  height: 24rem;
+  padding: 1.5rem 3rem;
   background-color: $color--primary-dark;
+  color: $color--grey-light-1;
+
+  & h2 {
+    color: $color--grey-dark-2;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.2rem;
+  }
+
+  &__item {
+    // footer logo
+    &:nth-of-type(1) {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    // footer policy
+    &:nth-of-type(3) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    // footer payment method
+    &:nth-of-type(4) {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    // Footer register
+    &:nth-of-type(5) {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      & > div {
+        display: flex;
+        background-color: #fff;
+        border-radius: 999px;
+        padding-left: 1.2rem;
+      }
+
+      & > div > button {
+        color: $color--grey-dark-3;
+        position: relative;
+      }
+
+      & > div > input {
+        caret-color: $color--accent-orange;
+      }
+
+      & > div > button::after {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 1px;
+        height: 70%;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: $color--grey-dark-3;
+      }
+    }
+  }
+
+  &__hotline {
+  }
+
+  &__contact {
+  }
+
+  &__about {
+    line-height: 1.7;
+  }
+
+  &__policy {
+    line-height: 1.7;
+  }
+
+  &__payment {
+    & > div {
+      max-width: 20rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+  }
+
+  &__shipping {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__icon {
+    color: $color--grey-light-1;
+    border-color: $color--grey-light-2;
+  }
+}
+.logo {
+  font-family: 'Dancing Script', cursive;
+  color: $color--grey-light-1;
 }

@@ -14,8 +14,6 @@
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 1rem 2rem rgba($color--black, 0.08);
   }
 
   &:active {
@@ -36,6 +34,11 @@
 
   &--round {
     border-radius: 999px;
+  }
+
+  &--shadow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color--black, 0.08);
   }
 }
 
