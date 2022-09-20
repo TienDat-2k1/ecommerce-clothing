@@ -18,3 +18,13 @@
     transform: scale(1);
   }
 }
+
+@keyframes hover {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
