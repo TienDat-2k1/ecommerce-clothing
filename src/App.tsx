@@ -22,6 +22,7 @@ function App() {
           <Route index element={<SignInPage />} />
           <Route path="sign-up" element={<SignInPage />} />
         </Route>
+        <Route path="/admin"></Route>
       </Routes>
     </>
   );
