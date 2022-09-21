@@ -1,6 +1,7 @@
 @use '../../../sass/variables' as *;
 
 .btn {
+  min-width: 8rem;
   width: fit-content;
   display: inline-block;
 
@@ -12,15 +13,18 @@
   border: 1px solid transparent;
   background-color: transparent;
   transition: all 0.2s ease-in-out;
-
-  &:hover {
-  }
-
-  &:active {
-  }
+  text-align: center;
 
   &--primary {
     background-color: $color--primary;
+
+    &-light {
+      background-color: $color--primary-light;
+    }
+
+    &-dark {
+      background-color: $color--primary-dark;
+    }
   }
 
   &--orange {
@@ -28,7 +32,17 @@
   }
 
   &--outline {
+    color: $color--grey-dark-3 !important;
     border-color: $color--black;
+
+    &-white {
+      color: $color--white;
+      border-color: $color--white;
+    }
+
+    &-primary {
+      border-color: $color--primary;
+    }
   }
 
   &--round {
@@ -37,10 +51,12 @@
 
   &--transparent {
     background-color: transparent;
+
     &:hover {
       background-color: rgba($color--black, 0.08);
     }
   }
+
   &--shadow {
     &:hover {
       transform: translateY(-3px);

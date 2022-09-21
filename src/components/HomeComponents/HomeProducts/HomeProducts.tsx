@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ProductModel } from '../../../Model/productModel';
 import axios from 'axios';
 import ProductCard from '../../Products/ProductCard/ProductCard';
 import './HomeProducts.scss';
 import Text from '../../UI/Text/Text';
+import Button from '../../UI/Button/Button';
 
 const HomeProducts = () => {
   const navigate = useNavigate();
@@ -53,14 +54,13 @@ const HomeProducts = () => {
             return <ProductCard key={product._id} product={product} />;
           })}
       </div>
-      <button
-        className="btn home-products__btn"
-        onClick={() => {
-          navigate('/products');
-        }}
+      <Button
+        as={Link}
+        to="/products"
+        className="btn--outline btn--shadow home-products__btn"
       >
         Show more
-      </button>
+      </Button>
     </section>
   );
 };

@@ -14,7 +14,7 @@ type ButtonOwnProps<E extends React.ElementType> = {
 type ButtonProps<E extends React.ElementType> = ButtonOwnProps<E> &
   Omit<React.ComponentProps<E>, keyof ButtonOwnProps<E>>;
 
-const Button = <E extends React.ElementType>(
+const Button = <E extends React.ElementType = 'button'>(
   {
     children,
     as,
@@ -26,8 +26,6 @@ const Button = <E extends React.ElementType>(
   }: ButtonProps<E>,
   ref: any
 ) => {
-  const ButtonComponent = as || 'button';
-
   if (disabled) {
     Object.keys(otherProps).forEach(key => {
       if (
@@ -39,6 +37,7 @@ const Button = <E extends React.ElementType>(
     });
   }
 
+  const ButtonComponent = as || 'button';
   return (
     <ButtonComponent
       className={`btn ${className ? className : ''} ${

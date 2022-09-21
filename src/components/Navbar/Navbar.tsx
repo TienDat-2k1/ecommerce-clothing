@@ -1,5 +1,7 @@
 import './Navbar.scss';
 import { AiOutlineLogout } from 'react-icons/ai';
+import Button from '../UI/Button/Button';
+import { Link } from 'react-router-dom';
 
 interface INav {
   isNavActive: boolean;
@@ -20,29 +22,14 @@ const Navbar = ({ isNavActive }: INav) => {
 
       <ul className="nav__list">
         <li className="nav__list-item">
-          <a href="#" className="nav__list--link">
-            men
-          </a>
+          <Button as={Link} to="/" className="nav__list--link">
+            Home
+          </Button>
         </li>
         <li className="nav__list-item">
-          <a href="#" className="nav__list--link">
-            woman
-          </a>
-        </li>
-        <li className="nav__list-item">
-          <a href="#" className="nav__list--link">
-            kids
-          </a>
-        </li>
-        <li className="nav__list-item">
-          <a href="#" className="nav__list--link">
-            collection
-          </a>
-        </li>
-        <li className="nav__list-item">
-          <a href="#" className="nav__list--link">
-            trends
-          </a>
+          <Button as={Link} to="/products" className="nav__list--link">
+            Product
+          </Button>
         </li>
       </ul>
     </nav>

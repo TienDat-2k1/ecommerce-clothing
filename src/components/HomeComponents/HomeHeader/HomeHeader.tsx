@@ -1,10 +1,10 @@
 import './HomeHeader.scss';
 
 import HomeBG from '../../../assets/img/header-background.jpg';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Button from '../../UI/Button/Button';
 
 const HomeHeader = () => {
-  const navigate = useNavigate();
   return (
     <section className="home__header">
       <div className="dot-texture"></div>
@@ -12,20 +12,22 @@ const HomeHeader = () => {
       <div className="dot-texture"></div>
       <div className="home-header__layout container">
         <div className="home-header__layout-l">
-          <h1 className="layout__title">Find the best fashion style for you</h1>
+          <h1 className="layout__title">
+            Find the best fashion style for you.
+          </h1>
           <p className="layout__description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et soluta
-            minima neque quam officia excepturi odio aliquid ipsam expedita cum,
-            debitis optio, mollitia alias dolore ab vero ea, eum libero!
+            The key to looking great isn't following all of the latest fashion
+            trends. It's staying true to your personal style. But what if you
+            don't know what your style is? You can develop your unique style by
+            searching for inspiration and experimenting with fashion with us.
           </p>
-          <button
-            className="btn layout__btn"
-            onClick={() => {
-              navigate('/products');
-            }}
+          <Button
+            as={Link}
+            to="/products"
+            className="btn--primary-dark btn--shadow layout__btn"
           >
             SHOP NOW
-          </button>
+          </Button>
         </div>
         <div className="home-header__layout-r">
           <div>

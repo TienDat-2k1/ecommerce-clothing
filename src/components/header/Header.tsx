@@ -7,6 +7,7 @@ import { FaBars } from 'react-icons/fa';
 
 import './Header.scss';
 import { useAppSelector } from '../../hooks/hooks';
+import Button from '../UI/Button/Button';
 const Header = () => {
   const navigate = useNavigate();
   const [isNavActive, setIsNavActive] = useState(false);
@@ -35,7 +36,7 @@ const Header = () => {
       <div className="container header-container">
         <Link to="/">
           <div className="header__logo">
-            <h1>SFASHION</h1>
+            <h1>SFashion</h1>
           </div>
         </Link>
         <Navbar isNavActive={isNavActive} setIsNavActive={setIsNavActive} />
@@ -65,9 +66,9 @@ const Header = () => {
             <FaBars className="header__icon" />
           </div>
           <div className="header__feature header__feature-login">
-            <Link to="/auth" className="btn">
+            <Button as={Link} to="/auth" className="btn--outline-white">
               LOGIN
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

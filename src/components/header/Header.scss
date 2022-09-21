@@ -7,10 +7,10 @@
   align-items: center;
   gap: 2rem;
 
-  & a,
+  & a:link,
   a:active {
     text-decoration: none;
-    color: $color--black;
+    color: $color--white;
   }
 }
 
@@ -34,9 +34,9 @@
     font-family: $font-family--logo;
     font-weight: bold;
     letter-spacing: 1px;
-    text-transform: uppercase;
 
-    margin-right: 4rem;
+    margin-right: 1.2rem;
+    font-size: 1.9rem;
     cursor: pointer;
 
     @include responds(lg) {

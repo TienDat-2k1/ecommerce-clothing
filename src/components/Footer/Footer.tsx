@@ -55,19 +55,19 @@ const Footer = () => {
             <h2>Payment method</h2>
             <div>
               <Button
-                className="btn--outline footer__icon"
+                className="btn--outline-white footer__icon"
                 leftIcon={<BsCashCoin />}
               >
                 Cash
               </Button>
               <Button
-                className="btn--outline footer__icon"
+                className="btn--outline-white footer__icon"
                 leftIcon={<FaCcVisa />}
               >
                 VISA
               </Button>
               <Button
-                className="btn--outline footer__icon"
+                className="btn--outline-white footer__icon"
                 leftIcon={<RiBankCard2Line />}
               >
                 Internet Banking
@@ -77,7 +77,7 @@ const Footer = () => {
           <div className="footer__shipping">
             <h2>Shipping Partner</h2>
             <Button
-              className="btn--outline footer__icon"
+              className="btn--outline-white footer__icon"
               leftIcon={<FaShippingFast />}
             />
           </div>

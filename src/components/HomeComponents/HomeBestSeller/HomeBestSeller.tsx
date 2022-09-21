@@ -9,6 +9,7 @@ import 'swiper/scss/pagination';
 import { useEffect, useState } from 'react';
 import { ProductModel } from '../../../Model/productModel';
 import Button from '../../UI/Button/Button';
+import { Link } from 'react-router-dom';
 
 const HomeBestSeller = () => {
   const [top5Products, setTop5Products] = useState<ProductModel[]>();
@@ -29,7 +30,13 @@ const HomeBestSeller = () => {
         <div className="seller-l">
           <h1 className="seller__heading">Best Seller Product</h1>
           <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
-          <Button className="seller__btn">SEE MORE</Button>
+          <Button
+            as={Link}
+            to="/products"
+            className="btn--outline-white btn--shadow"
+          >
+            SEE MORE
+          </Button>
         </div>
         <div className="seller-r">
           <Swiper
@@ -58,24 +65,6 @@ const HomeBestSeller = () => {
                   </SwiperSlide>
                 );
               })}
-            {/* <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide>
-            <SwiperSlide>
-              <ProductCard />
-            </SwiperSlide> */}
           </Swiper>
         </div>
       </div>
