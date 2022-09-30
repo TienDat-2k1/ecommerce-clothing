@@ -6,7 +6,7 @@ export type ProductModel = {
   color?: string[];
   price: number;
   material: string[];
-  size: string[];
+  sizes: string[];
   rating: number;
   numberReview: number;
   collectionId: string;

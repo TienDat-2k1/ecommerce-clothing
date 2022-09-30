@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { IoLogoFacebook } from 'react-icons/io5';
 import Backdrop from './Backdrop';
 import ModalOverlay from './ModalOverlay';
 

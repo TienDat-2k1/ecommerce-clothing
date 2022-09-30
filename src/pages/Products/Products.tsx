@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
 import { FiFilter } from 'react-icons/fi';
@@ -7,6 +6,7 @@ import { BiFilter } from 'react-icons/bi';
 import { IoCloseOutline } from 'react-icons/io5';
 import { BsChevronDown } from 'react-icons/bs';
 
+import * as productServices from '../../services/productSevices';
 import ProductCard from '../../components/Products/ProductCard/ProductCard';
 import Button from '../../components/UI/Button/Button';
 import { ProductModel } from '../../Model/productModel';
@@ -15,17 +15,17 @@ import './Products.scss';
 const Products = () => {
   const [products, setProducts] = useState<ProductModel[]>([]);
   const [isFilterToggle, setIsFilterToggle] = useState(false);
-  const [second] = useState({
-    collection: true,
-    size: true,
-  });
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await axios.get(
-        'http://localhost:5000/api/products?page=1&limit=20'
-      );
-      setProducts(res.data.data.products);
+      const res = await productServices.getAllProduct({
+        page: 1,
+        limit: 20,
+      });
+      // const res = await axios.get(
+      //   'http://localhost:5000/api/products?page=1&limit=20'
+      // );
+      setProducts(res.data);
     };
     fetchProducts();
   }, []);

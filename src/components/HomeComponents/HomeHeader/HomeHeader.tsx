@@ -1,7 +1,7 @@
 import './HomeHeader.scss';
 
 import HomeBG from '../../../assets/img/header-background.jpg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '../../UI/Button/Button';
 
 const HomeHeader = () => {

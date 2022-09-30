@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { BsCart4 } from 'react-icons/bs';
 
@@ -45,7 +45,7 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
       _id: product._id,
       name: product.name,
       imageCover: product.imageCover,
-      sizes: product.size,
+      sizes: product.sizes,
       price: productPriceSale,
     };
 
@@ -95,7 +95,7 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
           </div>
           <div className="product-modal__sizes">
             <h4>Size:</h4>
-            {product.size.map((sz, i) => (
+            {product.sizes.map((sz, i) => (
               <kbd
                 key={i}
                 className={cartOptions.size === sz ? 'active' : ''}

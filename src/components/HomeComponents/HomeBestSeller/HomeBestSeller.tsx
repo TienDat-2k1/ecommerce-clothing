@@ -1,25 +1,30 @@
-import ProductCard from '../../Products/ProductCard/ProductCard';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Pagination, Autoplay } from 'swiper';
-import axios from 'axios';
-import './HomeBestSeller.scss';
+import { Pagination, Autoplay } from 'swiper';
 import 'swiper/scss';
+
+import * as productServices from '../../../services/productSevices';
+import Button from '../../UI/Button/Button';
+import './HomeBestSeller.scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
-import { useEffect, useState } from 'react';
+import ProductCard from '../../Products/ProductCard/ProductCard';
 import { ProductModel } from '../../../Model/productModel';
-import Button from '../../UI/Button/Button';
-import { Link } from 'react-router-dom';
 
 const HomeBestSeller = () => {
   const [top5Products, setTop5Products] = useState<ProductModel[]>();
   useEffect(() => {
     const fetchTop5BestSeller = async () => {
-      const res = await axios.get(
-        'http://localhost:5000/api/products?page=1&sort=-saleOff&limit=5'
-      );
-
-      setTop5Products(res.data.data.products);
+      const res = await productServices.getAllProduct({
+        page: 1,
+        sort: '-saleOff',
+        limit: 5,
+      });
+      // const res = await axios.get(
+      //   'http://localhost:5000/api/products?page=1&sort=-saleOff&limit=5'
+      // );
+      setTop5Products(res.data);
     };
     fetchTop5BestSeller();
   }, []);

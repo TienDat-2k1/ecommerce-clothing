@@ -2,6 +2,7 @@ import React from 'react';
 
 import './Modal.scss';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type ModalOverlayOwnProps<E extends React.ElementType> = {
   children: React.ReactNode;
   className?: string;

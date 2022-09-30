@@ -1,5 +1,6 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+
+import * as categoryServices from '../../../services/categoryServices';
 import CollectionCard from '../../CollectionCard/CollectionCard';
 import './HomeCollection.scss';
 
@@ -14,9 +15,9 @@ const HomeCollection = () => {
 
   useEffect(() => {
     const fetchCollection = async () => {
-      const res = await axios.get('http://localhost:5000/api/collections');
+      const result = await categoryServices.getAllCategories();
 
-      setCollection(res.data.data.collections);
+      setCollection(result.categories);
     };
     fetchCollection();
   }, []);

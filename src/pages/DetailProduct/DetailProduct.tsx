@@ -1,8 +1,7 @@
-import axios from 'axios';
-
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+import * as productServices from '../../services/productSevices';
 import { useParams } from 'react-router-dom';
 import { CartModel } from '../../Model/cartModel';
 import { ProductModel } from '../../Model/productModel';
@@ -30,9 +29,10 @@ const DetailProduct = () => {
     window.scrollTo(0, 0);
 
     const fetchProduct = async (id: string | undefined) => {
-      const res = await axios.get(`http://localhost:5000/api/products/${id}`);
+      if (!id) return;
+      const result = await productServices.getProduct(id);
 
-      setProduct(res.data.data.product);
+      setProduct(result.data);
     };
     fetchProduct(productId);
   }, [productId]);
@@ -62,7 +62,7 @@ const DetailProduct = () => {
       name: (product && product.name) || '',
       price: cartProductPrice,
       imageCover: product.imageCover,
-      sizes: product.size,
+      sizes: product.sizes,
     };
 
     console.log(cartProduct);
@@ -101,15 +101,16 @@ const DetailProduct = () => {
               </div>
               <div className="product__size">
                 <h4>Size: </h4>
-                {product.size.map((s, i) => (
-                  <kbd
-                    key={i}
-                    className={optionsCart.size === s ? 'active' : ''}
-                    onClick={() => sizeChangeHandler(s)}
-                  >
-                    {s}
-                  </kbd>
-                ))}
+                {product.sizes.length &&
+                  product.sizes.map((s, i) => (
+                    <kbd
+                      key={i}
+                      className={optionsCart.size === s ? 'active' : ''}
+                      onClick={() => sizeChangeHandler(s)}
+                    >
+                      {s}
+                    </kbd>
+                  ))}
               </div>
               <div className="product__color">
                 <h4>Color: </h4>

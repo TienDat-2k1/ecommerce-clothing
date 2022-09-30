@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ProductModel } from '../../../Model/productModel';
 import axios from 'axios';
 import ProductCard from '../../Products/ProductCard/ProductCard';
@@ -8,8 +8,6 @@ import Text from '../../UI/Text/Text';
 import Button from '../../UI/Button/Button';
 
 const HomeProducts = () => {
-  const navigate = useNavigate();
-
   const [products, setProducts] = useState<ProductModel[]>();
   const [aliasApi, setAliasApi] = useState('top-hot');
 
