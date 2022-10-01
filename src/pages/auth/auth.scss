@@ -1,31 +1,90 @@
 @use '../../sass/variables' as *;
 @use '../../sass/mixins' as *;
 
+.auth-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: linear-gradient(
+      105deg,
+      rgba($color--white, 0.8) 55%,
+      transparent 55%
+    ),
+    url(https://images.unsplash.com/photo-1470309864661-68328b2cd0a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGNsb3RoaW5nJTIwd3JhcHBlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .auth-container {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  width: 48rem;
-  height: 62rem;
+  width: 40rem;
+  max-height: 66rem;
   border-radius: 2rem;
   box-shadow: 1rem 2rem 3rem rgba($color--black, 0.15);
   padding: 2rem;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .auth {
   &__title {
     display: flex;
     align-items: baseline;
-    gap: 2rem;
+    gap: 1.2rem;
 
     font-size: 2.8rem;
+
+    & > :first-child:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
     & > h1 {
       font-family: $font-family--frankLibre;
       text-align: center;
       font-weight: 300;
-      font-size: 3.6rem;
+      font-size: 2.8rem;
     }
+  }
+
+  &__inputs {
+    padding: 0.8rem;
+  }
+
+  &__description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 1.3rem;
+
+    & > span {
+      color: $color--grey-dark;
+    }
+
+    & > a[href] {
+      color: $color--accent-red;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__cta {
+    margin-top: 3.2rem;
+  }
+
+  &__btn {
+    font-size: 1.7rem;
+    padding: 1.4rem 0 !important;
   }
 }

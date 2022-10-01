@@ -6,7 +6,7 @@ import { BiFilter } from 'react-icons/bi';
 import { IoCloseOutline } from 'react-icons/io5';
 import { BsChevronDown } from 'react-icons/bs';
 
-import * as productServices from '../../services/productSevices';
+import * as productServices from '../../services/productServices';
 import ProductCard from '../../components/Products/ProductCard/ProductCard';
 import Button from '../../components/UI/Button/Button';
 import { ProductModel } from '../../Model/productModel';

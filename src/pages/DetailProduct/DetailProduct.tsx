@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import * as productServices from '../../services/productSevices';
+import * as productServices from '../../services/productServices';
+import imageProduct from '../../utils/imageProduct';
 import { useParams } from 'react-router-dom';
 import { CartModel } from '../../Model/cartModel';
 import { ProductModel } from '../../Model/productModel';
@@ -75,7 +76,7 @@ const DetailProduct = () => {
         <main className="product container">
           <div className="product__main">
             <div className="product__image">
-              <img src={product.imageCover} alt="" />
+              <img src={imageProduct(product.imageCover)} alt={product.name} />
             </div>
             <div className="product__details">
               <h1 className="product__name">{product.name}</h1>

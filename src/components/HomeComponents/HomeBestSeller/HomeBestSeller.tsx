@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper';
 import 'swiper/scss';
 
-import * as productServices from '../../../services/productSevices';
+import * as productServices from '../../../services/productServices';
 import Button from '../../UI/Button/Button';
 import './HomeBestSeller.scss';
 import 'swiper/scss/navigation';
