@@ -85,6 +85,10 @@
   cursor: default;
 }
 
+.btn-icon {
+  color: $color--black;
+}
+
 .btn-icon + .btn-title,
 .btn-title + .btn-icon {
   margin-left: 1rem;

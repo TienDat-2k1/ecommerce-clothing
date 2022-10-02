@@ -46,8 +46,13 @@
 
     font-size: 2.8rem;
 
+    & > :first-child {
+      color: $color--black;
+      transform: translateY(4px);
+    }
+
     & > :first-child:hover {
-      transform: scale(1.05);
+      transform: translateY(4px) scale(1.05);
       cursor: pointer;
     }
     & > h1 {

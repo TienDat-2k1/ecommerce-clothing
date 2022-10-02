@@ -1,27 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { AiOutlineHome } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { idText } from 'typescript';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../../components/UI/Button/Button';
+import { isLoggedSelector } from '../../store/user/userSelector';
+import { signupStart } from '../../store/user/userSlice';
 import './auth.scss';
 
 interface IInputFields {
-  displayName: '';
-  email: '';
-  password: '';
-  confirmPassword: '';
+  displayName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
 
 const initInputFields: IInputFields = {
-  displayName: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
+  displayName: 'Test account',
+  email: 'test@gmail.com',
+  password: 'a12345678',
+  confirmPassword: 'a12345678',
 };
 
 const SignUpPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [inputFields, setInputFields] = useState(initInputFields);
+  const isLogged = useSelector(isLoggedSelector);
+
+  useEffect(() => {
+    if (!isLogged) return;
+    navigate('/');
+  }, [isLogged]);
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,7 +44,15 @@ const SignUpPage = () => {
   const formSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log(inputFields);
+    const { displayName, confirmPassword, ...otherInputs } = inputFields;
+
+    dispatch(
+      signupStart({
+        name: displayName,
+        passwordConfirm: confirmPassword,
+        ...otherInputs,
+      })
+    );
   };
 
   const inputs = [
@@ -76,7 +96,9 @@ const SignUpPage = () => {
   return (
     <main className="auth-container" onSubmit={formSubmitHandler}>
       <div className="auth__title">
-        <AiOutlineHome />
+        <Link to="/">
+          <AiOutlineHome />
+        </Link>
         <h1>Sign up</h1>
       </div>
       <form className="auth__inputs">
