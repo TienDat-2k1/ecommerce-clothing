@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 const Admin = () => {
   const axiosPrivate = useAxiosPrivate();
-  const [orders, setOrders] = useState();
   useEffect(() => {
     const fetchOrder = async () => {
       const order = await axiosPrivate.get('/orders');

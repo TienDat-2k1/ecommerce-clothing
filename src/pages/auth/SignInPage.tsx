@@ -41,7 +41,7 @@ const SignInPage = () => {
 
   useEffect(() => {
     if (isLogged && fm) navigate(fm, { replace: true });
-    // if (isLogged && !fm) navigate('/');
+    if (isLogged && !fm) navigate('/');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogged, navigate]);
 
@@ -89,13 +89,6 @@ const SignInPage = () => {
         <div className="auth__cta">
           <Button className="auth__btn btn--grey btn--horizontal btn--shadow">
             SIGN IN
-          </Button>
-          <Button
-            as={Link}
-            to="/admin"
-            className="auth__btn btn--grey btn--horizontal btn--shadow"
-          >
-            admin
           </Button>
         </div>
       </form>

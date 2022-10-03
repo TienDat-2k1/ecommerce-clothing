@@ -50,7 +50,7 @@ function* onLogout() {
 }
 
 function* userSaga() {
-  yield all([call(onSignin), call(onSignUp)]);
+  yield all([call(onSignin), call(onSignUp), call(onLogout)]);
 }
 
 export default userSaga;

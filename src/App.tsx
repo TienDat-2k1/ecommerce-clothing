@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'tippy.js/dist/tippy.css';
 
 import AppLayout from './components/Layout/AppLayout';
 import RequireAuth from './components/RequireAuth/RequireAuth';
@@ -23,6 +24,7 @@ import { logginSuccess } from './store/user/userSlice';
 function App() {
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
+
   useEffect(() => {
     const refresh = async () => {
       try {
@@ -37,7 +39,9 @@ function App() {
       } catch (error: any) {}
     };
 
-    refresh();
+    window.onload = () => {
+      refresh();
+    };
   }, [axiosPrivate, dispatch]);
 
   return (

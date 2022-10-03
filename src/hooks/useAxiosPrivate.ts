@@ -1,5 +1,5 @@
 import { axiosPrivate } from '../utils/httpRequest';
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import useRefreshToken from './useRefreshToken';
 import { useSelector } from 'react-redux';
 import { accessTokenSelector } from '../store/user/userSelector';

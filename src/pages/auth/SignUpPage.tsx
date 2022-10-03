@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-
 import { AiOutlineHome } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { idText } from 'typescript';
+
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../../components/UI/Button/Button';
 import { isLoggedSelector } from '../../store/user/userSelector';
@@ -33,6 +32,7 @@ const SignUpPage = () => {
   useEffect(() => {
     if (!isLogged) return;
     navigate('/');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogged]);
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
