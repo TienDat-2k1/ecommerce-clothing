@@ -6,8 +6,19 @@
 
 .admin-product-wrapper {
   margin-top: 2rem;
+  width: 100%;
 
   border-bottom: 1px solid #000;
+}
+
+.admin-product-heading {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.admin-product-footer {
+  margin-top: 2rem;
 }
 
 .product {
@@ -32,4 +43,8 @@
 .admin-product-listitem {
   height: 78%;
   overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

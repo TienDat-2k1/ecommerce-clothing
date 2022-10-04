@@ -6,7 +6,7 @@ export const getAllProduct = async (option = {}) => {
       params: { ...option },
     });
 
-    return res.data;
+    return res;
   } catch (error) {
     console.log(error);
   }

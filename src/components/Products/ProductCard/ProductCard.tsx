@@ -1,10 +1,12 @@
+import React from 'react';
+
 import './ProductCard.scss';
 import { AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { BsCart4 } from 'react-icons/bs';
 
 import { ProductModel } from '../../../Model/productModel';
-import ProductCardModal from '../ProductCardModal/ProductCardModal';
+import ProductCardModal from '../../ModalComponent/ProductCardModal/ProductCardModal';
 import { useState } from 'react';
 
 type ProductCardProps = {
@@ -77,4 +79,4 @@ const ProductCard = ({ product }: ProductCardProps) => {
     </>
   );
 };
-export default ProductCard;
+export default React.memo(ProductCard);

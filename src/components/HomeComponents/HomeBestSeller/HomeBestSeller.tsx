@@ -21,10 +21,8 @@ const HomeBestSeller = () => {
         sort: '-saleOff',
         limit: 5,
       });
-      // const res = await axios.get(
-      //   'http://localhost:5000/api/products?page=1&sort=-saleOff&limit=5'
-      // );
-      setTop5Products(res.data);
+
+      setTop5Products(res.data.data);
     };
     fetchTop5BestSeller();
   }, []);

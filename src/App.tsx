@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -13,9 +13,6 @@ import Auth from './pages/auth/Auth';
 import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import Checkout from './pages/Checkout/Checkout';
-import DetailProduct from './pages/DetailProduct/DetailProduct';
-import Home from './pages/Home/Home';
-import Products from './pages/Products/Products';
 import Unauthorized from './pages/Unauthorized/Unauthorized';
 import Main from './router/Main';
 import './sass/_global.scss';
@@ -24,6 +21,10 @@ import AdminAccounts from './views/Account/AdminAccounts';
 import Dashboard from './views/Dashboard/Dashboard';
 import AdminOrders from './views/Orders/AdminOrders';
 import AdminProduct from './views/Products/AdminProduct';
+
+const Home = lazy(() => import('./pages/Home/Home'));
+const DetailProduct = lazy(() => import('./pages/DetailProduct/DetailProduct'));
+const Products = lazy(() => import('./pages/Products/Products'));
 
 function App() {
   const axiosPrivate = useAxiosPrivate();
@@ -49,7 +50,7 @@ function App() {
   }, [axiosPrivate, dispatch]);
 
   return (
-    <>
+    <Suspense>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           {/* public routes */}
@@ -89,22 +90,7 @@ function App() {
         draggable
         pauseOnHover
       />
-    </>
-    // <>
-    //   <Routes>
-    //     <Route path="/" element={<Main />}>
-    //       <Route index element={<Home />} />
-    //       <Route path="products" element={<Products />} />
-    //       <Route path="products/:productId" element={<DetailProduct />} />
-    //       <Route path="checkout" element={<Checkout />} />
-    //     </Route>
-    //     <Route path="/auth" element={<Auth />}>
-    //       <Route index element={<SignInPage />} />
-    //       <Route path="sign-up" element={<SignUpPage />} />
-    //     </Route>
-    //     <Route path="/admin"></Route>
-    //   </Routes>
-    // </>
+    </Suspense>
   );
 }
 

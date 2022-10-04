@@ -1,0 +1,21 @@
+@use '../../../sass/variables' as *;
+
+.delete-product-modal {
+  padding: 2rem;
+  font-size: 2rem;
+}
+
+.delete-product-modal > :first-child {
+  & > h4 {
+    color: $color--accent-red;
+    display: inline;
+    margin-left: 0.8rem;
+  }
+}
+
+.delete-product-modal > :nth-child(2) {
+  margin-top: 2.4rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+}

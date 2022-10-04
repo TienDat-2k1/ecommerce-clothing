@@ -127,15 +127,15 @@
       top: 0;
       right: -6px;
       transform: translateY(-84%) rotate(-40deg);
-      border-radius: 50%;
-      border-bottom: 14px solid $color--white;
+      border-radius: 99px;
+      border-bottom: 10px solid $color--white;
     }
     &::before {
       bottom: 0;
       right: -6px;
-      border-radius: 50%;
+      border-radius: 32px;
       transform: translateY(84%) rotate(220deg);
-      border-bottom: 14px solid $color--white;
+      border-bottom: 10px solid $color--white;
     }
   }
 

@@ -7,9 +7,10 @@ export type ProductModel = {
   price: number;
   material: string[];
   sizes: string[];
-  rating: number;
+  ratingsAverage: number;
   numberReview: number;
   collectionId: string;
   saleOff: number;
   description: string;
+  sold: number;
 };

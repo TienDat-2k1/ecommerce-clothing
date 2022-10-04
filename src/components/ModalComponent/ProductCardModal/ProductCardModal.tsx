@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { BsCart4 } from 'react-icons/bs';
@@ -130,4 +131,4 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
     </Modal>
   );
 };
-export default ProductCardModal;
+export default React.memo(ProductCardModal);

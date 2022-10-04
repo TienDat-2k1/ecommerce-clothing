@@ -1,19 +1,29 @@
 import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import useDebounce from '../../../hooks/useDebounce';
 
 import './SearchInput.scss';
 
 type SearchInputType = {
+  value: string;
   onSearch?: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 } & React.ComponentProps<'input'>;
 
 const SearchInput = (
-  { onSearch, ...otherProps }: SearchInputType,
+  { value, onSearch, onChange, ...otherProps }: SearchInputType,
   ref?: React.LegacyRef<HTMLInputElement>
 ) => {
   return (
     <div className="search-wrapper">
-      <input type="text" id="search-input" ref={ref} {...otherProps} />
+      <input
+        type="text"
+        id="search-input"
+        ref={ref}
+        {...otherProps}
+        onChange={onChange}
+        value={value}
+      />
       <label htmlFor="search-input" onClick={onSearch}>
         <AiOutlineSearch />
       </label>
