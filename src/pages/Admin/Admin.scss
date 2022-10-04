@@ -1,0 +1,167 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.admin {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $color--black;
+  color: $color--white;
+
+  display: flex;
+}
+
+.admin-toggle-navbar {
+  position: fixed;
+  top: 20px;
+  left: 10px;
+  z-index: 99;
+  width: 5rem;
+  height: 5rem;
+  background-color: $color--black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: none;
+
+  @include responds(lg) {
+    display: flex;
+  }
+}
+
+.admin-toggle-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 98;
+  background-color: rgba($color--black, 0.5);
+
+  display: none;
+
+  &--active {
+    display: block;
+  }
+}
+
+.admin-navbar {
+  flex: 0 0 18%;
+  margin-top: 4rem;
+  transition: all 1s;
+  overflow-x: hidden;
+
+  @include responds(lg) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+    margin: 0;
+    padding-top: 2rem;
+    flex: 0;
+    width: 40%;
+
+    background-color: $color--black;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+
+    &--active {
+      transform: translate(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @include responds(md) {
+    width: 50%;
+  }
+
+  @include responds(sm) {
+    width: 60%;
+  }
+
+  &__item {
+    height: 42px;
+    margin-left: 1rem;
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 99px;
+    border-bottom-left-radius: 99px;
+
+    transition: all 0.3s;
+
+    gap: 2.2rem;
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: 0.4rem;
+  }
+
+  &__item:hover,
+  &__item--active {
+    background-color: $color--white;
+    color: $color--accent-violet !important;
+  }
+
+  &__item--active {
+    position: relative;
+
+    &::after,
+    &::before {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 32px;
+      height: 32px;
+
+      transition: all 0.3s;
+    }
+
+    &::after {
+      top: 0;
+      right: -6px;
+      transform: translateY(-84%) rotate(-40deg);
+      border-radius: 50%;
+      border-bottom: 14px solid $color--white;
+    }
+    &::before {
+      bottom: 0;
+      right: -6px;
+      border-radius: 50%;
+      transform: translateY(84%) rotate(220deg);
+      border-bottom: 14px solid $color--white;
+    }
+  }
+
+  & > span {
+    margin-left: 2rem;
+    padding: 2rem 0;
+    display: inline-block;
+    font-weight: 600;
+
+    color: rgba($color--white, 0.6);
+    font-size: 1.4rem;
+  }
+}
+
+.admin-data {
+  flex: 1;
+  height: 92vh;
+  margin: 2rem 2rem 2rem 0;
+  padding: 1.6rem 2rem;
+  border-radius: 4rem;
+  background-color: $color--white;
+  color: $color--black;
+
+  overflow-y: auto;
+
+  @include responds(lg) {
+    width: 100%;
+  }
+}

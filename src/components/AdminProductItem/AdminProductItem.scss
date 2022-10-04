@@ -1,0 +1,63 @@
+@use '../../sass/variables' as *;
+
+.admin-product-item {
+  width: 100%;
+  &:hover .admin-product-content,
+  &--active .admin-product-content {
+    cursor: pointer;
+    background-color: rgba($color--black, 0.05);
+  }
+
+  &:hover .admin-product-cta > *,
+  &--active .admin-product-cta > * {
+    display: flex;
+  }
+}
+
+.admin-product-content {
+  height: 160px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-bottom: 1px solid #000;
+}
+
+.admin-product-cta {
+  font-size: 2.4rem;
+
+  & > * {
+    display: none;
+  }
+
+  & > *:hover {
+    color: $color--accent-violet;
+    cursor: pointer;
+  }
+}
+
+.admin-product__image {
+  width: 100%;
+
+  & > img {
+    width: 80%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.admin-product__name {
+  padding: 1.2rem;
+
+  display: flex;
+  justify-content: center;
+
+  & > h4 {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

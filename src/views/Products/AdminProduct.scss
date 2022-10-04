@@ -1,0 +1,35 @@
+@use '../../sass/variables' as *;
+
+.admin-product-container {
+  height: 100%;
+}
+
+.admin-product-wrapper {
+  margin-top: 2rem;
+
+  border-bottom: 1px solid #000;
+}
+
+.product {
+  &__header-block {
+    position: relative;
+    text-align: center;
+    user-select: none;
+  }
+
+  &__header-block:not(:last-child)::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    right: 0;
+    width: 1px;
+    height: 70%;
+    transform: translateY(-50%);
+    background-color: $color--black;
+  }
+}
+
+.admin-product-listitem {
+  height: 78%;
+  overflow: auto;
+}

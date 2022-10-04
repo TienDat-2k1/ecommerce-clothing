@@ -26,8 +26,8 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   const [inputFields, setInputFields] = useState<IInputFields>({
-    email: 'tonguyentiendat@gmail.com',
-    password: '12345678',
+    email: 'admin@gmail.com',
+    password: 'admin1234',
   });
   const isLogged = useSelector(isLoggedSelector);
 

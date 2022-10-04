@@ -1,17 +1,36 @@
-import { useEffect } from 'react';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { useState } from 'react';
+import { AiOutlineBars } from 'react-icons/ai';
+import { Outlet } from 'react-router-dom';
+import AdminNavbar from '../../components/AdminNavbar/AdminNavbar';
+
+import './Admin.scss';
 
 const Admin = () => {
-  const axiosPrivate = useAxiosPrivate();
-  useEffect(() => {
-    const fetchOrder = async () => {
-      const order = await axiosPrivate.get('/orders');
+  const [isNavbarActive, setIsNavbarActive] = useState(false);
 
-      console.log(order);
-    };
+  const showNavHandler = () => {
+    setIsNavbarActive(true);
+  };
+  const hideNavHandler = () => {
+    setIsNavbarActive(false);
+  };
 
-    fetchOrder();
-  });
-  return <div>Admin</div>;
+  return (
+    <main className="admin">
+      <div className="admin-toggle-navbar" onClick={showNavHandler}>
+        <AiOutlineBars />
+      </div>
+      <div
+        className={`admin-toggle-overlay ${
+          isNavbarActive ? 'admin-toggle-overlay--active' : ''
+        }`}
+        onClick={hideNavHandler}
+      ></div>
+      <AdminNavbar isActive={isNavbarActive} />
+      <div className="admin-data">
+        <Outlet />
+      </div>
+    </main>
+  );
 };
 export default Admin;

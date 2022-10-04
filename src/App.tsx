@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'tippy.js/dist/tippy.css';
@@ -20,6 +20,10 @@ import Unauthorized from './pages/Unauthorized/Unauthorized';
 import Main from './router/Main';
 import './sass/_global.scss';
 import { logginSuccess } from './store/user/userSlice';
+import AdminAccounts from './views/Account/AdminAccounts';
+import Dashboard from './views/Dashboard/Dashboard';
+import AdminOrders from './views/Orders/AdminOrders';
+import AdminProduct from './views/Products/AdminProduct';
 
 function App() {
   const axiosPrivate = useAxiosPrivate();
@@ -63,7 +67,13 @@ function App() {
 
           {/* protect route */}
           <Route element={<RequireAuth allowedRoles="admin" />}>
-            <Route path="admin" element={<Admin />}></Route>
+            <Route path="admin" element={<Admin />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="product" element={<AdminProduct />} />
+              <Route path="order" element={<AdminOrders />} />
+              <Route path="account" element={<AdminAccounts />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

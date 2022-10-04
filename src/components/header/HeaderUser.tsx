@@ -38,7 +38,7 @@ const HeaderUser = () => {
               <Popper className="user-popper" {...attrs}>
                 <div className="user-popper__item">
                   <img src={imageUser(user.photo)} alt="" />
-                  <h4>Tien Dat</h4>
+                  <h4>{user.name}</h4>
                 </div>
                 <div className="user-popper__item">
                   <BsReceiptCutoff className="user-popper__icon" />

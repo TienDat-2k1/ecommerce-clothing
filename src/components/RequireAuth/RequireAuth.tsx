@@ -12,7 +12,6 @@ const RequireAuth = ({ allowedRoles }: RequireAuthProps) => {
   const isLogged = useSelector(isLoggedSelector);
   const user = useSelector(userSelector);
 
-  console.log(user.role);
   return user.role && allowedRoles.includes(user.role) ? (
     <Outlet />
   ) : isLogged ? (

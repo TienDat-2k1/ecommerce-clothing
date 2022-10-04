@@ -54,6 +54,9 @@
       object-fit: cover;
       border: 2px solid $color--accent-orange;
     }
+    & > h4 {
+      text-transform: capitalize;
+    }
   }
 
   &__icon {
