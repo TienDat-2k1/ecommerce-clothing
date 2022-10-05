@@ -1,0 +1,119 @@
+@use '../../../sass/variables' as *;
+.create-product-modal {
+  width: 80vw;
+  height: 75vh;
+  padding: 0 2rem;
+
+  overflow-y: auto;
+}
+
+.create-product {
+  &__category {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    & > select {
+      padding: 0.8rem 1.2rem;
+      outline: none;
+      border-radius: 16px;
+    }
+
+    & > select > option {
+      background-color: $color--grey-light-1;
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+
+    & > textarea {
+      padding: 0.8rem 1.6rem;
+      height: 24rem;
+      resize: none;
+      line-height: 24px;
+      transition: all 0.2s;
+      outline: none;
+      color: $color--grey-dark-3;
+      border: 1px solid $color--grey-dark-2;
+    }
+    & > textarea:focus {
+      border-color: $color--accent-orange;
+    }
+  }
+
+  &__image {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__image > :first-child {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  &__image > :first-child > input {
+    display: none;
+  }
+
+  &__image-label > label {
+    cursor: pointer;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  &__cta {
+    margin-top: 3.2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 4rem;
+    font-size: 2.4rem;
+
+    & > button {
+      padding: 1.2rem 2.4rem;
+    }
+  }
+}
+
+.imageCover-preview {
+  padding-top: 1rem;
+  & > img {
+    width: 32rem;
+    height: 40rem;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 1rem 2rem 3rem rgba($color--black, 0.2);
+    cursor: pointer;
+  }
+}
+
+.images-preview {
+  padding-top: 1rem;
+  display: flex;
+  gap: 1.2rem;
+
+  & > img {
+    width: 8rem;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0.5rem 1rem 2rem rgba($color--black, 0.2);
+  }
+}
+
+.create-product__close-modal {
+  position: absolute;
+  top: 10px;
+  right: 26px;
+  font-size: 2.4rem;
+  cursor: pointer;
+}

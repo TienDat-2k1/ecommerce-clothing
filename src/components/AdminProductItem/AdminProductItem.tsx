@@ -44,24 +44,24 @@ const AdminProductItem = ({ product, onDelete }: AdminProductProps) => {
             <div className="admin-product-content admin-product__name  col c-3 sm-4">
               <h4>{product.name}</h4>
             </div>
-            <div className="admin-product-content  col c-2">
+            <div className="admin-product-content col c-2 sm-0">
               <span>{product.material}</span>
             </div>
-            <div className="admin-product-content  col c-1 md-0">
+            <div className="admin-product-content col c-1 md-0">
               {product.sizes.map(size => (
                 <span>{size}</span>
               ))}
             </div>
-            <div className="admin-product-content  col c-1 sm-2">
+            <div className="admin-product-content col c-1 sm-2">
               <span>{product.saleOff}%</span>
             </div>
-            <div className="admin-product-content  col c-1 sm-0">
+            <div className="admin-product-content col c-1 sm-0">
               <span>{product.ratingsAverage}</span>
             </div>
-            <div className="admin-product-content  col c-1 sm-0">
+            <div className="admin-product-content col c-1 sm-0">
               <span>${product.price}</span>
             </div>
-            <div className="admin-product-content  col c-1">
+            <div className="admin-product-content col c-1 sm-3">
               <span>{product.sold}</span>
             </div>
           </div>

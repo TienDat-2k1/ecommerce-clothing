@@ -19,7 +19,6 @@ const DeleteProductModal = ({
   const axiosPrivate = useAxiosPrivate();
   const deleteProductHandler = async () => {
     try {
-      console.log(product._id);
       const res = await axiosPrivate.delete(`products/${product._id}`);
       if (res.status === 204) {
         toast('Delete Success');

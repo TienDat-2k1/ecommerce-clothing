@@ -6,6 +6,5 @@ export const getAllCategories = catchAsync(async () => {
     params: {},
   });
 
-  // console.log(res);
   return res.data;
 });
