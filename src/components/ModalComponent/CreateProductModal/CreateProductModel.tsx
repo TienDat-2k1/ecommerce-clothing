@@ -1,15 +1,16 @@
+import Multiselect from 'multiselect-react-dropdown';
 import { useState, useEffect, useCallback } from 'react';
+import { toast } from 'react-toastify';
+import { RiImageAddLine } from 'react-icons/ri';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import * as categoryService from '../../../services/categoryServices';
 import { CategoryModel } from '../../../Model/categoryModel';
 import FormInput from '../../FormInput/FormInput';
 import Modal from '../../Modal/Modal';
 import './CreateProductModal.scss';
-import { RiImageAddLine } from 'react-icons/ri';
 import Button from '../../UI/Button/Button';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
-import { toast } from 'react-toastify';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 type CreateProductModalProps = {
   onClose: () => void;
@@ -23,6 +24,7 @@ type ProductInput = {
   saleOff: string;
   category: string;
   description: string;
+  sizes: string[];
   imageCover?: any;
   images?: any;
 };
@@ -40,6 +42,7 @@ const CreateProductModel = ({
     saleOff: '0',
     category: '',
     description: '',
+    sizes: [],
   });
 
   const [imageCoverPreview, setImageCoverPreview] = useState<any>();
@@ -54,10 +57,20 @@ const CreateProductModel = ({
     fetchCategories();
   }, []);
 
-  // clear memory imageCover
+  // clear memory imageCover preview
   useEffect(() => {
-    return () => imageCoverPreview && URL.revokeObjectURL(imageCoverPreview);
+    return () =>
+      imageCoverPreview && URL.revokeObjectURL(imageCoverPreview.url);
   }, [imageCoverPreview]);
+
+  // clear memory images preview
+  useEffect(() => {
+    return () =>
+      imagesPreview &&
+      imagesPreview.forEach((image: any) => {
+        URL.revokeObjectURL(image.url);
+      });
+  }, [imagesPreview]);
 
   const textChangeHandler = useCallback(
     (
@@ -72,52 +85,65 @@ const CreateProductModel = ({
   );
 
   const imageCoverHandler = useCallback(
-    (e: any) => {
-      setImageCoverPreview(URL.createObjectURL(e.target.files[0]));
-      setProductInput({ ...productInput, imageCover: e.target.files[0] });
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files)
+        setImageCoverPreview({
+          file: e.target.files[0],
+          url: URL.createObjectURL(e.target.files[0]),
+        });
     },
-    [productInput]
+    []
   );
 
   const imagesHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.dir(e.target.files);
-      let filesPreview: string[] = [];
       if (e.target.files) {
-        filesPreview = Array.from(e.target.files).map(file =>
-          URL.createObjectURL(file)
-        );
+        const filesPreview = Array.from(e.target.files).map(file => ({
+          file,
+          url: URL.createObjectURL(file),
+        }));
+        setImagesPreview(filesPreview);
       }
-      console.log(filesPreview);
-      setImagesPreview(filesPreview);
-      setProductInput({ ...productInput, images: e.target.files });
     },
-    [productInput]
+    []
   );
+
+  const removeImagesHandler = (url: string) => {
+    const newImages = imagesPreview.filter((image: any) => image.url !== url);
+    setImagesPreview(newImages);
+  };
 
   const formSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log(productInput);
-
     try {
       const formData = new FormData();
 
-      formData.append('name', productInput.name);
-      formData.append('material', productInput.material);
+      productInput.name.trim() && formData.append('name', productInput.name);
+      productInput.material.trim() &&
+        formData.append('material', productInput.material);
       formData.append('price', productInput.price);
       formData.append('saleOff', productInput.saleOff);
-      formData.append('category', productInput.category);
-      formData.append('description', productInput.description);
-      formData.append(
-        'imageCover',
-        productInput.imageCover,
-        productInput.imageCover?.name as string
-      );
+      productInput.category.trim() &&
+        formData.append('category', productInput.category);
+      productInput.description.trim() &&
+        formData.append('description', productInput.description);
 
-      productInput.images &&
-        Array.from(productInput.images).forEach((image: any) => {
-          formData.append('images', image, image.name);
+      productInput.sizes.length &&
+        productInput.sizes.forEach(size => {
+          formData.append('sizes', size);
+        });
+
+      imageCoverPreview &&
+        formData.append(
+          'imageCover',
+          imageCoverPreview.file,
+          imageCoverPreview.file.name
+        );
+
+      imagesPreview &&
+        imagesPreview.forEach((image: any) => {
+          formData.append('images', image.file, image.file.name);
         });
 
       console.log(formData.getAll('images'));
@@ -185,7 +211,7 @@ const CreateProductModel = ({
           </div>
         </div>
         <div className="row">
-          <div className="create-product__category col c-3">
+          <div className="create-product__category  col c-3">
             <span>Category</span>
             <select
               name="category"
@@ -203,7 +229,31 @@ const CreateProductModel = ({
                 ))}
             </select>
           </div>
-          <div className="create-product__description col c-9">
+          <div className="create-product__sizes col c-9">
+            <span>Sizes</span>
+            <Multiselect
+              className="create-product__sizes-select"
+              options={['S', 'M', 'L', 'XL', 'XXL', 'XXL']}
+              isObject={false}
+              style={{
+                chips: {
+                  background: 'black',
+                },
+                multiselectContainer: {
+                  color: 'black',
+                },
+                searchBox: {
+                  width: '100%',
+                },
+              }}
+              onSelect={list =>
+                setProductInput({ ...productInput, sizes: list })
+              }
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="create-product__description col c-12">
             <span>Description</span>
             <textarea
               className=""
@@ -232,7 +282,7 @@ const CreateProductModel = ({
             </div>
           </div>
           <div className="imageCover-preview">
-            {imageCoverPreview && <img src={imageCoverPreview} alt="" />}
+            {imageCoverPreview && <img src={imageCoverPreview.url} alt="" />}
           </div>
         </div>
 
@@ -255,7 +305,14 @@ const CreateProductModel = ({
           </div>
           <div className="images-preview">
             {imagesPreview &&
-              imagesPreview.map((image: any) => <img src={image} alt="" />)}
+              imagesPreview.map((image: any) => (
+                <div key={image.url}>
+                  <img src={image.url} alt="" />
+                  <div onClick={() => removeImagesHandler(image.url)}>
+                    <AiOutlineCloseCircle />
+                  </div>
+                </div>
+              ))}
           </div>
         </div>
 

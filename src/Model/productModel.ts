@@ -5,11 +5,11 @@ export type ProductModel = {
   images?: string[];
   color?: string[];
   price: number;
-  material: string[];
+  material: string;
   sizes: string[];
   ratingsAverage: number;
   numberReview: number;
-  collectionId: string;
+  category: string;
   saleOff: number;
   description: string;
   sold: number;

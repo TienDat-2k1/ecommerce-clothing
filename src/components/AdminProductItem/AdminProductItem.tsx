@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import * as productServices from '../../services/productServices';
 import { GrUpdate } from 'react-icons/gr';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { ProductModel } from '../../Model/productModel';
 import imageProduct from '../../utils/imageProduct';
 import DeleteProductModal from '../ModalComponent/DeleteProductModal/DeleteProductModal';
+import UpdateProductModal from '../ModalComponent/UpdateProductModal/UpdateProductModal';
 import './AdminProductItem.scss';
 
 type AdminProductProps = {
@@ -12,8 +14,29 @@ type AdminProductProps = {
   onDelete: () => void;
 };
 
-const AdminProductItem = ({ product, onDelete }: AdminProductProps) => {
+const AdminProductItem = ({ product: p, onDelete }: AdminProductProps) => {
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [product, setProduct] = useState<ProductModel>(p);
   const [isDeleteProductModal, setIsDeleteProductModal] = useState(false);
+  const [isUpdateProductModal, setIsUpdateProductModal] = useState(false);
+
+  useEffect(() => {
+    const fetchProduct = async (id: string) => {
+      const res = await productServices.getProduct(id);
+
+      setProduct(res.data);
+    };
+    fetchProduct(p._id);
+    setIsUpdate(false);
+  }, [isUpdate, p]);
+
+  const showUpdateModal = () => {
+    setIsUpdateProductModal(true);
+  };
+
+  const hideUpdateModal = () => {
+    setIsUpdateProductModal(false);
+  };
 
   const showDeleteModal = () => {
     setIsDeleteProductModal(true);
@@ -23,13 +46,17 @@ const AdminProductItem = ({ product, onDelete }: AdminProductProps) => {
     setIsDeleteProductModal(false);
   };
 
+  const onUpdate = () => {
+    setIsUpdate(true);
+  };
+
   return (
     <>
       <div className="admin-product-item row">
         <div className="col c-1 md-2">
           <div className="row">
             <div className="admin-product-content admin-product-cta col c-6">
-              <GrUpdate />
+              <GrUpdate onClick={showUpdateModal} />
             </div>
             <div className="admin-product-content admin-product-cta  col c-6">
               <RiDeleteBin6Line onClick={showDeleteModal} />
@@ -47,10 +74,10 @@ const AdminProductItem = ({ product, onDelete }: AdminProductProps) => {
             <div className="admin-product-content col c-2 sm-0">
               <span>{product.material}</span>
             </div>
-            <div className="admin-product-content col c-1 md-0">
-              {product.sizes.map(size => (
-                <span>{size}</span>
-              ))}
+            <div className="admin-product-content admin-product__size col c-1 md-0">
+              {product.sizes.map((size, i) => {
+                return <span key={i}>{size}</span>;
+              })}
             </div>
             <div className="admin-product-content col c-1 sm-2">
               <span>{product.saleOff}%</span>
@@ -72,6 +99,13 @@ const AdminProductItem = ({ product, onDelete }: AdminProductProps) => {
           onClose={closeDeleteModalHandler}
           product={product}
           onDelete={onDelete}
+        />
+      )}
+      {isUpdateProductModal && (
+        <UpdateProductModal
+          onClose={hideUpdateModal}
+          id={product._id}
+          onUpdate={onUpdate}
         />
       )}
     </>

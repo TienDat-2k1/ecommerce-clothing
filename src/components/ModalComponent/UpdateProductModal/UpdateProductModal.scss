@@ -1,0 +1,53 @@
+@use '../../../sass/variables' as *;
+
+.images-preview > div {
+  position: relative;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+
+  width: 8rem;
+  height: 12rem;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0.5rem 1rem 2rem rgba($color--black, 0.2);
+
+  &::after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color--black, 0.4);
+
+    transition: all 0.3s linear;
+  }
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0.5rem 1rem 2rem rgba($color--black, 0.2);
+  }
+
+  & > div {
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    color: $color--white;
+    cursor: pointer;
+    font-size: 1.8rem;
+    z-index: 10;
+  }
+
+  & > div:hover {
+    transform: scale(1.1);
+  }
+}
+
+.images-preview > div:hover::after {
+  content: '';
+}

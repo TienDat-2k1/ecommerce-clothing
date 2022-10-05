@@ -1,6 +1,5 @@
 import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import useDebounce from '../../../hooks/useDebounce';
 
 import './SearchInput.scss';
 

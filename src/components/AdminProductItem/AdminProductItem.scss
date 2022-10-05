@@ -4,6 +4,7 @@
 .admin-product-item {
   width: 100%;
   transition: all 0.2s;
+  border-bottom: 1px solid #000;
 
   &:hover {
     background-color: rgba($color--black, 0.05);
@@ -18,7 +19,6 @@
 
 .admin-product-content {
   height: 160px;
-  border-bottom: 1px solid #000;
 
   @include responds(sm) {
     height: 120px;
@@ -61,13 +61,9 @@
   justify-content: center;
 
   & > img {
-    width: 80%;
+    width: 90%;
     height: 100%;
     object-fit: cover;
-
-    @include responds(lg) {
-      width: 90%;
-    }
 
     @include responds(md) {
       width: 100%;
@@ -103,5 +99,11 @@
       -webkit-line-clamp: 5;
       height: 82%;
     }
+  }
+}
+
+.admin-product__size {
+  & > span {
+    height: fit-content;
   }
 }
