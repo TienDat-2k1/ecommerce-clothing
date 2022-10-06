@@ -1,14 +1,26 @@
 @use '../../../sass/variables' as *;
+@use '../../../sass/mixins' as *;
 
 .product-modal {
   width: 65vw;
   position: relative;
   padding: 1.5rem 0.8rem;
+  max-height: 75vh;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .content {
     display: flex;
     gap: 2rem;
+
+    @include responds(lg) {
+      flex-direction: column;
+    }
   }
+
   .close {
     position: absolute;
     padding: 0.2rem 0.6rem;
@@ -21,31 +33,11 @@
 
   &__images {
     width: 40%;
-    overflow: hidden;
-  }
+    height: 48rem;
 
-  &__image-cover {
-    width: 100%;
-    height: 80%;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-
-  &__image-list {
-    overflow: auto;
-    display: flex;
-    gap: 1rem;
-  }
-
-  &__image-item {
-    width: 80px;
-    height: 100%;
-
-    & > img {
+    @include responds(lg) {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 2px;
+      height: 52rem;
     }
   }
 
@@ -55,6 +47,12 @@
     flex: 1;
     flex-direction: column;
     gap: 2rem;
+
+    @include responds(lg) {
+      width: 100%;
+
+      margin-bottom: 2.4rem;
+    }
 
     & h4 {
       color: $color--grey-dark;
@@ -109,6 +107,7 @@
 
   &__sizes {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 2rem;
 
@@ -149,5 +148,9 @@
     text-transform: uppercase;
     font-size: 1.8rem;
     padding: 1.6rem 3.2rem !important;
+
+    @include responds(lg) {
+      width: 100%;
+    }
   }
 }

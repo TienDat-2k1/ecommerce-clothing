@@ -23,3 +23,15 @@ export const getProduct = async (id: string) => {
     console.log(error);
   }
 };
+
+export const getProductAlias = async (aliasPath: string, options = {}) => {
+  try {
+    const res = await httpRequest.get(`/products/${aliasPath}`, {
+      params: { ...options },
+    });
+
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

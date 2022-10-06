@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import * as productServices from '../../services/productServices';
-import imageProduct from '../../utils/imageProduct';
 import { useParams } from 'react-router-dom';
 import { CartModel } from '../../Model/cartModel';
 import { ProductModel } from '../../Model/productModel';
 import { addCart } from '../../store/cart/cartSlice';
 import './DetailProduct.scss';
+import Button from '../../components/UI/Button/Button';
+import ImageProductSlideShow from '../../components/ImageProductSlideShow/ImageProductSlideShow';
+import Spinner from '../../components/Spinner/Spinner';
 
 type OptionsCart = {
   size: string;
@@ -72,12 +74,21 @@ const DetailProduct = () => {
 
   return (
     <>
+      {!product && <Spinner />}
       {product && (
         <main className="product container">
           <div className="product__main">
-            <div className="product__image">
+            {/* <div className="product__image">
               <img src={imageProduct(product.imageCover)} alt={product.name} />
-            </div>
+            </div> */}
+            <ImageProductSlideShow
+              className="product__image"
+              images={
+                product.images
+                  ? [product.imageCover, ...product.images]
+                  : [product.imageCover]
+              }
+            />
             <div className="product__details">
               <h1 className="product__name">{product.name}</h1>
               <div className="product__material">
@@ -113,36 +124,32 @@ const DetailProduct = () => {
                     </kbd>
                   ))}
               </div>
-              <div className="product__color">
+              {/* <div className="product__color">
                 <h4>Color: </h4>
                 <span
                   className="active"
                   style={{ backgroundColor: 'red' }}
                 ></span>
                 <span style={{ backgroundColor: 'blue' }}></span>
-              </div>
+              </div> */}
               <div className="product__quantity">
                 <h4>Quantity:</h4>
                 <span onClick={decreaseQuantityHandler}>-</span>
                 <span>{optionsCart.quantity}</span>
                 <span onClick={increaseQuantityHandler}>+</span>
               </div>
-              <button
-                className="btn product__btn"
+              <Button
+                className="btn--round btn--shadow product__btn"
                 onClick={() => addToCartHandler(product)}
+                disabled={!optionsCart.size}
               >
                 Add to cart
-              </button>
+              </Button>
             </div>
           </div>
           <div className="product__description">
             <h2>Description</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-              rem harum esse soluta quas placeat consequuntur eius nihil ipsam,
-              porro natus recusandae repellendus assumenda, consectetur quidem
-              reprehenderit et, cum sapiente?
-            </p>
+            <pre>{product.description}</pre>
           </div>
         </main>
       )}

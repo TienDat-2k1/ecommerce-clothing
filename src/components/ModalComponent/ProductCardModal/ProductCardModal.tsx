@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { BsCart4 } from 'react-icons/bs';
 
-import imageProduct from '../../../utils/imageProduct';
 import Modal from '../../Modal/Modal';
 import Button from '../../UI/Button/Button';
 import { ProductModel } from '../../../Model/productModel';
@@ -11,6 +10,7 @@ import { CartModel } from '../../../Model/cartModel';
 import { useDispatch } from 'react-redux';
 import { addCart } from '../../../store/cart/cartSlice';
 import './ProductCardModal.scss';
+import ImageProductSlideShow from '../../ImageProductSlideShow/ImageProductSlideShow';
 
 type ProductCardModalProps = {
   product: ProductModel;
@@ -56,21 +56,14 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
   return (
     <Modal onClose={onClose} className="product-modal">
       <div className="content">
-        <div className="product-modal__images">
-          <img
-            className="product-modal__image-cover"
-            src={imageProduct(product.imageCover)}
-            alt="product"
-          />
-          <div className="product-modal__image-list">
-            {product.images &&
-              product.images.map(image => (
-                <div key={image} className="product-modal__image-item">
-                  <img src={imageProduct(image)} alt="product" />
-                </div>
-              ))}
-          </div>
-        </div>
+        <ImageProductSlideShow
+          className="product-modal__images"
+          images={
+            product.images
+              ? [product.imageCover, ...product.images]
+              : [product.imageCover]
+          }
+        />
         <div className="product-modal__contents">
           <h2 className="product-modal__title">{product.name}</h2>
           <div className="product-modal__material">

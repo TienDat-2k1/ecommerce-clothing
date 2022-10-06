@@ -1,20 +1,23 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
+import * as productServices from '../../../services/productServices';
 import { ProductModel } from '../../../Model/productModel';
-import axios from 'axios';
 import ProductCard from '../../Products/ProductCard/ProductCard';
 import './HomeProducts.scss';
 import Text from '../../UI/Text/Text';
 import Button from '../../UI/Button/Button';
+import { Link } from 'react-router-dom';
 
 const HomeProducts = () => {
-  const [products, setProducts] = useState<ProductModel[]>();
+  const [products, setProducts] = useState<ProductModel[]>([]);
   const [aliasApi, setAliasApi] = useState('top-hot');
 
   useEffect(() => {
     const fetchProducts = async (path: string) => {
-      const res = await axios.get(`http://localhost:5000/api/products/${path}`);
-      setProducts(res.data.data.products);
+      const res = await productServices.getProductAlias(path);
+
+      setProducts(res.data);
     };
     fetchProducts(aliasApi);
   }, [aliasApi]);
@@ -62,4 +65,4 @@ const HomeProducts = () => {
     </section>
   );
 };
-export default HomeProducts;
+export default React.memo(HomeProducts);
