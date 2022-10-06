@@ -52,7 +52,7 @@ const CreateProductModel = ({
     const fetchCategories = async () => {
       const res = await categoryService.getAllCategories();
 
-      setCategories(res.categories);
+      setCategories(res);
     };
     fetchCategories();
   }, []);
@@ -218,9 +218,7 @@ const CreateProductModel = ({
               autoComplete="on"
               onChange={textChangeHandler}
             >
-              <option value="" selected>
-                Select a category
-              </option>
+              <option defaultValue="">Select a category</option>
               {categories.length &&
                 categories.map(category => (
                   <option key={category._id} value={category._id}>
@@ -238,6 +236,9 @@ const CreateProductModel = ({
               style={{
                 chips: {
                   background: 'black',
+                  width: '60px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
                 },
                 multiselectContainer: {
                   color: 'black',

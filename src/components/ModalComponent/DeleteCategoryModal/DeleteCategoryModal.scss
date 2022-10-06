@@ -1,0 +1,24 @@
+.delete-category-modal {
+  padding: 1.2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  & > div:nth-of-type(1) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    & > * {
+      display: inline;
+      white-space: nowrap;
+    }
+  }
+
+  & > div:nth-of-type(2) {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.4rem;
+    font-size: 2rem;
+  }
+}

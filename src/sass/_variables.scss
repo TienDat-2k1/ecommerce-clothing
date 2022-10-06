@@ -1,4 +1,9 @@
 //  COLOR
+// $color--primary: #4f77ff;
+// $color--primary-light: #61dcdf;
+// $color--primary-light: #f9e492;
+// $color--primary: #deb89d;
+// $color--primary-dark: #e8bc9d;
 $color--primary: #d3a17e;
 $color--primary-light: #eeddcc;
 $color--primary-dark: #34251f;
@@ -18,10 +23,16 @@ $color--grey-dark-3: #333;
 $color--accent-orange: #ffb168;
 $color--accent-red: #c20a0a;
 $color--accent-violet: #5459ea;
+$color--accent-blue: #4f77ff;
+$color--accent-yellow: #ff9513;
 
 $color--white: #fff;
 $color--brown: #413531;
 $color--black: #000;
+
+$color--text: #7b88a8;
+$color--text-gray: #e7e5ea;
+$color--text-white: #e7e5ea;
 
 // FONT
 $font-size--default: 1.6rem;

@@ -80,6 +80,16 @@
     color: $color--white;
   }
 
+  &--blue {
+    background-color: $color--accent-blue;
+    color: $color--white;
+  }
+
+  &--yellow {
+    background-color: $color--accent-yellow;
+    color: $color--white;
+  }
+
   &--transparent {
     background-color: transparent;
 

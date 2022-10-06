@@ -17,7 +17,7 @@ const HomeCollection = () => {
     const fetchCollection = async () => {
       const result = await categoryServices.getAllCategories();
 
-      setCollection(result.categories);
+      setCollection(result);
     };
     fetchCollection();
   }, []);

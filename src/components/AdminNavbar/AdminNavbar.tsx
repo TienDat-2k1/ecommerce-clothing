@@ -7,6 +7,7 @@ import imageUser from '../../utils/imageUser';
 import { NavLink } from 'react-router-dom';
 import { AiOutlinePicLeft } from 'react-icons/ai';
 import { FaUserCircle } from 'react-icons/fa';
+import { BiCategoryAlt } from 'react-icons/bi';
 
 type AdminNavbarProps = {
   isActive: boolean;
@@ -33,6 +34,17 @@ const AdminNavbar = ({ isActive }: AdminNavbarProps) => {
       >
         <BsGrid1X2Fill className="admin-navbar__icon" />
         <h3 className="admin-navbar__heading">Dashboard</h3>
+      </NavLink>
+      <NavLink
+        to="category"
+        className={({ isActive }) =>
+          isActive
+            ? 'admin-navbar__item admin-navbar__item--active'
+            : 'admin-navbar__item'
+        }
+      >
+        <BiCategoryAlt className="admin-navbar__icon" />
+        <h3 className="admin-navbar__heading">Categories</h3>
       </NavLink>
       <NavLink
         to="product"

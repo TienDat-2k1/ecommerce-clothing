@@ -18,6 +18,7 @@ import Main from './router/Main';
 import './sass/_global.scss';
 import { logginSuccess } from './store/user/userSlice';
 import AdminAccounts from './views/Account/AdminAccounts';
+import AdminCategories from './views/Categories/AdminCategories';
 import Dashboard from './views/Dashboard/Dashboard';
 import AdminOrders from './views/Orders/AdminOrders';
 import AdminProduct from './views/Products/AdminProduct';
@@ -71,6 +72,7 @@ function App() {
             <Route path="admin" element={<Admin />}>
               <Route index element={<Navigate to="dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="category" element={<AdminCategories />} />
               <Route path="product" element={<AdminProduct />} />
               <Route path="order" element={<AdminOrders />} />
               <Route path="account" element={<AdminAccounts />} />

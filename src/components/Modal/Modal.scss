@@ -22,6 +22,8 @@
   box-shadow: 0 2px 4px rgba($color--white, 0.08);
   z-index: 99;
   animation: slide-down 300ms ease-out forwards;
+
+  overflow: hidden;
 }
 
 @keyframes slide-down {

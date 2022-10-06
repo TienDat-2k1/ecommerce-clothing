@@ -14,6 +14,7 @@ import Button from '../../UI/Button/Button';
 import './UpdateProductModal.scss';
 import imageProduct from '../../../utils/imageProduct';
 import { toast } from 'react-toastify';
+import Spinner from '../../Spinner/Spinner';
 
 type UpdateProductModalProps = {
   onClose: () => void;
@@ -52,7 +53,7 @@ const UpdateProductModal = ({
   useEffect(() => {
     const fetchCategories = async () => {
       const res = await categoryService.getAllCategories();
-      setCategories(res.categories);
+      setCategories(res);
     };
 
     fetchCategories();
@@ -207,7 +208,7 @@ const UpdateProductModal = ({
 
   return (
     <Modal className="create-product-modal" onClose={onClose}>
-      {!product && <h4>loading...</h4>}
+      {!product && <Spinner />}
       {product && (
         <>
           <form action="" onSubmit={formSubmitHandler}>
@@ -253,25 +254,34 @@ const UpdateProductModal = ({
             <div className="row">
               <div className="create-product__category col c-3">
                 <span>Category</span>
-                <select
-                  name="category"
-                  autoComplete="on"
-                  onChange={textChangeHandler}
-                >
-                  <option value="" selected>
-                    Select a category
-                  </option>
-                  {categories.length &&
-                    categories.map(category => (
-                      <option
-                        key={category._id}
-                        value={category._id}
-                        selected={category._id === product.category}
-                      >
-                        {category.name}
-                      </option>
-                    ))}
-                </select>
+                <Multiselect
+                  options={categories}
+                  selectedValues={categories.filter(category => {
+                    return category._id === product.category;
+                  })}
+                  displayValue="name"
+                  singleSelect
+                  style={{
+                    chips: {
+                      background: 'white',
+                    },
+                    // multiselectContainer: {
+                    //   color: 'black',
+                    // },
+                    searchBox: {
+                      width: '100%',
+                      borderRadius: '999px',
+                      fontSize: '10px',
+                    },
+                    inputField: {
+                      fontSize: '14px',
+                    },
+                  }}
+                  onSelect={(_, item) =>
+                    setProductInput({ ...productInput, category: item._id })
+                  }
+                  customCloseIcon={<></>}
+                />
               </div>
               <div className="create-product__sizes col c-9">
                 <span>Sizes</span>
@@ -283,6 +293,9 @@ const UpdateProductModal = ({
                   style={{
                     chips: {
                       background: 'black',
+                      width: '60px',
+                      display: 'flex',
+                      justifyContent: 'space-between',
                     },
                     multiselectContainer: {
                       color: 'black',

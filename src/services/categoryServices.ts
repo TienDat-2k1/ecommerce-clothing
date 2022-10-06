@@ -1,10 +1,24 @@
 import * as httpRequest from '../utils/httpRequest';
 import catchAsync from '../utils/catchAsync';
 
-export const getAllCategories = catchAsync(async () => {
-  const res = await httpRequest.get('categories', {
-    params: {},
-  });
+export const getAllCategories = async (options = {}) => {
+  try {
+    const res = await httpRequest.get('categories', {
+      params: { ...options },
+    });
 
-  return res.data;
-});
+    return res.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCategory = async (id: string) => {
+  try {
+    const res = await httpRequest.get(`categories/${id}`);
+
+    return res.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

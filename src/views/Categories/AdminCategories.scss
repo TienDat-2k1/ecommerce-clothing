@@ -1,0 +1,38 @@
+@use '../../sass/variables' as *;
+
+.admin-category__header-cta {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.admin-category__header-item {
+  margin-top: 2rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #000;
+}
+
+.admin-category {
+  &__header-block {
+    text-align: center;
+    position: relative;
+  }
+
+  &__header-block > span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__header-block:not(:last-child)::after {
+    position: absolute;
+    content: '';
+    width: 1px;
+    top: 50%;
+    right: 0;
+    height: 75%;
+    transform: translateY(-50%);
+    background-color: $color--grey-dark;
+  }
+}
