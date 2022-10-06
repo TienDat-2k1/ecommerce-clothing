@@ -3,13 +3,14 @@ import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { BsCart4 } from 'react-icons/bs';
 
-import { ProductModel } from '../../../Model/productModel';
+import imageProduct from '../../../utils/imageProduct';
 import Modal from '../../Modal/Modal';
 import Button from '../../UI/Button/Button';
-import './ProductCardModal.scss';
+import { ProductModel } from '../../../Model/productModel';
 import { CartModel } from '../../../Model/cartModel';
 import { useDispatch } from 'react-redux';
 import { addCart } from '../../../store/cart/cartSlice';
+import './ProductCardModal.scss';
 
 type ProductCardModalProps = {
   product: ProductModel;
@@ -58,19 +59,16 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
         <div className="product-modal__images">
           <img
             className="product-modal__image-cover"
-            src={product.imageCover}
+            src={imageProduct(product.imageCover)}
             alt="product"
           />
           <div className="product-modal__image-list">
-            <div className="product-modal__image-item">
-              <img src={product.imageCover} alt="product" />
-            </div>
-            <div className="product-modal__image-item">
-              <img src={product.imageCover} alt="product" />
-            </div>
-            <div className="product-modal__image-item">
-              <img src={product.imageCover} alt="product" />
-            </div>
+            {product.images &&
+              product.images.map(image => (
+                <div key={image} className="product-modal__image-item">
+                  <img src={imageProduct(image)} alt="product" />
+                </div>
+              ))}
           </div>
         </div>
         <div className="product-modal__contents">

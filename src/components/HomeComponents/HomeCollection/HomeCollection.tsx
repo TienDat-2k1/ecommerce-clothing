@@ -33,15 +33,17 @@ const HomeCollection = () => {
         <div className="dot-texture"></div>
 
         {collections &&
-          collections.map(collection => {
-            return (
-              <CollectionCard
-                key={collection._id}
-                name={collection.name}
-                imageUrl={collection.imageCover}
-              />
-            );
-          })}
+          collections
+            .filter((_, i) => i < 4)
+            .map(collection => {
+              return (
+                <CollectionCard
+                  key={collection._id}
+                  name={collection.name}
+                  imageUrl={collection.imageCover}
+                />
+              );
+            })}
       </div>
     </section>
   );

@@ -8,6 +8,7 @@ import { BsCart4 } from 'react-icons/bs';
 import { ProductModel } from '../../../Model/productModel';
 import ProductCardModal from '../../ModalComponent/ProductCardModal/ProductCardModal';
 import { useState } from 'react';
+import imageProduct from '../../../utils/imageProduct';
 
 type ProductCardProps = {
   product: ProductModel;
@@ -34,7 +35,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <figure className="product-card">
         <div className="product-card__image">
           <img
-            src={product.imageCover}
+            src={imageProduct(product.imageCover)}
             alt=""
             onClick={productCardClickHandler}
           />

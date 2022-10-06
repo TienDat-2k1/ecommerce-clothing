@@ -19,8 +19,6 @@ const Products = () => {
         limit: 20,
       });
 
-      console.log(res);
-
       setProducts(res.data.data);
       setTotalPages(res.totalPages);
     };

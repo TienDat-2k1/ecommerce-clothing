@@ -186,6 +186,8 @@ const UpdateProductModal = ({
           formData.append('images', image.file, image.file.name);
         });
 
+      console.log(formData.getAll('sizes'));
+
       const res = await axiosPrivate.patch(
         `products/${product._id}`,
         formData,
@@ -202,6 +204,7 @@ const UpdateProductModal = ({
         onClose();
       }
     } catch (error) {
+      toast.warning('Something went wrong !!!');
       console.log(error);
     }
   };
@@ -287,7 +290,7 @@ const UpdateProductModal = ({
                 <span>Sizes</span>
                 <Multiselect
                   className="create-product__sizes-select"
-                  options={['S', 'M', 'L', 'XL', 'XXL', 'XXL']}
+                  options={['S', 'M', 'L', 'XL', 'XXL', 'XXXL']}
                   selectedValues={product.sizes}
                   isObject={false}
                   style={{
@@ -304,9 +307,12 @@ const UpdateProductModal = ({
                       width: '100%',
                     },
                   }}
-                  onSelect={list =>
-                    setProductInput({ ...productInput, sizes: list })
-                  }
+                  onSelect={list => {
+                    return setProductInput({ ...productInput, sizes: list });
+                  }}
+                  onRemove={list => {
+                    return setProductInput({ ...productInput, sizes: list });
+                  }}
                 />
               </div>
             </div>
