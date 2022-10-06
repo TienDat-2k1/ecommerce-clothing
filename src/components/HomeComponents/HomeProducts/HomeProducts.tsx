@@ -12,15 +12,25 @@ import { Link } from 'react-router-dom';
 const HomeProducts = () => {
   const [products, setProducts] = useState<ProductModel[]>([]);
   const [aliasApi, setAliasApi] = useState('top-hot');
+  const [visible, setVisible] = useState(10);
 
   useEffect(() => {
     const fetchProducts = async (path: string) => {
       const res = await productServices.getProductAlias(path);
 
-      setProducts(res.data);
+      if (res.data) setProducts(res.data);
     };
     fetchProducts(aliasApi);
   }, [aliasApi]);
+
+  const aliasChangeHandler = (name: string) => {
+    setAliasApi(name);
+    setVisible(10);
+  };
+
+  const showMoreHandler = () => {
+    setVisible(prev => prev + 10);
+  };
 
   const productType = [
     { title: 'hot', name: 'top-hot' },
@@ -42,7 +52,7 @@ const HomeProducts = () => {
                 type.name === aliasApi ? 'home-products__type--active' : ''
               }`}
               name={type.name}
-              onClick={() => setAliasApi(type.name)}
+              onClick={() => aliasChangeHandler(type.name)}
             >
               {type.title}
             </Text>
@@ -51,17 +61,21 @@ const HomeProducts = () => {
       </div>
       <div className="home-products__grid">
         {products &&
-          products.map(product => {
-            return <ProductCard key={product._id} product={product} />;
-          })}
+          products
+            .filter((_, i) => i < visible)
+            .map(product => {
+              return <ProductCard key={product._id} product={product} />;
+            })}
       </div>
-      <Button
-        as={Link}
-        to="/products"
-        className="btn--outline btn--shadow home-products__btn"
-      >
-        Show more
-      </Button>
+      {visible < products.length && (
+        <Button
+          to="/products"
+          className="btn--outline btn--shadow home-products__btn"
+          onClick={showMoreHandler}
+        >
+          Show more
+        </Button>
+      )}
     </section>
   );
 };

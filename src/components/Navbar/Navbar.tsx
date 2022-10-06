@@ -1,7 +1,6 @@
 import './Navbar.scss';
 import { AiOutlineLogout } from 'react-icons/ai';
-import Button from '../UI/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isLoggedSelector, userSelector } from '../../store/user/userSelector';
 import imageUser from '../../utils/imageUser';
@@ -39,14 +38,28 @@ const Navbar = ({ isNavActive }: INav) => {
 
       <ul className="nav__list">
         <li className="nav__list-item">
-          <Button as={Link} to="/" className="nav__list--link">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive
+                ? 'nav__list--link nav__list--link--active'
+                : 'nav__list--link'
+            }
+          >
             Home
-          </Button>
+          </NavLink>
         </li>
         <li className="nav__list-item">
-          <Button as={Link} to="/products" className="nav__list--link">
+          <NavLink
+            to="/products"
+            className={({ isActive }) =>
+              isActive
+                ? 'nav__list--link nav__list--link--active'
+                : 'nav__list--link'
+            }
+          >
             Product
-          </Button>
+          </NavLink>
         </li>
       </ul>
     </nav>

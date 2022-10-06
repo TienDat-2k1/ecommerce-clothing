@@ -94,6 +94,25 @@
 
   &__list--link {
     color: currentColor;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      transform: translateX(-50%);
+      background-color: rgba($color--white, 0.7);
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    &--active::after,
+    &:hover::after {
+      width: 80%;
+    }
 
     @include responds(lg) {
       display: block;

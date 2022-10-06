@@ -5,6 +5,7 @@ import {
   removeItemCart,
   removeFromCart,
 } from '../../store/cart/cartSlice';
+import imageProduct from '../../utils/imageProduct';
 import './CheckoutItem.scss';
 
 type CheckoutItemProps = {
@@ -29,7 +30,7 @@ const CheckoutItem = ({ item }: CheckoutItemProps) => {
   return (
     <div className="checkout-item-container">
       <div className="image-container">
-        <img src={item.imageCover} alt="imageCover" />
+        <img src={imageProduct(item.imageCover)} alt="imageCover" />
       </div>
       <span className="name">{item.name}</span>
       <span>{item.size}</span>
