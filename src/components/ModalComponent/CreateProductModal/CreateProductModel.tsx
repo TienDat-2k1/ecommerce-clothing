@@ -1,5 +1,5 @@
 import Multiselect from 'multiselect-react-dropdown';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { toast } from 'react-toastify';
 import { RiImageAddLine } from 'react-icons/ri';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
@@ -113,8 +113,19 @@ const CreateProductModel = ({
     setImagesPreview(newImages);
   };
 
+  const validate = useMemo(() => {
+    return !(
+      productInput.name.length &&
+      productInput.material.length &&
+      imageCoverPreview &&
+      productInput.sizes.length &&
+      productInput.category.length
+    );
+  }, [productInput, imageCoverPreview]);
+
   const formSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (validate) return;
 
     try {
       const formData = new FormData();
@@ -325,7 +336,10 @@ const CreateProductModel = ({
           >
             Cancel
           </Button>
-          <Button className="btn--round btn--outline btn--violet btn--shadow">
+          <Button
+            className="btn--round btn--outline btn--violet btn--shadow"
+            disabled={validate}
+          >
             Create
           </Button>
         </div>

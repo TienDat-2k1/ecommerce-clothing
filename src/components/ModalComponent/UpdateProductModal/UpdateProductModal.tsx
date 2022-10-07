@@ -1,5 +1,5 @@
 import Multiselect from 'multiselect-react-dropdown';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { RiImageAddLine } from 'react-icons/ri';
 
@@ -148,8 +148,18 @@ const UpdateProductModal = ({
     setImages(imgs);
   };
 
+  const validate = useMemo(() => {
+    return !!(
+      productInput.name?.length &&
+      productInput.sizes?.length &&
+      productInput.material?.length &&
+      productInput.price === '0'
+    );
+  }, [productInput]);
+
   const formSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (validate) return;
     if (!product) return;
     try {
       const formData = new FormData();
@@ -403,7 +413,10 @@ const UpdateProductModal = ({
               >
                 Cancel
               </Button>
-              <Button className="btn--round btn--outline btn--violet btn--shadow">
+              <Button
+                className="btn--round btn--outline btn--violet btn--shadow"
+                disabled={validate}
+              >
                 Update
               </Button>
             </div>

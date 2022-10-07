@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import { RiImageAddLine } from 'react-icons/ri';
 import FormInput from '../../FormInput/FormInput';
@@ -45,8 +45,13 @@ const CreateCategoryModal = ({
     setImageCover(null);
   };
 
+  const validate = useMemo(() => {
+    return !(categoryName && imageCover);
+  }, [categoryName, imageCover]);
+
   const formSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (validate) return;
 
     const formData = new FormData();
 
@@ -124,7 +129,12 @@ const CreateCategoryModal = ({
           >
             Cancel
           </Button>
-          <Button className="btn--round btn--shadow btn--blue">Create</Button>
+          <Button
+            className="btn--round btn--shadow btn--blue"
+            disabled={validate}
+          >
+            Create
+          </Button>
         </div>
       </form>
     </Modal>

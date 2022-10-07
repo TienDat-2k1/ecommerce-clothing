@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { RiImageAddLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
@@ -40,10 +40,15 @@ const UpdateCategoryModal = ({
     setImageCover(null);
   };
 
+  const validate = useMemo(() => {
+    return !categoryName;
+  }, [categoryName]);
+
   const formSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData();
+    if (validate) return;
 
+    const formData = new FormData();
     categoryName && formData.append('name', categoryName);
     imageCover &&
       formData.append('imageCover', imageCover.file, imageCover.file.name);
@@ -121,7 +126,12 @@ const UpdateCategoryModal = ({
           >
             Cancel
           </Button>
-          <Button className="btn--round btn--shadow btn--yellow">Update</Button>
+          <Button
+            className="btn--round btn--shadow btn--yellow"
+            disabled={validate}
+          >
+            Update
+          </Button>
         </div>
       </form>
     </Modal>
