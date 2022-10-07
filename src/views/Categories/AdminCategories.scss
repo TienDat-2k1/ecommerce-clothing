@@ -1,4 +1,5 @@
 @use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
 
 .admin-category__header-cta {
   display: flex;
@@ -8,6 +9,10 @@
 }
 .admin-category-search {
   width: 300px;
+
+  @include responds(sm) {
+    width: 200px;
+  }
 }
 
 .admin-category__header-item {

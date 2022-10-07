@@ -2,6 +2,7 @@
 
 .search-wrapper {
   width: 100%;
+  min-width: 200px;
   height: 40px;
   background-color: rgba(22, 24, 35, 0.06);
   border: 2px solid $color--grey-dark-2;
@@ -27,6 +28,8 @@
   background-color: transparent;
 
   caret-color: $color--accent-violet;
+
+  width: calc(100% - 68px);
 }
 
 .search-wrapper > div:nth-of-type(1) {
@@ -69,8 +72,7 @@
 
 .search-clear,
 .search-loading {
-  position: absolute;
-  right: 68px;
+  margin: 0 16px;
 }
 
 .search-loading {

@@ -1,4 +1,5 @@
 @use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
 
 .admin-product-container {
   height: 100%;
@@ -11,6 +12,7 @@
   border-bottom: 1px solid #000;
 }
 
+// admin heading start
 .admin-product-heading {
   display: flex;
   justify-content: flex-end;
@@ -18,9 +20,20 @@
   gap: 2rem;
 }
 
+.admin-product-total {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 1.8rem;
+}
+
 .admin-product-search {
   width: 300px;
+
+  @include responds(sm) {
+    width: 200px;
+  }
 }
+// admin heading end
 
 .admin-product-footer {
   margin-top: 2rem;
