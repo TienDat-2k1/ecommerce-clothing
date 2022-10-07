@@ -9,6 +9,8 @@ type PaginationProps = {
 };
 
 const Pagination = ({ totalPages, onPageChange }: PaginationProps) => {
+  if (totalPages === 0) return <></>;
+
   return (
     <ReactPaginate
       onPageChange={onPageChange}

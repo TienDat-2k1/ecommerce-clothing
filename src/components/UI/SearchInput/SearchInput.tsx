@@ -23,9 +23,11 @@ const SearchInput = (
         onChange={onChange}
         value={value}
       />
-      <label htmlFor="search-input" onClick={onSearch}>
-        <AiOutlineSearch />
-      </label>
+      <div>
+        <label htmlFor="search-input" onClick={onSearch}>
+          <AiOutlineSearch />
+        </label>
+      </div>
     </div>
   );
 };

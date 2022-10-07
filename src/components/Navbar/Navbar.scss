@@ -109,9 +109,20 @@
       transition: all 0.2s;
     }
 
+    &--active {
+      @include responds(lg) {
+        background-color: rgba($color--white, 0.2);
+        color: $color--accent-orange;
+      }
+    }
+
     &--active::after,
     &:hover::after {
       width: 80%;
+
+      @include responds(lg) {
+        display: none;
+      }
     }
 
     @include responds(lg) {
@@ -119,7 +130,6 @@
       width: 100%;
       text-align: center;
       padding: 1.2rem 0;
-      color: $color--white !important;
       &:hover {
         background-color: $color--grey-dark-2;
       }
