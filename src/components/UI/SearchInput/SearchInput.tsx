@@ -28,6 +28,12 @@ const SearchInput = (
   }: SearchInputType,
   ref?: React.LegacyRef<HTMLInputElement>
 ) => {
+  const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onSearch && onSearch();
+    }
+  };
+
   return (
     <div className={`search-wrapper ${className ? className : ''}`}>
       <input
@@ -36,6 +42,7 @@ const SearchInput = (
         ref={ref}
         {...otherProps}
         onChange={onChange}
+        onKeyDown={keyDownHandler}
         value={value}
       />
       {!!value.length && !isLoading && (

@@ -3,18 +3,19 @@
 
 .product {
   min-height: 100vh;
-  padding-top: 14rem;
+  padding-top: $header--height;
   padding-bottom: 4rem;
 
-  @include responds(md) {
-    padding-top: 10rem;
-  }
+  // @include responds(md) {
+  //   padding-top: 10rem;
+  // }
 
   &__main {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 4rem;
+    margin-top: 4rem;
   }
 
   &__image {

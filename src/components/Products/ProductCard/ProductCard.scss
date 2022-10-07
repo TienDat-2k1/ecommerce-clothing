@@ -1,6 +1,7 @@
 @use '../../../sass/variables' as *;
 
 .product-card {
+  width: 100%;
   // width: 26rem;
   // height: 40rem;
   background-color: $color--grey-light-1;

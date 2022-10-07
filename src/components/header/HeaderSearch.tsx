@@ -10,10 +10,14 @@ import HeaderSearchItem from './HeaderSearchItem';
 import useDebounce from '../../hooks/useDebounce';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../UI/Button/Button';
+import { useDispatch } from 'react-redux';
+import { setKeyWords } from '../../store/search/searchSlice';
 
 const HeaderSearch = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState('');
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
   const [searchResults, setSearchResults] = useState<ProductModel[]>([]);
 
@@ -21,11 +25,13 @@ const HeaderSearch = () => {
 
   useEffect(() => {
     if (!debounce.length) return;
+    setIsSearchLoading(true);
     const fetchSearchResult = async (keywords: string) => {
       const res = await productServices.getAllProduct({ keywords });
 
       setSearchResults(res.data.data);
       setTotalResults(res.results);
+      setIsSearchLoading(false);
     };
 
     fetchSearchResult(debounce);
@@ -41,6 +47,13 @@ const HeaderSearch = () => {
   const clickResultHandler = (id: string) => {
     setSearchResults([]);
     navigate(`products/${id}`);
+  };
+
+  const searchEnterHandler = () => {
+    if (searchInput === '') return;
+    navigate('/search');
+    dispatch(setKeyWords(searchInput));
+    setSearchInput('');
   };
 
   return (
@@ -69,7 +82,7 @@ const HeaderSearch = () => {
                 ))}
             {totalResults > 5 && (
               <div>
-                <Button as={Link} to="/products">
+                <Button as={Link} to="/search" onClick={searchEnterHandler}>
                   View more {totalResults - 5} results
                 </Button>
               </div>
@@ -81,8 +94,10 @@ const HeaderSearch = () => {
         <div>
           <SearchInput
             className="header-search__component"
-            onChange={searchInputChangeHandler}
+            isLoading={isSearchLoading}
             value={searchInput}
+            onChange={searchInputChangeHandler}
+            onSearch={searchEnterHandler}
             onClear={clearSearchInputHandler}
             placeholder="Enter search..."
           />

@@ -13,6 +13,7 @@ import Auth from './pages/auth/Auth';
 import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import Checkout from './pages/Checkout/Checkout';
+import Search from './pages/Search/Search';
 import Unauthorized from './pages/Unauthorized/Unauthorized';
 import Main from './router/Main';
 import './sass/_global.scss';
@@ -61,6 +62,7 @@ function App() {
             <Route path="products" element={<Products />} />
             <Route path="products/:productId" element={<DetailProduct />} />
             <Route path="checkout" element={<Checkout />} />
+            <Route path="search" element={<Search />} />
           </Route>
           <Route path="/auth" element={<Auth />}>
             <Route index element={<SignInPage />} />

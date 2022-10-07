@@ -1,0 +1,58 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.search-page {
+  padding-top: $header--height;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.search-heading {
+  margin-top: 2rem;
+
+  & span {
+    color: $color--accent-red;
+  }
+}
+
+.search-notfound {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > p {
+    font-size: 2rem;
+    transform: translateY(-120px);
+  }
+}
+
+.search-result-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+
+  @include responds(xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include responds(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include responds(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.search-result-pagination {
+  width: 100%;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+}

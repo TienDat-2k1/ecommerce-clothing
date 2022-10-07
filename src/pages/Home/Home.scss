@@ -4,7 +4,7 @@
 .home {
   &__header {
     background-color: $color--primary-light;
-    padding-top: 10rem;
+    padding-top: $header--height;
     padding-bottom: 10rem;
     position: relative;
 

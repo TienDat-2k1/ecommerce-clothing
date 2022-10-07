@@ -26,10 +26,6 @@
   right: 0;
   z-index: 99;
 
-  @include responds(xl) {
-    height: 8rem;
-  }
-
   &__logo {
     font-family: $font-family--logo;
     font-weight: bold;
