@@ -149,11 +149,12 @@ const UpdateProductModal = ({
   };
 
   const validate = useMemo(() => {
-    return !!(
+    return !(
       productInput.name?.length &&
       productInput.sizes?.length &&
       productInput.material?.length &&
-      productInput.price === '0'
+      productInput.price.length &&
+      productInput.price !== '0'
     );
   }, [productInput]);
 
