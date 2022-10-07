@@ -10,7 +10,8 @@ import HeadingCta from './HeadingCta';
 import HeaderProductBlock from './HeaderProductBlock';
 
 const AdminProduct = () => {
-  const [searchInput, setSearchInput] = useState<string>('');
+  const [searchInput, setSearchInput] = useState('');
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [products, setProducts] = useState<ProductModel[]>([]);
   const [totalPages, setTotalPage] = useState<number>(0);
   const [pageActive, setPageActive] = useState<number>(1);
@@ -21,12 +22,13 @@ const AdminProduct = () => {
 
   useEffect(() => {
     const fetchProducts = async (page: number, keywords: string) => {
+      setIsSearchLoading(true);
       const res = await productServices.getAllProduct({
         page,
         limit: 10,
         keywords,
       });
-
+      setIsSearchLoading(false);
       setProducts(res.data.data);
       setTotalPage(res.totalPages);
       setIsDelete(false);
@@ -50,6 +52,7 @@ const AdminProduct = () => {
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         setIsCreate={setIsCreate}
+        searchLoading={isSearchLoading}
       />
 
       <HeaderProductBlock />

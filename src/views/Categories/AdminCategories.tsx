@@ -9,6 +9,7 @@ import AdminCategoryHeading from './AdminCategoryHeading';
 
 const AdminCategories = () => {
   const [searchInput, setSearchInput] = useState<string>('');
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [categories, setCategories] = useState<CategoryModel[]>();
   const [isCreateCategory, setIsCreateCategory] = useState(false);
   const [isDeleteCategory, setIsDeleteCategory] = useState(false);
@@ -16,9 +17,11 @@ const AdminCategories = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      setIsSearchLoading(true);
       const res = await categoryServices.getAllCategories({
         keywords: debounceSearchValue,
       });
+      setIsSearchLoading(false);
       setCategories(res);
       setIsCreateCategory(false);
       setIsDeleteCategory(false);
@@ -40,6 +43,7 @@ const AdminCategories = () => {
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         onCreate={onCreateCategory}
+        searchLoading={isSearchLoading}
       />
       <div className="admin-category__header-item row">
         <div className="col c-2"></div>

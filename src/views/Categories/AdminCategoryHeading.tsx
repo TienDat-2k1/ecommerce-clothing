@@ -6,12 +6,14 @@ import SearchInput from '../../components/UI/SearchInput/SearchInput';
 
 type AdminCategoryHeadingProps = {
   searchInput: string;
+  searchLoading: boolean;
   onCreate: () => void;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const AdminCategoryHeading = ({
   searchInput,
+  searchLoading,
   onCreate,
   setSearchInput,
 }: AdminCategoryHeadingProps) => {
@@ -21,6 +23,11 @@ const AdminCategoryHeading = ({
   const changeSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
   };
+
+  const clearSearchHandler = () => {
+    setSearchInput('');
+  };
+
   const inputSearchHandler = () => {
     const searchInput = searchRef?.current?.value || '';
     setSearchInput(searchInput);
@@ -42,12 +49,17 @@ const AdminCategoryHeading = ({
           onClick={showCreateCategoryModal}
         />
 
-        <SearchInput
-          ref={searchRef}
-          value={searchInput}
-          onSearch={inputSearchHandler}
-          onChange={changeSearchHandler}
-        />
+        <div className="admin-category-search">
+          <SearchInput
+            ref={searchRef}
+            value={searchInput}
+            isLoading={searchLoading}
+            onSearch={inputSearchHandler}
+            onChange={changeSearchHandler}
+            onClear={clearSearchHandler}
+            placeholder="Enter name category"
+          />
+        </div>
       </div>
       {isCreateCategoryModal && (
         <CreateCategoryModal

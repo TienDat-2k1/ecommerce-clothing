@@ -6,12 +6,14 @@ import SearchInput from '../../components/UI/SearchInput/SearchInput';
 
 type HeadingCtaProps = {
   searchInput: string;
+  searchLoading: boolean;
   setSearchInput: React.Dispatch<React.SetStateAction<string>>;
   setIsCreate: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const HeadingCta = ({
   searchInput,
+  searchLoading,
   setSearchInput,
   setIsCreate,
 }: HeadingCtaProps) => {
@@ -21,6 +23,11 @@ const HeadingCta = ({
   const changeSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
   };
+
+  const clearSearchHandler = () => {
+    setSearchInput('');
+  };
+
   const inputSearchHandler = () => {
     const searchInput = searchRef?.current?.value || '';
     setSearchInput(searchInput);
@@ -41,12 +48,17 @@ const HeadingCta = ({
           className="admin-product-icon icon-create"
           onClick={showCreateProductModal}
         />
-        <SearchInput
-          ref={searchRef}
-          onSearch={inputSearchHandler}
-          onChange={changeSearchHandler}
-          value={searchInput}
-        />
+        <div className="admin-product-search">
+          <SearchInput
+            ref={searchRef}
+            isLoading={searchLoading}
+            onSearch={inputSearchHandler}
+            onChange={changeSearchHandler}
+            onClear={clearSearchHandler}
+            value={searchInput}
+            placeholder="Enter product name"
+          />
+        </div>
       </div>
       {isCreateProduct && (
         <CreateProductModel
