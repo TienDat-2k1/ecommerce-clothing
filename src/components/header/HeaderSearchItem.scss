@@ -1,0 +1,44 @@
+@use '../../sass/variables' as *;
+
+.header-search__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($color--black, 0.15);
+  }
+
+  &:not(:nth-last-child(2)) {
+    border-bottom: 1px solid #000;
+  }
+
+  & > div:nth-of-type(1) {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+
+    & > h4 {
+      max-width: 95%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  & > div:nth-of-type(2) {
+    width: 4rem;
+    height: 4rem;
+    user-select: none;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      object-fit: cover;
+    }
+  }
+}

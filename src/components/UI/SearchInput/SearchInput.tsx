@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   AiOutlineCloseCircle,
   AiOutlineLoading3Quarters,
@@ -8,6 +8,7 @@ import {
 import './SearchInput.scss';
 
 type SearchInputType = {
+  className?: string;
   value: string;
   isLoading?: boolean;
   onSearch?: () => void;
@@ -17,6 +18,7 @@ type SearchInputType = {
 
 const SearchInput = (
   {
+    className,
     value,
     isLoading,
     onSearch,
@@ -27,7 +29,7 @@ const SearchInput = (
   ref?: React.LegacyRef<HTMLInputElement>
 ) => {
   return (
-    <div className="search-wrapper">
+    <div className={`search-wrapper ${className ? className : ''}`}>
       <input
         type="text"
         id="search-input"

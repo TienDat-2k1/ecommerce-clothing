@@ -1,0 +1,43 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.header-search {
+  flex: 1;
+  max-width: 500px;
+  @include responds(xl) {
+    flex: 1;
+  }
+  // max-width: 400px;
+  &__component {
+    border-color: transparent;
+    background-color: $color--white;
+  }
+
+  &__results {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+
+    @include responds(sm) {
+      width: 100vw;
+    }
+  }
+
+  &__results > *:first-child {
+    margin-top: 4px;
+    margin-left: 2rem;
+  }
+
+  &__results > *:last-child {
+    margin-top: 1rem;
+    margin-bottom: 1.6rem;
+    display: flex;
+    justify-content: center;
+
+    & > a {
+      width: 80%;
+      color: $color--grey-dark-3;
+      text-align: center;
+    }
+  }
+}

@@ -58,7 +58,7 @@ const AdminProduct = () => {
       <HeaderProductBlock />
 
       <div className="admin-product-listitem">
-        {products.length &&
+        {!!products.length &&
           products.map(product => (
             <AdminProductItem
               key={product._id}
@@ -68,7 +68,7 @@ const AdminProduct = () => {
           ))}
       </div>
       <div className="admin-product-footer">
-        {totalPages && (
+        {!!totalPages && (
           <Pagination
             totalPages={totalPages}
             onPageChange={pageChangeHandler}
