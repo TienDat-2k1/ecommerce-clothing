@@ -1,14 +1,53 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { AiOutlineClear } from 'react-icons/ai';
 import { BiFilter } from 'react-icons/bi';
 import { BsChevronDown } from 'react-icons/bs';
 import { FiFilter } from 'react-icons/fi';
 import { IoCloseOutline } from 'react-icons/io5';
-import Button from '../../UI/Button/Button';
 
-const ProductsFilter = () => {
+import * as categoryServices from '../../../services/categoryServices';
+import { CategoryModel } from '../../../Model/categoryModel';
+import Button from '../../UI/Button/Button';
+import './ProductsFilter.scss';
+import { ProductFilters } from '../../../pages/Products/Products';
+
+const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+
+type ProductsFilterProps = {
+  filters: ProductFilters;
+  setFilter: React.Dispatch<React.SetStateAction<ProductFilters>>;
+};
+
+const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
   const [isFilterToggle, setIsFilterToggle] = useState(false);
+  const [categories, setCategories] = useState<CategoryModel[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await categoryServices.getAllCategories();
+
+      setCategories(res);
+    };
+
+    fetchCategories();
+  }, []);
+
+  const categoryChangeHandler = (id: string) => {
+    setFilter(pre => {
+      if (pre.category === id) return { ...filters, category: '' };
+      return { ...filters, category: id };
+    });
+  };
+  const sizeChangeHandler = (size: string) => {
+    setFilter(pre => {
+      if (!pre.sizes?.length) return { ...pre, sizes: [size] };
+
+      if (pre.sizes?.includes(size))
+        return { ...pre, sizes: pre?.sizes.filter(s => s !== size) };
+
+      return { ...pre, sizes: [...pre?.sizes, size] };
+    });
+  };
 
   const hideFilterToggle = () => {
     setIsFilterToggle(false);
@@ -54,21 +93,20 @@ const ProductsFilter = () => {
                 <BsChevronDown />
               </div>
               <div className="filter-contents">
-                <Button className="btn--outline btn--round btn--transparent">
-                  t-shirt
-                </Button>
-                <Button className="btn--outline btn--round  btn--transparent">
-                  t-shirt
-                </Button>
-                <Button className="btn--outline btn--round  btn--transparent">
-                  t-shirt
-                </Button>
-                <Button className="btn--outline btn--round  btn--transparent">
-                  t-shirt
-                </Button>
-                <Button className="btn--outline btn--round  btn--transparent">
-                  t-shirt
-                </Button>
+                {!!categories.length &&
+                  categories.map(category => (
+                    <div
+                      key={category._id}
+                      className={`filter-toggle__category ${
+                        filters.category === category._id
+                          ? 'filter-toggle__category--active'
+                          : ''
+                      }`}
+                      onClick={() => categoryChangeHandler(category._id)}
+                    >
+                      <span>{category.name}</span>
+                    </div>
+                  ))}
               </div>
             </div>
             <div className="filter-toggle__item">
@@ -77,10 +115,19 @@ const ProductsFilter = () => {
                 <BsChevronDown />
               </div>
               <div className="filter-contents">
-                <Button className="btn--outline btn--round">S</Button>
-                <Button className="btn--outline btn--round">M</Button>
-                <Button className="btn--outline btn--round">L</Button>
-                <Button className="btn--outline btn--round">XL</Button>
+                {sizes.map((size, i) => (
+                  <div
+                    key={i}
+                    className={`filter-contents__size ${
+                      filters.sizes?.includes(size)
+                        ? 'filter-contents__size--active'
+                        : ''
+                    }`}
+                    onClick={() => sizeChangeHandler(size)}
+                  >
+                    <span>{size}</span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="filter-toggle__item"></div>
@@ -89,6 +136,7 @@ const ProductsFilter = () => {
             <Button
               className="btn--outline btn--round filter-toggle__clear-btn"
               rightIcon={<AiOutlineClear />}
+              onClick={() => setFilter({} as ProductFilters)}
             >
               Clear
             </Button>

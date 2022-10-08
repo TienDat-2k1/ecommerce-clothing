@@ -27,17 +27,17 @@
     margin-top: 4px;
     margin-left: 2rem;
   }
+}
 
-  &__results > *:last-child {
-    margin-top: 1rem;
-    margin-bottom: 1.6rem;
-    display: flex;
-    justify-content: center;
+.header-search__results-footer {
+  margin-top: 1rem;
+  margin-bottom: 1.6rem;
+  display: flex;
+  justify-content: center;
 
-    & > a {
-      width: 80%;
-      color: $color--grey-dark-3;
-      text-align: center;
-    }
+  & > a {
+    width: 80%;
+    color: $color--grey-dark-3;
+    text-align: center;
   }
 }

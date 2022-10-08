@@ -45,8 +45,8 @@ const HeaderSearch = () => {
   };
 
   const clickResultHandler = (id: string) => {
-    setSearchResults([]);
     navigate(`products/${id}`);
+    setSearchInput('');
   };
 
   const searchEnterHandler = () => {
@@ -81,7 +81,7 @@ const HeaderSearch = () => {
                   />
                 ))}
             {totalResults > 5 && (
-              <div>
+              <div className="header-search__results-footer">
                 <Button as={Link} to="/search" onClick={searchEnterHandler}>
                   View more {totalResults - 5} results
                 </Button>
