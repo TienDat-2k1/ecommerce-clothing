@@ -35,7 +35,8 @@ const Products = () => {
       const res = await productServices.getAllProduct({
         page,
         limit: 20,
-        ...filter,
+        category: filter.category,
+        size: filter.sizes?.join(','),
       });
 
       setProducts(res.data.data);
