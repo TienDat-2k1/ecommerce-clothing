@@ -13,6 +13,7 @@ import Auth from './pages/auth/Auth';
 import SignInPage from './pages/auth/SignInPage';
 import SignUpPage from './pages/auth/SignUpPage';
 import Checkout from './pages/Checkout/Checkout';
+import Order from './pages/Order/Order';
 import Search from './pages/Search/Search';
 import Unauthorized from './pages/Unauthorized/Unauthorized';
 import Main from './router/Main';
@@ -69,7 +70,13 @@ function App() {
             <Route path="sign-up" element={<SignUpPage />} />
           </Route>
 
-          {/* protect route */}
+          {/* protect route user */}
+          <Route element={<RequireAuth allowedRoles="user" />}>
+            <Route element={<Main />}>
+              <Route path="order" element={<Order />} />
+            </Route>
+          </Route>
+          {/* protect route admin*/}
           <Route element={<RequireAuth allowedRoles="admin" />}>
             <Route path="admin" element={<Admin />}>
               <Route index element={<Navigate to="dashboard" replace />} />

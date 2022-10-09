@@ -57,25 +57,21 @@ const Products = () => {
   return (
     <main className="products container">
       {isLoading && <Spinner />}
-      {!!products.length && (
-        <>
-          <ProductsFilter filters={filters} setFilter={setFilters} />
-          <div className="products__grid">
-            {products.map(product => (
-              <ProductCard key={product._id} product={product} />
-            ))}
-          </div>
+      <ProductsFilter filters={filters} setFilter={setFilters} />
+      <div className="products__grid">
+        {products.map(product => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </div>
 
-          <div className="products__footer">
-            {!!totalPages && (
-              <Pagination
-                totalPages={totalPages}
-                onPageChange={pageChangeHandler}
-              />
-            )}
-          </div>
-        </>
-      )}
+      <div className="products__footer">
+        {!!totalPages && (
+          <Pagination
+            totalPages={totalPages}
+            onPageChange={pageChangeHandler}
+          />
+        )}
+      </div>
     </main>
   );
 };

@@ -1,10 +1,15 @@
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
+import Button from '../../components/UI/Button/Button';
 import { useAppSelector } from '../../hooks/hooks';
+import { cartTotalItemSelector } from '../../store/cart/cartSelector';
 import './Checkout.scss';
 
 const Checkout = () => {
   const cartItems = useAppSelector(state => state.cart.cart);
   const totalPrice = useAppSelector(state => state.cart.totalPrice);
+  const totalItem = useSelector(cartTotalItemSelector);
 
   return (
     <div className="checkout-container">
@@ -37,6 +42,17 @@ const Checkout = () => {
         })}
 
       <span className="total">Total: {totalPrice}$</span>
+      {!!totalItem && (
+        <div className="checkout-cta">
+          <Button
+            as={Link}
+            to="/order"
+            className="btn--blue btn--shadow checkout-btn"
+          >
+            Continue
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
