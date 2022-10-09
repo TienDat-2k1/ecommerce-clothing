@@ -11,6 +11,7 @@ import useDebounce from '../../hooks/useDebounce';
 export type ProductFilters = {
   category?: string;
   sizes?: string[];
+  sort?: string;
 };
 
 const Products = () => {
@@ -37,6 +38,7 @@ const Products = () => {
         limit: 20,
         category: filter.category,
         size: filter.sizes?.join(','),
+        sort: filter.sort,
       });
 
       setProducts(res.data.data);

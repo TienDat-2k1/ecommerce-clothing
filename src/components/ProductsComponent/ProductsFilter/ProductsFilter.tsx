@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AiOutlineClear } from 'react-icons/ai';
-import { BiFilter } from 'react-icons/bi';
-import { BsChevronDown } from 'react-icons/bs';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { FiFilter } from 'react-icons/fi';
 import { IoCloseOutline } from 'react-icons/io5';
 
@@ -12,6 +11,15 @@ import './ProductsFilter.scss';
 import { ProductFilters } from '../../../pages/Products/Products';
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+const options = [
+  { id: 1, name: 'Newest', value: '-createAt' },
+  { id: 2, name: 'Oldest', value: 'createAt' },
+  { id: 3, name: 'Best Sale', value: '-saleOff' },
+  { id: 4, name: 'Name: A-Z', value: 'name' },
+  { id: 5, name: 'Name: Z-A', value: '-name' },
+  { id: 6, name: 'Price: Low to Hight', value: 'price' },
+  { id: 7, name: 'Price: Hight to Low', value: '-price' },
+];
 
 type ProductsFilterProps = {
   filters: ProductFilters;
@@ -21,6 +29,11 @@ type ProductsFilterProps = {
 const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
   const [isFilterToggle, setIsFilterToggle] = useState(false);
   const [categories, setCategories] = useState<CategoryModel[]>([]);
+  const [expandContent, setExpandContent] = useState({
+    collection: false,
+    size: false,
+    options: false,
+  });
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -49,6 +62,17 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
     });
   };
 
+  const optionChangeHandler = (value: string) => {
+    setFilter(prev => {
+      if (prev.sort === value) return { ...prev, sort: '' };
+      return { ...prev, sort: value };
+    });
+  };
+
+  const expandHandler = (obj: {}) => {
+    setExpandContent({ ...expandContent, ...obj });
+  };
+
   const hideFilterToggle = () => {
     setIsFilterToggle(false);
   };
@@ -66,12 +90,6 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
         >
           Filter
         </Button>
-        <Button
-          className="btn--outline products__icon"
-          rightIcon={<BiFilter />}
-        >
-          Sort
-        </Button>
       </div>
       <div className="filter-toggle">
         {isFilterToggle && (
@@ -87,10 +105,22 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
             <Button leftIcon={<IoCloseOutline />} onClick={hideFilterToggle} />
           </div>
           <div className="filter-toggle__wrapper">
-            <div className="filter-toggle__item">
+            <div
+              className={`filter-toggle__item ${
+                expandContent.collection ? 'expand' : ''
+              }`}
+            >
               <div className="filter-title">
                 <h2>Collection</h2>
-                <BsChevronDown />
+                {expandContent.collection ? (
+                  <BsChevronUp
+                    onClick={() => expandHandler({ collection: false })}
+                  />
+                ) : (
+                  <BsChevronDown
+                    onClick={() => expandHandler({ collection: true })}
+                  />
+                )}
               </div>
               <div className="filter-contents">
                 {!!categories.length &&
@@ -109,10 +139,20 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
                   ))}
               </div>
             </div>
-            <div className="filter-toggle__item">
+            <div
+              className={`filter-toggle__item ${
+                expandContent.size ? 'expand' : ''
+              }`}
+            >
               <div className="filter-title">
                 <h2>Size</h2>
-                <BsChevronDown />
+                {expandContent.size ? (
+                  <BsChevronUp onClick={() => expandHandler({ size: false })} />
+                ) : (
+                  <BsChevronDown
+                    onClick={() => expandHandler({ size: true })}
+                  />
+                )}
               </div>
               <div className="filter-contents">
                 {sizes.map((size, i) => (
@@ -126,6 +166,39 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
                     onClick={() => sizeChangeHandler(size)}
                   >
                     <span>{size}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div
+              className={`filter-toggle__item ${
+                expandContent.options ? 'expand' : ''
+              }`}
+            >
+              <div className="filter-title">
+                <h2>Options</h2>
+                {expandContent.options ? (
+                  <BsChevronUp
+                    onClick={() => expandHandler({ options: false })}
+                  />
+                ) : (
+                  <BsChevronDown
+                    onClick={() => expandHandler({ options: true })}
+                  />
+                )}
+              </div>
+              <div className="filter-contents">
+                {options.map((option, i) => (
+                  <div
+                    key={option.id}
+                    className={`filter-contents__option ${
+                      option.value === filters.sort
+                        ? 'filter-contents__option--active'
+                        : ''
+                    }`}
+                    onClick={() => optionChangeHandler(option.value)}
+                  >
+                    <span>{option.name}</span>
                   </div>
                 ))}
               </div>
