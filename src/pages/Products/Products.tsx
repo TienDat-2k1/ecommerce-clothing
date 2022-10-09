@@ -7,6 +7,7 @@ import { ProductModel } from '../../Model/productModel';
 import './Products.scss';
 import ProductsFilter from '../../components/ProductsComponent/ProductsFilter/ProductsFilter';
 import useDebounce from '../../hooks/useDebounce';
+import Spinner from '../../components/Spinner/Spinner';
 
 export type ProductFilters = {
   category?: string;
@@ -16,6 +17,7 @@ export type ProductFilters = {
 
 const Products = () => {
   const [filters, setFilters] = useState({} as ProductFilters);
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<ProductModel[]>([]);
   const [totalPages, setTotalPages] = useState<number>();
   const [pageActive, setPageActive] = useState<number>(1);
@@ -32,6 +34,7 @@ const Products = () => {
   const debounce = useDebounce(filter, 200);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchProducts = async (page: number, filter: ProductFilters) => {
       const res = await productServices.getAllProduct({
         page,
@@ -40,7 +43,7 @@ const Products = () => {
         size: filter.sizes?.join(','),
         sort: filter.sort,
       });
-
+      setIsLoading(false);
       setProducts(res.data.data);
       setTotalPages(res.totalPages);
     };
@@ -53,21 +56,26 @@ const Products = () => {
 
   return (
     <main className="products container">
-      <ProductsFilter filters={filters} setFilter={setFilters} />
-      <div className="products__grid">
-        {products.map(product => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div>
+      {isLoading && <Spinner />}
+      {!!products.length && (
+        <>
+          <ProductsFilter filters={filters} setFilter={setFilters} />
+          <div className="products__grid">
+            {products.map(product => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
 
-      <div className="products__footer">
-        {!!totalPages && (
-          <Pagination
-            totalPages={totalPages}
-            onPageChange={pageChangeHandler}
-          />
-        )}
-      </div>
+          <div className="products__footer">
+            {!!totalPages && (
+              <Pagination
+                totalPages={totalPages}
+                onPageChange={pageChangeHandler}
+              />
+            )}
+          </div>
+        </>
+      )}
     </main>
   );
 };
