@@ -24,6 +24,9 @@ import AdminCategories from './pages/AdminCategory/AdminCategories';
 import Dashboard from './pages/AdminDashboard/Dashboard';
 import AdminOrders from './pages/AdminOrders/AdminOrders';
 import AdminProduct from './pages/AdminProducts/AdminProduct';
+import User from './Layout/User/User';
+import UserInf from './pages/UserInf/UserInf';
+import UserOrders from './pages/UserOrders/UserOrders';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const DetailProduct = lazy(() => import('./pages/DetailProduct/DetailProduct'));
@@ -74,6 +77,11 @@ function App() {
           <Route element={<RequireAuth allowedRoles="user" />}>
             <Route element={<Main />}>
               <Route path="order" element={<Order />} />
+              <Route path="me" element={<User />}>
+                <Route index element={<Navigate to="info" replace />} />
+                <Route path="info" element={<UserInf />} />
+                <Route path="my-order" element={<UserOrders />} />
+              </Route>
             </Route>
           </Route>
           {/* protect route admin*/}

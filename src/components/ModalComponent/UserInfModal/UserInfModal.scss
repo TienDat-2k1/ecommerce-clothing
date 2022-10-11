@@ -1,0 +1,11 @@
+.user-inf-modal {
+  padding: 1rem 2rem;
+
+  &__cta {
+    margin-top: 2rem;
+    min-width: 30rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+}

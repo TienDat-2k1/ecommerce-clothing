@@ -36,10 +36,10 @@ const HeaderUser = () => {
           render={attrs => {
             return (
               <Popper className="user-popper" {...attrs}>
-                <div className="user-popper__item">
+                <Link to="me" className="user-popper__item">
                   <img src={imageUser(user.photo)} alt="" />
                   <h4>{user.name}</h4>
-                </div>
+                </Link>
                 <div className="user-popper__item">
                   <BsReceiptCutoff className="user-popper__icon" />
                   <span className="user-popper__content">Orders</span>

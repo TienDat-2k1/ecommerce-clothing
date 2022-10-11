@@ -1,0 +1,110 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.user-layout {
+  min-height: 100vh;
+  padding-top: $header--height;
+
+  display: flex;
+  overflow: hidden;
+
+  @include responds(sm) {
+    width: 100%;
+  }
+}
+
+.user-l {
+  width: 240px;
+  background-color: $color--accent-orange;
+  transition: all 1s ease-in;
+
+  @include responds(lg) {
+    width: 220px;
+  }
+
+  @include responds(lg) {
+    width: 0;
+    overflow: hidden;
+
+    &.active {
+      width: 220px;
+    }
+  }
+}
+
+.user-r {
+  flex: 1;
+  background-color: $color--white;
+  position: relative;
+}
+
+.user {
+  &__setting {
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #000;
+    border-radius: 50%;
+    font-size: 2.8rem;
+    cursor: pointer;
+    user-select: none;
+
+    @include responds(lg) {
+      display: flex;
+    }
+  }
+
+  &__list {
+    padding-top: 2rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    padding-left: 3rem;
+    gap: 2rem;
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background-color: $color--primary-dark;
+      border-radius: 99px;
+      transition: all 0.25s;
+    }
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #000;
+    }
+
+    &:hover {
+      background-color: rgba($color--black, 0.15);
+    }
+
+    &:hover::after,
+    &--active::after {
+      width: 8px;
+    }
+  }
+
+  &__icon {
+    font-size: 2.4rem;
+    color: $color--grey-dark-3;
+  }
+}

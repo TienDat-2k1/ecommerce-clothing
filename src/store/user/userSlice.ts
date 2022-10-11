@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-type User = {
-  id: string;
-  name: string;
-  role: string;
-  photo: string;
-};
+import { UserModel } from '../../Model/userModel';
 
 export type Login = {
   email: string;
@@ -23,7 +17,7 @@ type UserState = {
   isLogged: boolean;
   isLoading: boolean;
   accessToken: string;
-  user: User;
+  user: UserModel;
   error?: string;
 };
 
@@ -32,9 +26,7 @@ const initialState: UserState = {
   isLoading: false,
   accessToken: '',
   error: undefined,
-  user: {
-    role: 'user',
-  } as User,
+  user: {} as UserModel,
 };
 
 const userSlice = createSlice({
@@ -47,7 +39,7 @@ const userSlice = createSlice({
     },
     logginSuccess: (
       state,
-      action: PayloadAction<{ accessToken: string; user: User }>
+      action: PayloadAction<{ accessToken: string; user: UserModel }>
     ) => {
       state.error = undefined;
       state.isLoading = false;
@@ -61,7 +53,7 @@ const userSlice = createSlice({
     },
     signupSuccess: (
       state,
-      action: PayloadAction<{ accessToken: string; user: User }>
+      action: PayloadAction<{ accessToken: string; user: UserModel }>
     ) => {
       state.error = undefined;
       state.isLoading = false;
@@ -72,9 +64,12 @@ const userSlice = createSlice({
     logout: state => {
       state.accessToken = '';
       state.isLoading = false;
-      state.user = {} as User;
+      state.user = {} as UserModel;
       state.error = undefined;
       state.isLogged = false;
+    },
+    setUser: (state, action: PayloadAction<UserModel>) => {
+      state.user = action.payload;
     },
   },
 });
@@ -85,6 +80,7 @@ export const {
   signupStart,
   signupSuccess,
   logout,
+  setUser,
 } = userSlice.actions;
 
 export default userSlice.reducer;

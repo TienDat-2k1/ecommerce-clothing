@@ -9,6 +9,7 @@ export const isLoggedSelector = createSelector(
 );
 
 export const userSelector = createSelector([userReducer], user => user.user);
+
 export const accessTokenSelector = createSelector(
   [userReducer],
   user => user.accessToken
