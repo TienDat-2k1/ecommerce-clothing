@@ -7,7 +7,6 @@ import ProductCard from '../../Products/ProductCard/ProductCard';
 import './HomeProducts.scss';
 import Text from '../../UI/Text/Text';
 import Button from '../../UI/Button/Button';
-import { Link } from 'react-router-dom';
 
 const HomeProducts = () => {
   const [products, setProducts] = useState<ProductModel[]>([]);

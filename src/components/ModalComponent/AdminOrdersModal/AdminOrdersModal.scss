@@ -1,0 +1,57 @@
+.admin-order-modal {
+  padding: 1rem 2rem;
+  // height: 80vh;
+}
+
+.order-modal {
+  &__content {
+    width: 40rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  &__orders {
+    flex-direction: column;
+  }
+
+  &__list {
+  }
+
+  &__order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    & > img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+
+    & > h4 {
+      width: 70%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & > div:last-child {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  &__cta {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+}
