@@ -32,11 +32,13 @@
   }
 
   &__list {
+    height: 42rem;
+
     @include responds(lg) {
       width: 100%;
+      height: fit-content;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
     }
 
@@ -157,13 +159,14 @@
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    padding: 4px 16px;
+    padding: 2px 8px;
 
-    border-radius: 10px;
+    border-radius: 4px;
     background-color: $color--accent-orange;
     color: $color--white;
 
     text-align: center;
+    font-size: 1.2rem;
 
     @include responds(lg) {
       padding: 0;
@@ -241,5 +244,6 @@
   }
 
   &__footer {
+    margin-top: 2rem;
   }
 }

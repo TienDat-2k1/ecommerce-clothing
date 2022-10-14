@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Pagination from '../../components/Pagination/Pagination';
 import SearchInput from '../../components/UI/SearchInput/SearchInput';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useDebounce from '../../hooks/useDebounce';
@@ -10,24 +11,30 @@ const AdminOrders = () => {
   const axiosPrivate = useAxiosPrivate();
   const [orders, setOrders] = useState<OrderModel[]>([]);
   const [searchKey, setSearchKey] = useState('');
+  const [pageActive, setPageActive] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
   const [isUpdate, setIsUpdate] = useState(false);
 
   const keyDebounce = useDebounce(searchKey, 500);
 
   useEffect(() => {
-    const fetchOrders = async (key: string) => {
+    const fetchOrders = async (key: string, page: number) => {
       const res = await axiosPrivate.get('orders', {
         params: {
+          limit: 20,
+          page,
           key,
         },
       });
+
       if (res.status === 200) {
         setOrders(res.data.data.data);
         setIsUpdate(false);
+        setTotalPage(res.data.totalPages);
       }
     };
-    fetchOrders(keyDebounce);
-  }, [axiosPrivate, keyDebounce, isUpdate]);
+    fetchOrders(keyDebounce, pageActive);
+  }, [axiosPrivate, keyDebounce, isUpdate, pageActive]);
 
   const searchKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKey(e.target.value);
@@ -35,6 +42,10 @@ const AdminOrders = () => {
 
   const onUpdate = () => {
     setIsUpdate(true);
+  };
+
+  const pageChangeHandler = (page: any) => {
+    setPageActive(page.selected + 1);
   };
 
   return (
@@ -89,7 +100,14 @@ const AdminOrders = () => {
             );
           })}
         </div>
-        <div className="admin-order__footer"></div>
+        {totalPage > 1 && (
+          <div className="admin-order__footer">
+            <Pagination
+              totalPages={totalPage}
+              onPageChange={pageChangeHandler}
+            />
+          </div>
+        )}
       </div>
     </>
   );
