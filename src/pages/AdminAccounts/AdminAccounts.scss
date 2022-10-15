@@ -72,13 +72,11 @@
     border-bottom: 1px solid #ccc;
   }
 
-  &__h-block {
-  }
-
   &__list {
     list-style: none;
 
     height: 48rem;
+    overflow: auto;
 
     @include responds(lg) {
       height: fit-content;

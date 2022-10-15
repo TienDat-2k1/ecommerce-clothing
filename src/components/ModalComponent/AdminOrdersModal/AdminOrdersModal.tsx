@@ -95,10 +95,7 @@ const AdminOrdersModal = ({
       </div>
       {orderStatus && (
         <div className="order-modal__cta">
-          <Button
-            className="btn--round btn--outline"
-            onClick={() => setOrderStatus(undefined)}
-          >
+          <Button className="btn--round btn--outline" onClick={() => onClose()}>
             Cancel
           </Button>
           <Button className="btn--round btn--blue" onClick={saveStatus}>

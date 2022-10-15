@@ -32,7 +32,8 @@
   }
 
   &__list {
-    height: 42rem;
+    height: 48rem;
+    overflow: auto;
 
     @include responds(lg) {
       width: 100%;

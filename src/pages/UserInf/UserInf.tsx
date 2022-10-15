@@ -82,6 +82,7 @@ const UserInf = () => {
                   type="file"
                   id="avt-change"
                   onChange={avatarPreviewChange}
+                  accept="image/png, image/gif, image/jpeg"
                 />
                 <label htmlFor="avt-change">
                   <BsFillPencilFill />
