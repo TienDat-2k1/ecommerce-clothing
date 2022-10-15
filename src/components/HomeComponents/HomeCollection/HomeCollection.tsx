@@ -28,7 +28,7 @@ const HomeCollection = () => {
         <h1 className="collection__title">new collection</h1>
         <span className="collection__description">2022 Collection</span>
       </div>
-      <div className="collection__top3">
+      <div className="collection__top">
         <div className="dot-texture"></div>
         <div className="dot-texture"></div>
 

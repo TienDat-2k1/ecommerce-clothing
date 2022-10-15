@@ -18,7 +18,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const [isCardModal, setIsCardModal] = useState(false);
   const navigate = useNavigate();
   const productCardClickHandler = () => {
-    console.log('onclick');
     navigate(`/products/${product._id}`);
   };
 

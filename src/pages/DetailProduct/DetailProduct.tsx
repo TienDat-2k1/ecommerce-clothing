@@ -10,6 +10,8 @@ import './DetailProduct.scss';
 import Button from '../../components/UI/Button/Button';
 import ImageProductSlideShow from '../../components/ImageProductSlideShow/ImageProductSlideShow';
 import Spinner from '../../components/Spinner/Spinner';
+import { BsCart4 } from 'react-icons/bs';
+import ProductReviews from './ProductReviews';
 
 type OptionsCart = {
   size: string;
@@ -142,6 +144,7 @@ const DetailProduct = () => {
                 className="btn--round btn--shadow product__btn"
                 onClick={() => addToCartHandler(product)}
                 disabled={!optionsCart.size}
+                leftIcon={<BsCart4 />}
               >
                 Add to cart
               </Button>
@@ -150,6 +153,10 @@ const DetailProduct = () => {
           <div className="product__description">
             <h2>Description</h2>
             <pre>{product.description}</pre>
+          </div>
+          <div className="product__reviews">
+            <h2>Reviews</h2>
+            <ProductReviews />
           </div>
         </main>
       )}

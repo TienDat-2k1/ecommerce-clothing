@@ -35,3 +35,17 @@ export const getProductAlias = async (aliasPath: string, options = {}) => {
     console.log(error);
   }
 };
+
+export const getAllReviewProduct = async (id: string) => {
+  try {
+    const res = await httpRequest.get(`/products/${id}/reviews`, {
+      params: {
+        fields: 'createAt, id, rating, review, user',
+      },
+    });
+
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

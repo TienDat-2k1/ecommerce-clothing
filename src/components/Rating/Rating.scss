@@ -1,0 +1,12 @@
+.rating {
+  position: relative;
+  display: flex;
+  margin: 4px 0;
+  gap: 6px;
+
+  &__icon {
+    font-size: inherit;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+}
