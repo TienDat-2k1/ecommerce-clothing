@@ -34,6 +34,10 @@ const Products = () => {
   const debounce = useDebounce(filter, 200);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     setIsLoading(true);
     const fetchProducts = async (page: number, filter: ProductFilters) => {
       const res = await productServices.getAllProduct({
