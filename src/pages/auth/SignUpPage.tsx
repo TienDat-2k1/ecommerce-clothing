@@ -17,10 +17,10 @@ interface IInputFields {
 }
 
 const initInputFields: IInputFields = {
-  displayName: 'Test account',
-  email: 'test@gmail.com',
-  password: 'a12345678',
-  confirmPassword: 'a12345678',
+  displayName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
 };
 
 const SignUpPage = () => {
@@ -79,7 +79,7 @@ const SignUpPage = () => {
       errorMessage:
         'Password must least 8 characters! (include single character and digit)',
       label: 'Password',
-      pattern: `^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d][A-Za-z\\d!@#$%^&*()_+]{8,19}$`,
+      pattern: `^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d][A-Za-z\\d!@#$%^&*()_+]{7,19}$`,
       required: true,
     },
     {
