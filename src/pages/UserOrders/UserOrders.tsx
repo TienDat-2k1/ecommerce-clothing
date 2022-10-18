@@ -12,7 +12,6 @@ const UserOrders = () => {
   useEffect(() => {
     const fetchOrderFromUser = async () => {
       const res = await axiosPrivate.get('user/me');
-      console.log(res);
 
       setUserOrders(res.data.data.data.orders);
     };

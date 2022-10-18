@@ -50,9 +50,9 @@ const HomeSlider = () => {
         modules={[EffectFade, Pagination, Navigation, Autoplay]}
         className="home-slider"
       >
-        {sliders.map(slide => {
+        {sliders.map((slide, i) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={i}>
               <div className="home-slide">
                 <img src={slide.img} alt="" />
                 <div className="home-slide__contents">

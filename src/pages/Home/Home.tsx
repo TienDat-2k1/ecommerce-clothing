@@ -3,6 +3,7 @@ import HomeBestSeller from '../../components/HomeComponents/HomeBestSeller/HomeB
 import HomeProducts from '../../components/HomeComponents/HomeProducts/HomeProducts';
 import './Home.scss';
 import HomeSlider from '../../components/HomeComponents/HomeSlider/HomeSlider';
+import HomeProductsLatest from '../../components/HomeComponents/HomeProductsLastest/HomeProductsLatest';
 
 const Home = () => {
   return (
@@ -13,6 +14,8 @@ const Home = () => {
 
       {/* Collection */}
       <HomeCollection />
+
+      <HomeProductsLatest />
 
       {/* best fashion */}
       {/* <HomeAbout /> */}
