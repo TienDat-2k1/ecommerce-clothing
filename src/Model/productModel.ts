@@ -8,7 +8,7 @@ export type ProductModel = {
   material: string;
   sizes: string[];
   ratingsAverage: number;
-  numberReview: number;
+  ratingsQuantity: number;
   category: string;
   saleOff: number;
   description: string;

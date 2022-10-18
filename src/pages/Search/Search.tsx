@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Pagination from '../../components/Pagination/Pagination';
 import ProductCard from '../../components/Products/ProductCard/ProductCard';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import { ProductModel } from '../../Model/productModel';
 
 import * as productServices from '../../services/productServices';

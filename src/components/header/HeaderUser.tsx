@@ -7,7 +7,7 @@ import { BsReceiptCutoff } from 'react-icons/bs';
 import { isLoggedSelector, userSelector } from '../../store/user/userSelector';
 import imageUser from '../../utils/imageUser';
 import Button from '../UI/Button/Button';
-import Popper from '../Popper/Popper';
+import Popper from '../UI/Popper/Popper';
 import './HeaderUser.scss';
 import { logout } from '../../store/user/userSlice';
 
@@ -40,10 +40,10 @@ const HeaderUser = () => {
                   <img src={imageUser(user.photo)} alt="" />
                   <h4>{user.name}</h4>
                 </Link>
-                <div className="user-popper__item">
+                <Link to="me/my-order" className="user-popper__item">
                   <BsReceiptCutoff className="user-popper__icon" />
                   <span className="user-popper__content">Orders</span>
-                </div>
+                </Link>
                 <div className="user-popper__item" onClick={logOutHandler}>
                   <FiLogOut className="user-popper__icon" />
                   <span className="user-popper__content">Log Out</span>

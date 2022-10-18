@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { BsCart4 } from 'react-icons/bs';
 
-import Modal from '../../Modal/Modal';
+import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import { ProductModel } from '../../../Model/productModel';
 import { CartModel } from '../../../Model/cartModel';
@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { addCart } from '../../../store/cart/cartSlice';
 import './ProductCardModal.scss';
 import ImageProductSlideShow from '../../ImageProductSlideShow/ImageProductSlideShow';
+import Rating from '../../UI/Rating/Rating';
 
 type ProductCardModalProps = {
   product: ProductModel;
@@ -66,6 +67,13 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
         />
         <div className="product-modal__contents">
           <h2 className="product-modal__title">{product.name}</h2>
+          <div className="product-modal__rating">
+            <Rating
+              count={5}
+              rating={Math.round(product.ratingsAverage)}
+              color={{ filled: '#FFBF00', unfilled: '#ccc' }}
+            />
+          </div>
           <div className="product-modal__material">
             <h4>Material:</h4>
             <span>{product.material}</span>

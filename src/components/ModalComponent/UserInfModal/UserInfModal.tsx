@@ -6,7 +6,7 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { UserModel } from '../../../Model/userModel';
 import { setUser } from '../../../store/user/userSlice';
 import FormInput from '../../FormInput/FormInput';
-import Modal from '../../Modal/Modal';
+import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import './UserInfModal.scss';
 

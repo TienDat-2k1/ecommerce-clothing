@@ -1,15 +1,16 @@
-import HomeHeader from '../../components/HomeComponents/HomeHeader/HomeHeader';
 import HomeCollection from '../../components/HomeComponents/HomeCollection/HomeCollection';
 import HomeAbout from '../../components/HomeComponents/HomeAbout/HomeAbout';
 import HomeBestSeller from '../../components/HomeComponents/HomeBestSeller/HomeBestSeller';
 import HomeProducts from '../../components/HomeComponents/HomeProducts/HomeProducts';
 import './Home.scss';
+import HomeSlider from '../../components/HomeComponents/HomeSlider/HomeSlider';
 
 const Home = () => {
   return (
     <main className="home">
       {/* Section home header */}
-      <HomeHeader />
+      {/* <HomeHeader /> */}
+      <HomeSlider />
 
       {/* Collection */}
       <HomeCollection />

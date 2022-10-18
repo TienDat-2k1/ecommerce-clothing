@@ -7,17 +7,21 @@ import ProductCard from '../../Products/ProductCard/ProductCard';
 import './HomeProducts.scss';
 import Text from '../../UI/Text/Text';
 import Button from '../../UI/Button/Button';
+import Spinner from '../../UI/Spinner/Spinner';
 
 const HomeProducts = () => {
   const [products, setProducts] = useState<ProductModel[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [aliasApi, setAliasApi] = useState('top-hot');
   const [visible, setVisible] = useState(10);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchProducts = async (path: string) => {
       const res = await productServices.getProductAlias(path);
 
       if (res.data) setProducts(res.data);
+      setIsLoading(false);
     };
     fetchProducts(aliasApi);
   }, [aliasApi]);
@@ -59,14 +63,16 @@ const HomeProducts = () => {
         })}
       </div>
       <div className="home-products__grid">
+        {isLoading && <Spinner style={{ backgroundColor: 'transparent' }} />}
         {products &&
+          !isLoading &&
           products
             .filter((_, i) => i < visible)
             .map(product => {
               return <ProductCard key={product._id} product={product} />;
             })}
       </div>
-      {visible < products.length && (
+      {visible < products.length && !isLoading && (
         <Button
           to="/products"
           className="btn--outline btn--shadow home-products__btn"

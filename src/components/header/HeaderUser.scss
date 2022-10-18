@@ -30,7 +30,8 @@
   }
 
   &__item,
-  &__item:active {
+  &__item:active,
+  &__item:link {
     display: flex;
     align-items: center;
     gap: 1.2rem;
@@ -40,6 +41,7 @@
 
     &:hover {
       cursor: pointer;
+      color: $color--black;
       background-color: rgba($color--black, 0.1);
     }
   }

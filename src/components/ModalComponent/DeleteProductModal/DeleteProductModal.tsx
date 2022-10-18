@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { ProductModel } from '../../../Model/productModel';
 
-import Modal from '../../Modal/Modal';
+import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import './DeleteProductModal.scss';
 type DeleteProductModalProps = {

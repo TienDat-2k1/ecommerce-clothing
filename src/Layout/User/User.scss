@@ -2,8 +2,8 @@
 @use '../../sass/mixins' as *;
 
 .user-layout {
+  position: relative;
   min-height: 100vh;
-  padding-top: $header--height;
 
   display: flex;
   overflow: hidden;
@@ -16,7 +16,7 @@
 .user-l {
   width: 240px;
   background-color: $color--accent-orange;
-  transition: all 1s ease-in;
+  transition: all 0.45s ease-in;
 
   @include responds(lg) {
     width: 220px;
@@ -28,6 +28,19 @@
 
     &.active {
       width: 220px;
+    }
+  }
+
+  @include responds(md) {
+    width: 0;
+
+    &.active {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 200px;
+      z-index: 99;
     }
   }
 }

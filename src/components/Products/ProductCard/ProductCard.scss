@@ -71,6 +71,10 @@
   &__rates {
     display: flex;
     gap: 0.4rem;
+
+    & > * {
+      font-size: 2rem;
+    }
   }
 
   &__name {

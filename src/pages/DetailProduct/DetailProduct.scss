@@ -3,7 +3,6 @@
 
 .product {
   min-height: 100vh;
-  padding-top: $header--height;
   padding-bottom: 4rem;
 
   // @include responds(md) {
@@ -40,7 +39,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.2rem;
     font-size: 2.2rem;
 
     & h4 {
@@ -60,6 +59,22 @@
   &__material {
     display: flex;
     gap: 0.8rem;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    & > span:nth-of-type(1) {
+      font-weight: 200;
+      font-size: 1.4rem;
+    }
+
+    & > span:nth-of-type(2) {
+      font-weight: 400;
+      font-size: 1.6rem;
+    }
   }
 
   &__price {
@@ -152,6 +167,36 @@
     }
   }
 
+  &__description {
+    margin-top: 4rem;
+    max-width: 50%;
+    @include responds(xl) {
+      max-width: 100%;
+    }
+
+    & h2 {
+      opacity: 0.95;
+      font-family: $font-family--frankLibre;
+    }
+
+    & > pre {
+      width: 100%;
+      white-space: pre-wrap;
+      font-family: inherit;
+      line-height: 1.7;
+      color: rgba($color--black, 0.8);
+    }
+  }
+
+  &__reviews {
+    margin-top: 2rem;
+
+    & h2 {
+      opacity: 0.95;
+      font-family: $font-family--frankLibre;
+    }
+  }
+
   &__btn {
     padding: 2rem 5rem !important;
     font-size: 2.4rem;
@@ -161,22 +206,6 @@
 
     @include responds(lg) {
       width: 100%;
-    }
-  }
-
-  &__description {
-    margin-top: 4rem;
-    max-width: 50%;
-    @include responds(xl) {
-      max-width: 100%;
-    }
-
-    & > pre {
-      width: 100%;
-      white-space: pre-wrap;
-      font-family: inherit;
-      line-height: 1.7;
-      color: rgba($color--black, 0.8);
     }
   }
 }

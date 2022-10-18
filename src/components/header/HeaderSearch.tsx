@@ -1,7 +1,7 @@
 import Tippy from '@tippyjs/react/headless';
 import { useState, useEffect } from 'react';
 import { ProductModel } from '../../Model/productModel';
-import Popper from '../Popper/Popper';
+import Popper from '../UI/Popper/Popper';
 import SearchInput from '../UI/SearchInput/SearchInput';
 
 import * as productServices from '../../services/productServices';

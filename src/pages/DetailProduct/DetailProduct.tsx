@@ -9,9 +9,10 @@ import { addCart } from '../../store/cart/cartSlice';
 import './DetailProduct.scss';
 import Button from '../../components/UI/Button/Button';
 import ImageProductSlideShow from '../../components/ImageProductSlideShow/ImageProductSlideShow';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import { BsCart4 } from 'react-icons/bs';
 import ProductReviews from './ProductReviews';
+import Rating from '../../components/UI/Rating/Rating';
 
 type OptionsCart = {
   size: string;
@@ -37,6 +38,7 @@ const DetailProduct = () => {
       if (!id) return;
       const result = await productServices.getProduct(id);
 
+      console.log(result);
       setProduct(result.data);
     };
     fetchProduct(productId);
@@ -75,14 +77,14 @@ const DetailProduct = () => {
   };
 
   return (
-    <>
+    <main className="product container">
       {!product && <Spinner />}
       {product && (
-        <main className="product container">
+        <>
           <div className="product__main">
             {/* <div className="product__image">
-              <img src={imageProduct(product.imageCover)} alt={product.name} />
-            </div> */}
+                <img src={imageProduct(product.imageCover)} alt={product.name} />
+              </div> */}
             <ImageProductSlideShow
               className="product__image"
               images={
@@ -93,10 +95,22 @@ const DetailProduct = () => {
             />
             <div className="product__details">
               <h1 className="product__name">{product.name}</h1>
+              <div className="product__rating">
+                <Rating
+                  count={5}
+                  rating={Math.round(product.ratingsAverage)}
+                  color={{ filled: '#FFBF00', unfilled: '#ccc' }}
+                />
+                {/* <span>{product.ratingsAverage}</span> */}
+                {!!product.ratingsQuantity && (
+                  <span>{product.ratingsQuantity} votes</span>
+                )}
+              </div>
               <div className="product__material">
                 <h4>Material: </h4>
                 <span>{product.material}</span>
               </div>
+
               <div className="product__price">
                 {!!product.saleOff && (
                   <span className="product__price-origin">
@@ -127,13 +141,13 @@ const DetailProduct = () => {
                   ))}
               </div>
               {/* <div className="product__color">
-                <h4>Color: </h4>
-                <span
-                  className="active"
-                  style={{ backgroundColor: 'red' }}
-                ></span>
-                <span style={{ backgroundColor: 'blue' }}></span>
-              </div> */}
+                  <h4>Color: </h4>
+                  <span
+                    className="active"
+                    style={{ backgroundColor: 'red' }}
+                  ></span>
+                  <span style={{ backgroundColor: 'blue' }}></span>
+                </div> */}
               <div className="product__quantity">
                 <h4>Quantity:</h4>
                 <span onClick={decreaseQuantityHandler}>-</span>
@@ -158,9 +172,9 @@ const DetailProduct = () => {
             <h2>Reviews</h2>
             <ProductReviews />
           </div>
-        </main>
+        </>
       )}
-    </>
+    </main>
   );
 };
 export default DetailProduct;

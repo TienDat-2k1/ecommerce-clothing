@@ -55,6 +55,10 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
 
+    min-height: 20rem;
+    width: 100%;
+    position: relative;
+
     @include responds(xl) {
       grid-template-columns: repeat(4, 1fr);
     }

@@ -21,7 +21,9 @@ const Navbar = ({ isNavActive }: INav) => {
       {isLogged && (
         <div className="nav__user">
           <img src={imageUser(user.photo)} alt="user" />
-          <h2>{user.name}</h2>
+          <h2>
+            <Link to="me">{user.name}</Link>
+          </h2>
           <AiOutlineLogout
             className="nav__user-icon"
             onClick={() => dispatch(logout())}

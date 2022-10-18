@@ -7,7 +7,7 @@ import { ProductModel } from '../../Model/productModel';
 import './Products.scss';
 import ProductsFilter from '../../components/ProductsComponent/ProductsFilter/ProductsFilter';
 import useDebounce from '../../hooks/useDebounce';
-import Spinner from '../../components/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 export type ProductFilters = {
   category?: string;

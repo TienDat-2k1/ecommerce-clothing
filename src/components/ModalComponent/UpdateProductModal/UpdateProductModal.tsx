@@ -9,12 +9,12 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { CategoryModel } from '../../../Model/categoryModel';
 import { ProductModel } from '../../../Model/productModel';
 import FormInput from '../../FormInput/FormInput';
-import Modal from '../../Modal/Modal';
+import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import './UpdateProductModal.scss';
 import imageProduct from '../../../utils/imageProduct';
 import { toast } from 'react-toastify';
-import Spinner from '../../Spinner/Spinner';
+import Spinner from '../../UI/Spinner/Spinner';
 
 type UpdateProductModalProps = {
   onClose: () => void;

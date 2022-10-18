@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Rating from '../../components/Rating/Rating';
+import Rating from '../../components/UI/Rating/Rating';
 import Button from '../../components/UI/Button/Button';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { ReviewModel } from '../../Model/reviewModel';

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './ProductCard.scss';
-import { AiFillStar } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { BsCart4 } from 'react-icons/bs';
 
@@ -9,6 +8,7 @@ import { ProductModel } from '../../../Model/productModel';
 import ProductCardModal from '../../ModalComponent/ProductCardModal/ProductCardModal';
 import { useState } from 'react';
 import imageProduct from '../../../utils/imageProduct';
+import Rating from '../../UI/Rating/Rating';
 
 type ProductCardProps = {
   product: ProductModel;
@@ -50,11 +50,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           onClick={productCardClickHandler}
         >
           <div className="product-card__rates">
-            <AiFillStar className="product-card__icon" />
-            <AiFillStar className="product-card__icon" />
-            <AiFillStar className="product-card__icon" />
-            <AiFillStar className="product-card__icon" />
-            <AiFillStar className="product-card__icon" />
+            <Rating
+              count={5}
+              rating={Math.round(product.ratingsAverage)}
+              color={{ filled: '#FFBF00', unfilled: '#ccc' }}
+            />
           </div>
           <h2 className="product-card__name">{product.name}</h2>
           <div className="product-card__price">

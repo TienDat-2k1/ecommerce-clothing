@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 
 import { RiImageAddLine } from 'react-icons/ri';
 import FormInput from '../../FormInput/FormInput';
-import Modal from '../../Modal/Modal';
+import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import './CreateCategoryModal.scss';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';

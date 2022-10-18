@@ -17,6 +17,7 @@
     gap: 2rem;
 
     @include responds(lg) {
+      margin-top: 2rem;
       flex-direction: column;
     }
   }
@@ -46,7 +47,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.6rem;
 
     @include responds(lg) {
       width: 100%;
@@ -61,6 +62,10 @@
 
   &__title {
     color: $color--grey-dark-3;
+  }
+
+  &__rating {
+    font-size: 2.2rem;
   }
 
   &__material {

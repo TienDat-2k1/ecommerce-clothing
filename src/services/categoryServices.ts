@@ -1,5 +1,4 @@
 import * as httpRequest from '../utils/httpRequest';
-import catchAsync from '../utils/catchAsync';
 
 export const getAllCategories = async (options = {}) => {
   try {

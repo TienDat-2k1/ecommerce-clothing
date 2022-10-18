@@ -7,7 +7,7 @@ import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { CategoryModel } from '../../../Model/categoryModel';
 import imageCategory from '../../../utils/imageCategory';
 import FormInput from '../../FormInput/FormInput';
-import Modal from '../../Modal/Modal';
+import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 
 type UpdateCategoryModalProps = {
