@@ -27,6 +27,7 @@ import AdminProduct from './pages/AdminProducts/AdminProduct';
 import User from './Layout/User/User';
 import UserInf from './pages/UserInf/UserInf';
 import UserOrders from './pages/UserOrders/UserOrders';
+import AboutUs from './pages/AboutUs/AboutUs';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const DetailProduct = lazy(() => import('./pages/DetailProduct/DetailProduct'));
@@ -67,6 +68,7 @@ function App() {
             <Route path="products/:productId" element={<DetailProduct />} />
             <Route path="checkout" element={<Checkout />} />
             <Route path="search" element={<Search />} />
+            <Route path="about-us" element={<AboutUs />} />
           </Route>
           <Route path="/auth" element={<Auth />}>
             <Route index element={<SignInPage />} />

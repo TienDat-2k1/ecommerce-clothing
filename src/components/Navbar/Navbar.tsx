@@ -60,7 +60,19 @@ const Navbar = ({ isNavActive }: INav) => {
                 : 'nav__list--link'
             }
           >
-            Product
+            Shop
+          </NavLink>
+        </li>
+        <li className="nav__list-item">
+          <NavLink
+            to="about-us"
+            className={({ isActive }) =>
+              isActive
+                ? 'nav__list--link nav__list--link--active'
+                : 'nav__list--link'
+            }
+          >
+            About us
           </NavLink>
         </li>
       </ul>
