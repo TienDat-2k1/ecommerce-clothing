@@ -36,14 +36,19 @@ const HeaderUser = () => {
           render={attrs => {
             return (
               <Popper className="user-popper" {...attrs}>
-                <Link to="me" className="user-popper__item">
+                <Link
+                  to={user.role === 'user' ? 'me' : 'admin'}
+                  className="user-popper__item"
+                >
                   <img src={imageUser(user.photo)} alt="" />
                   <h4>{user.name}</h4>
                 </Link>
-                <Link to="me/my-order" className="user-popper__item">
-                  <BsReceiptCutoff className="user-popper__icon" />
-                  <span className="user-popper__content">Orders</span>
-                </Link>
+                {user.role === 'user' && (
+                  <Link to="me/my-order" className="user-popper__item">
+                    <BsReceiptCutoff className="user-popper__icon" />
+                    <span className="user-popper__content">Orders</span>
+                  </Link>
+                )}
                 <div className="user-popper__item" onClick={logOutHandler}>
                   <FiLogOut className="user-popper__icon" />
                   <span className="user-popper__content">Log Out</span>

@@ -38,7 +38,6 @@ const DetailProduct = () => {
       if (!id) return;
       const result = await productServices.getProduct(id);
 
-      console.log(result);
       setProduct(result.data);
     };
     fetchProduct(productId);

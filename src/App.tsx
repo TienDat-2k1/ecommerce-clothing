@@ -28,6 +28,7 @@ import User from './Layout/User/User';
 import UserInf from './pages/UserInf/UserInf';
 import UserOrders from './pages/UserOrders/UserOrders';
 import AboutUs from './pages/AboutUs/AboutUs';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const DetailProduct = lazy(() => import('./pages/DetailProduct/DetailProduct'));
@@ -98,6 +99,7 @@ function App() {
             </Route>
           </Route>
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
 
       <ToastContainer

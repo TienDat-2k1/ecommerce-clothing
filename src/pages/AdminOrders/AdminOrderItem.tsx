@@ -49,8 +49,8 @@ const AdminOrderItem = ({
               return (
                 <div key={i} className="admin-order__product">
                   <div className="admin-order__product-name">
-                    <Tippy content={<span>{item.product.name}</span>}>
-                      <h4>{item.product.name}</h4>
+                    <Tippy content={<span>{item.product?.name}</span>}>
+                      <h4>{item.product?.name}</h4>
                     </Tippy>
                   </div>
                   <div className="admin-order__product-options">

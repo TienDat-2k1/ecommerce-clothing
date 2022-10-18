@@ -1,0 +1,29 @@
+@use '../../sass/animations' as *;
+@use '../../sass/mixins' as *;
+
+.page-not-found {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  font-size: 10rem;
+
+  @include responds(md) {
+    font-size: 6rem;
+  }
+
+  @include responds(sm) {
+    font-size: 4rem;
+  }
+}
+
+.bug-icon {
+  position: absolute;
+  top: -4rem;
+  font-size: 40rem;
+
+  animation: lds-ring 4s infinite linear;
+}
