@@ -71,7 +71,6 @@ const DetailProduct = () => {
       sizes: product.sizes,
     };
 
-    console.log(cartProduct);
     dispatch(addCart(cartProduct));
   };
 

@@ -27,6 +27,7 @@ const Search = () => {
       setResults(res.data.data);
       setTotalPages(res.totalPages);
       setIsLoading(false);
+      window.scrollTo(0, 0);
     };
 
     fetchResults(keywords, pageActive);

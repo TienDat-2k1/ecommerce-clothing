@@ -3,7 +3,10 @@
 
 // Home Collection
 .collection {
-  padding: 4rem 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid #ccc;
 
   &__heading {
     display: flex;

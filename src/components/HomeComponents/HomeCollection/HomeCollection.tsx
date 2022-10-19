@@ -32,19 +32,23 @@ const HomeCollection = () => {
         <div className="dot-texture"></div>
         <div className="dot-texture"></div>
 
-        {collections &&
-          collections
-            .filter((_, i) => i < 4)
-            .map(collection => {
-              return (
-                <CollectionCard
-                  key={collection._id}
-                  name={collection.name}
-                  imageUrl={collection.imageCover}
-                  id={collection._id}
-                />
-              );
-            })}
+        <div className="row" style={{ width: '100%' }}>
+          {collections &&
+            collections
+              .filter((_, i) => i < 4)
+              .map(collection => {
+                return (
+                  <div className="col c-3 md-6">
+                    <CollectionCard
+                      key={collection._id}
+                      name={collection.name}
+                      imageUrl={collection.imageCover}
+                      id={collection._id}
+                    />
+                  </div>
+                );
+              })}
+        </div>
       </div>
     </section>
   );

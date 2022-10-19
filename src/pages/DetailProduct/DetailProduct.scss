@@ -3,6 +3,7 @@
 
 .product {
   min-height: 100vh;
+  padding-top: 2rem;
   padding-bottom: 4rem;
 
   // @include responds(md) {
@@ -14,7 +15,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 4rem;
-    margin-top: 4rem;
+    margin-top: 1rem;
   }
 
   &__image {
@@ -170,6 +171,7 @@
   &__description {
     margin-top: 4rem;
     max-width: 50%;
+
     @include responds(xl) {
       max-width: 100%;
     }
@@ -185,6 +187,19 @@
       font-family: inherit;
       line-height: 1.7;
       color: rgba($color--black, 0.8);
+
+      display: -webkit-box;
+      -webkit-line-clamp: auto;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      @include responds(lg) {
+        -webkit-line-clamp: 12;
+      }
+
+      @include responds(md) {
+        -webkit-line-clamp: 8;
+      }
     }
   }
 
