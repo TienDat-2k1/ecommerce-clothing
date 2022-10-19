@@ -16,6 +16,7 @@
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 
   @include responds(lg) {
     font-size: 56.25%;
@@ -35,7 +36,6 @@ body {
   font-size: $font-size--default;
   font-family: 'Open Sans', sans-serif;
   background: $color--background;
-  scroll-behavior: smooth;
 }
 
 .container {

@@ -14,6 +14,10 @@
     transform: scale(1.08);
   }
 
+  & a {
+    color: $color--black;
+  }
+
   &__background {
     position: absolute;
     top: 0;

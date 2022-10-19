@@ -48,6 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 
   & > h2 {
     color: $color--grey-dark-2;
@@ -62,9 +63,3 @@
 // .filter-toggle {
 //   animation: hover 0.3s ease-in-out;
 // }
-
-.filter-contents {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}

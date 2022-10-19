@@ -104,7 +104,7 @@
     flex-direction: column;
     gap: 1.2rem;
 
-    height: 40px;
+    height: fit-content;
     overflow-y: hidden;
     transition: all 0.8s ease;
 
@@ -114,15 +114,6 @@
 
     &::-webkit-scrollbar {
       width: 4px;
-    }
-
-    &.expand {
-      height: 200px;
-      overflow-y: auto;
-
-      @include responds(md) {
-        height: 140px;
-      }
     }
   }
 
@@ -154,5 +145,17 @@
 
   &--active {
     background-color: $color--accent-orange;
+  }
+}
+
+.filter-contents {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  max-height: 0;
+  transition: all 0.35s ease-in-out;
+
+  &.expand {
+    max-height: 20rem;
   }
 }

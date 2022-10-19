@@ -41,6 +41,7 @@ const HomeCollection = () => {
                   key={collection._id}
                   name={collection.name}
                   imageUrl={collection.imageCover}
+                  id={collection._id}
                 />
               );
             })}
