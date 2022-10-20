@@ -11,8 +11,10 @@
 }
 
 .products-latest__grid {
+  position: relative;
   margin-top: 2rem;
   margin-bottom: 4rem;
+  min-height: 5rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;

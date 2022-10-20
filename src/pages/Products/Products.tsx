@@ -37,13 +37,18 @@ const Products = () => {
   }, [filters]);
 
   const debounce = useDebounce(filter, 200);
-  const productsDebounce: ProductModel[] = useDebounce(products, 200);
+  const productsDebounce: {
+    products: ProductModel[];
+    isLoading: boolean;
+    totalPages: number;
+  } = useDebounce({ products, isLoading, totalPages }, 200);
 
   useEffect(() => {
     if (!!categoryFilter) {
-      setFilters({ ...filters, category: categoryFilter });
       dispatch(setCategory(''));
+      setFilters({ ...filters, category: categoryFilter });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -75,15 +80,15 @@ const Products = () => {
       {isLoading && <Spinner />}
       <ProductsFilter filters={filters} setFilter={setFilters} />
       <div className="products__grid">
-        {productsDebounce.map(product => (
+        {productsDebounce.products.map(product => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
 
       <div className="products__footer">
-        {!!totalPages && totalPages > 1 && (
+        {!!productsDebounce.totalPages && productsDebounce.totalPages > 1 && (
           <Pagination
-            totalPages={totalPages}
+            totalPages={productsDebounce.totalPages}
             onPageChange={pageChangeHandler}
           />
         )}

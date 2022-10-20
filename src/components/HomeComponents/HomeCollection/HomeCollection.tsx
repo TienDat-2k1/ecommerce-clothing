@@ -38,9 +38,8 @@ const HomeCollection = () => {
               .filter((_, i) => i < 4)
               .map(collection => {
                 return (
-                  <div className="col c-3 md-6">
+                  <div key={collection._id} className="col c-3 md-6">
                     <CollectionCard
-                      key={collection._id}
                       name={collection.name}
                       imageUrl={collection.imageCover}
                       id={collection._id}
