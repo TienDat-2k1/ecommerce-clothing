@@ -32,6 +32,9 @@
     grid-template-columns: repeat(6, 1fr);
     justify-items: center;
 
+    background-color: #ccc;
+    border-radius: 4px;
+
     @include responds(sm) {
       grid-template-columns: repeat(5, 1fr);
     }

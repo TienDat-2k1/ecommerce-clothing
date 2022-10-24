@@ -2,6 +2,9 @@
 @use '../../sass/mixins' as *;
 
 .admin-account {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   &__header {
     display: flex;
     align-items: center;
@@ -70,12 +73,14 @@
     justify-items: center;
     gap: 8px;
     border-bottom: 1px solid #ccc;
+    background-color: #ccc;
   }
 
   &__list {
-    list-style: none;
+    flex: 1;
 
-    height: 48rem;
+    list-style: none;
+    // height: 48rem;
     overflow: auto;
 
     @include responds(lg) {
@@ -92,6 +97,10 @@
 
     padding: 8px 0;
 
+    &:nth-of-type(2n + 2) {
+      background-color: rgba($color--black, 0.04);
+    }
+
     &:not(:last-child) {
       border-bottom: 1px solid #ddd;
     }
@@ -105,6 +114,10 @@
     align-items: center;
 
     overflow: hidden;
+  }
+
+  &__content h4 {
+    text-align: center;
   }
 
   &__content label {

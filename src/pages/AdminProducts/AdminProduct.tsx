@@ -8,6 +8,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import useDebounce from '../../hooks/useDebounce';
 import HeadingCta from './HeadingCta';
 import HeaderProductBlock from './HeaderProductBlock';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const AdminProduct = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -58,6 +59,7 @@ const AdminProduct = () => {
       <HeaderProductBlock />
 
       <div className="admin-product-listitem">
+        {isSearchLoading && <Spinner />}
         {!!products.length &&
           products.map(product => (
             <AdminProductItem

@@ -23,12 +23,12 @@ const Footer = () => {
             <Button
               as="a"
               href="https://www.facebook.com/"
-              leftIcon={<FaFacebook />}
+              leftIcon={<FaFacebook className="footer__icon" />}
             ></Button>
             <Button
               as="a"
               href="https://www.instagram.com/"
-              leftIcon={<BsInstagram />}
+              leftIcon={<BsInstagram className="footer__icon" />}
             ></Button>
           </div>
         </div>
@@ -56,19 +56,19 @@ const Footer = () => {
             <div>
               <Button
                 className="btn--outline-white footer__icon"
-                leftIcon={<BsCashCoin />}
+                leftIcon={<BsCashCoin className="footer__icon" />}
               >
                 Cash
               </Button>
               <Button
                 className="btn--outline-white footer__icon"
-                leftIcon={<FaCcVisa />}
+                leftIcon={<FaCcVisa className="footer__icon" />}
               >
                 VISA
               </Button>
               <Button
                 className="btn--outline-white footer__icon"
-                leftIcon={<RiBankCard2Line />}
+                leftIcon={<RiBankCard2Line className="footer__icon" />}
               >
                 Internet Banking
               </Button>
@@ -78,7 +78,7 @@ const Footer = () => {
             <h2>Shipping Partner</h2>
             <Button
               className="btn--outline-white footer__icon"
-              leftIcon={<FaShippingFast />}
+              leftIcon={<FaShippingFast className="footer__icon" />}
             />
           </div>
         </div>

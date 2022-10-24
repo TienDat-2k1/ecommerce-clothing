@@ -67,7 +67,7 @@ const Checkout = () => {
                 />
               );
             })}
-          <span className="total">Total: {totalPrice}$</span>(
+          <span className="total">Total: {totalPrice}$</span>
           <div className="checkout-cta">
             <Button
               as={Link}

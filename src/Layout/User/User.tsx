@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { IoMdSettings } from 'react-icons/io';
 
 import './User.scss';
+import { FiShoppingBag } from 'react-icons/fi';
 
 const userNav = [
   {
@@ -13,7 +14,7 @@ const userNav = [
   {
     title: 'Order',
     path: 'my-order',
-    Icon: <IoMdSettings className="user__icon" />,
+    Icon: <FiShoppingBag className="user__icon" />,
   },
 ];
 

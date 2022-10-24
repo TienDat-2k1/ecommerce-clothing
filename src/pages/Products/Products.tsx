@@ -8,9 +8,9 @@ import './Products.scss';
 import ProductsFilter from '../../components/ProductsComponent/ProductsFilter/ProductsFilter';
 import useDebounce from '../../hooks/useDebounce';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { useDispatch, useSelector } from 'react-redux';
-import { categorySelector } from '../../store/search/searchSelector';
-import { setCategory } from '../../store/search/searchSlice';
+// import { useDispatch } from 'react-redux';
+// import { categorySelector } from '../../store/search/searchSelector';
+// import { setCategory } from '../../store/search/searchSlice';
 
 export type ProductFilters = {
   category?: string;
@@ -19,13 +19,13 @@ export type ProductFilters = {
 };
 
 const Products = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [filters, setFilters] = useState({} as ProductFilters);
   const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState<ProductModel[]>([]);
   const [totalPages, setTotalPages] = useState<number>();
   const [pageActive, setPageActive] = useState<number>(1);
-  const categoryFilter = useSelector(categorySelector);
+  // const categoryFilter = useSelector(categorySelector);
 
   const filter = useMemo(() => {
     const obj = { ...filters };
@@ -37,24 +37,22 @@ const Products = () => {
   }, [filters]);
 
   const debounce = useDebounce(filter, 200);
-  const productsDebounce: {
-    products: ProductModel[];
-    isLoading: boolean;
-    totalPages: number;
-  } = useDebounce({ products, isLoading, totalPages }, 200);
+  // const productsDebounce: {
+  //   products: ProductModel[];
+  //   isLoading: boolean;
+  //   totalPages: number;
+  // } = useDebounce({ products, isLoading, totalPages }, 200);
 
-  useEffect(() => {
-    if (!!categoryFilter) {
-      dispatch(setCategory(''));
-      setFilters({ ...filters, category: categoryFilter });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (!!categoryFilter) {
+  //     dispatch(setCategory(''));
+  //     setFilters({ ...filters, category: categoryFilter });
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    const fetchProducts = async (page: number, filter: ProductFilters = {}) => {
+  const fetchProducts = useCallback(
+    async (page: number, filter: ProductFilters = {}) => {
       const res = await productServices.getAllProduct({
         page,
         limit: 20,
@@ -65,11 +63,27 @@ const Products = () => {
       setIsLoading(false);
       setProducts(res.data.data);
       setTotalPages(res.totalPages);
+    },
+    []
+  );
 
-      window.scrollTo(0, 0);
-    };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    window.scrollTo(0, 0);
     fetchProducts(pageActive, debounce);
-  }, [debounce, pageActive]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageActive]);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    fetchProducts(1, debounce);
+  }, [debounce]);
 
   const pageChangeHandler = useCallback((page: any) => {
     setPageActive(page.selected + 1);
@@ -80,15 +94,15 @@ const Products = () => {
       {isLoading && <Spinner />}
       <ProductsFilter filters={filters} setFilter={setFilters} />
       <div className="products__grid">
-        {productsDebounce.products.map(product => (
+        {products.map(product => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
 
       <div className="products__footer">
-        {!!productsDebounce.totalPages && productsDebounce.totalPages > 1 && (
+        {!!totalPages && totalPages > 1 && (
           <Pagination
-            totalPages={productsDebounce.totalPages}
+            totalPages={totalPages}
             onPageChange={pageChangeHandler}
           />
         )}

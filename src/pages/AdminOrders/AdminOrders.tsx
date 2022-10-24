@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Pagination from '../../components/Pagination/Pagination';
 import SearchInput from '../../components/UI/SearchInput/SearchInput';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useDebounce from '../../hooks/useDebounce';
 import { OrderModel } from '../../Model/orderModel';
@@ -11,6 +12,7 @@ const AdminOrders = () => {
   const axiosPrivate = useAxiosPrivate();
   const [orders, setOrders] = useState<OrderModel[]>([]);
   const [searchKey, setSearchKey] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [pageActive, setPageActive] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [isUpdate, setIsUpdate] = useState(false);
@@ -18,6 +20,7 @@ const AdminOrders = () => {
   const keyDebounce = useDebounce(searchKey, 500);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchOrders = async (key: string, page: number) => {
       const res = await axiosPrivate.get('orders', {
         params: {
@@ -32,6 +35,7 @@ const AdminOrders = () => {
         setIsUpdate(false);
         setTotalPage(res.data.totalPages);
       }
+      setIsLoading(false);
     };
     fetchOrders(keyDebounce, pageActive);
   }, [axiosPrivate, keyDebounce, isUpdate, pageActive]);
@@ -82,6 +86,7 @@ const AdminOrders = () => {
           </div>
         </div>
         <div className="admin-order__list">
+          {isLoading && <Spinner />}
           {orders.map(order => {
             const dateTime = new Intl.DateTimeFormat('vn-VN', {
               dateStyle: 'short',

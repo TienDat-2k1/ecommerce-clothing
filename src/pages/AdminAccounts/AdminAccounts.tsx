@@ -171,7 +171,7 @@ const AdminAccounts = () => {
                 <span className="admin-account__span">{account.id}</span>
               </div>
               <div className="admin-account__content">
-                <span className="admin-account__span">{account.name}</span>
+                <h4 className="admin-account__span">{account.name}</h4>
               </div>
               <div className="admin-account__content">
                 <span className="admin-account__span">{account.email}</span>

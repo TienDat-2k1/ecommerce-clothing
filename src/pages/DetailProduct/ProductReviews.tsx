@@ -8,10 +8,13 @@ import { ReviewModel } from '../../Model/reviewModel';
 import { getAllReviewProduct } from '../../services/productServices';
 import imageUser from '../../utils/imageUser';
 import './ProductReview.scss';
+import { useSelector } from 'react-redux';
+import { isLoggedSelector } from '../../store/user/userSelector';
 
 const ProductReviews = () => {
   const { productId } = useParams();
   const axiosPrivate = useAxiosPrivate();
+  const isLogged = useSelector(isLoggedSelector);
   const [reviews, setReviews] = useState<ReviewModel[]>([]);
   const [isSubmitReview, setIsSubmitReview] = useState(false);
   const [reviewForm, setReviewForm] = useState({
@@ -41,6 +44,11 @@ const ProductReviews = () => {
 
   const formSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isLogged) {
+      toast.warning('Please loggin for this action');
+      return;
+    }
+
     try {
       const res = await axiosPrivate.post(`products/${productId}/reviews`, {
         ...reviewForm,
@@ -51,7 +59,9 @@ const ProductReviews = () => {
         toast.success('Commented');
         setReviewForm({ rating: 0, review: '' });
       }
-    } catch (error) {}
+    } catch (error) {
+      toast.error('Some thing went wrong, please try again!!');
+    }
   };
 
   return (

@@ -3,6 +3,8 @@
 
 .admin-product-container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .admin-product-wrapper {
@@ -10,6 +12,8 @@
   width: 100%;
 
   border-bottom: 1px solid #000;
+  background-color: #ccc;
+  padding: 6px 0;
 }
 
 // admin heading start
@@ -62,7 +66,9 @@
 }
 
 .admin-product-listitem {
-  height: 78%;
+  position: relative;
+  flex: 1;
+  // height: 78%;
   overflow: auto;
 
   &::-webkit-scrollbar {
