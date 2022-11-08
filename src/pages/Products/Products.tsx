@@ -24,6 +24,7 @@ const Products = () => {
   const [pageActive, setPageActive] = useState<number>(1);
 
   useEffect(() => {
+    console.log(pageActive);
     const category = searchParams.get('category');
     const size = searchParams.getAll('size');
     const sort = searchParams.get('sort');
@@ -54,10 +55,14 @@ const Products = () => {
     setPageActive(page.selected + 1);
   }, []);
 
+  const pageChange = (page: number) => {
+    setPageActive(page);
+  };
+
   return (
     <main className="products ">
       {isLoading && <Spinner />}
-      <ProductsFilter />
+      <ProductsFilter changePage={pageChange} />
       <div>
         <div className="products__grid">
           {products.map(product => (

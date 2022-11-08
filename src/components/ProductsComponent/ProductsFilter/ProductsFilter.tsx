@@ -7,11 +7,9 @@ import { IoCloseOutline } from 'react-icons/io5';
 import * as categoryServices from '../../../services/categoryServices';
 import Button from '../../UI/Button/Button';
 import './ProductsFilter.scss';
-import { ProductFilters } from '../../../pages/Products/Products';
 import { CategoryModel } from '../../../utils/types';
 import { useSearchParams } from 'react-router-dom';
 import useCurrentParams from '../../../hooks/useCurrentParams';
-import useWindowDimension from '../../../hooks/useWindowDimension';
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 const options = [
@@ -24,7 +22,11 @@ const options = [
   { id: 7, name: 'Price: Hight to Low', value: '-price' },
 ];
 
-const ProductsFilter = () => {
+type ProductsFilterProps = {
+  changePage: (page: number) => void;
+};
+
+const ProductsFilter: React.FC<ProductsFilterProps> = ({ changePage }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentParams] = useCurrentParams();
   const [isFilterToggle, setIsFilterToggle] = useState(true);
@@ -53,6 +55,7 @@ const ProductsFilter = () => {
     } else {
       setSearchParams({ ...currentParams, category: id });
     }
+    changePage(1);
   };
 
   const sizeChangeHandler = (size: string) => {
@@ -67,6 +70,8 @@ const ProductsFilter = () => {
     } else {
       setSearchParams({ ...currentParams, size: [...existingSize, size] });
     }
+
+    changePage(1);
   };
 
   const optionChangeHandler = (value: string) => {
@@ -77,6 +82,8 @@ const ProductsFilter = () => {
     } else {
       setSearchParams({ ...currentParams, sort: value });
     }
+
+    changePage(1);
   };
 
   const hideFilterToggle = () => {

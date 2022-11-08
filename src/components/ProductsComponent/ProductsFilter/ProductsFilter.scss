@@ -32,7 +32,6 @@
     padding-right: 2rem;
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
 
     background-color: rgba($color--white, 0.8);
 
@@ -43,6 +42,8 @@
       bottom: 0;
       padding-top: 8rem;
       margin-right: 0;
+
+      justify-content: space-between;
 
       z-index: 51;
       background-color: $color--white;
@@ -98,12 +99,15 @@
   }
 
   &__wrapper {
-    // height: 100%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     overflow-y: auto;
     padding-top: 2rem;
+
+    @include responds(xl) {
+      height: 100%;
+    }
 
     &::-webkit-scrollbar {
       width: 6px;
