@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { IoMdSettings } from 'react-icons/io';
 
@@ -20,10 +20,6 @@ const userNav = [
 
 const User = () => {
   const [isActiveUserNav, setIsActiveUserNav] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <main className="user-layout container">

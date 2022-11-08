@@ -9,6 +9,9 @@ import Button from '../../UI/Button/Button';
 import './ProductsFilter.scss';
 import { ProductFilters } from '../../../pages/Products/Products';
 import { CategoryModel } from '../../../utils/types';
+import { useSearchParams } from 'react-router-dom';
+import useCurrentParams from '../../../hooks/useCurrentParams';
+import useWindowDimension from '../../../hooks/useWindowDimension';
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 const options = [
@@ -21,18 +24,15 @@ const options = [
   { id: 7, name: 'Price: Hight to Low', value: '-price' },
 ];
 
-type ProductsFilterProps = {
-  filters: ProductFilters;
-  setFilter: React.Dispatch<React.SetStateAction<ProductFilters>>;
-};
-
-const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
-  const [isFilterToggle, setIsFilterToggle] = useState(false);
+const ProductsFilter = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [currentParams] = useCurrentParams();
+  const [isFilterToggle, setIsFilterToggle] = useState(true);
   const [categories, setCategories] = useState<CategoryModel[]>([]);
   const [expandContent, setExpandContent] = useState({
-    collection: false,
-    size: false,
-    options: false,
+    collection: true,
+    size: true,
+    options: true,
   });
 
   useEffect(() => {
@@ -46,27 +46,37 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
   }, []);
 
   const categoryChangeHandler = (id: string) => {
-    setFilter(pre => {
-      if (pre.category === id) return { ...filters, category: '' };
-      return { ...filters, category: id };
-    });
+    const existingCategoryId = searchParams.get('category');
+
+    if (existingCategoryId?.includes(id)) {
+      setSearchParams({ ...currentParams, category: [] });
+    } else {
+      setSearchParams({ ...currentParams, category: id });
+    }
   };
+
   const sizeChangeHandler = (size: string) => {
-    setFilter(pre => {
-      if (!pre.sizes?.length) return { ...pre, sizes: [size] };
+    const existingSize = searchParams.getAll('size');
 
-      if (pre.sizes?.includes(size))
-        return { ...pre, sizes: pre?.sizes.filter(s => s !== size) };
-
-      return { ...pre, sizes: [...pre?.sizes, size] };
-    });
+    if (existingSize.includes(size)) {
+      const newSize = existingSize.filter(s => s !== size);
+      setSearchParams({
+        ...currentParams,
+        size: newSize,
+      });
+    } else {
+      setSearchParams({ ...currentParams, size: [...existingSize, size] });
+    }
   };
 
   const optionChangeHandler = (value: string) => {
-    setFilter(prev => {
-      if (prev.sort === value) return { ...prev, sort: '' };
-      return { ...prev, sort: value };
-    });
+    const existingOption = searchParams.get('sort');
+
+    if (existingOption === value) {
+      setSearchParams({ ...currentParams, sort: [] });
+    } else {
+      setSearchParams({ ...currentParams, sort: value });
+    }
   };
 
   const hideFilterToggle = () => {
@@ -124,7 +134,7 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
                     <div
                       key={category._id}
                       className={`filter-toggle__category ${
-                        filters.category === category._id
+                        searchParams.get('category')?.includes(category._id)
                           ? 'filter-toggle__category--active'
                           : ''
                       }`}
@@ -157,7 +167,7 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
                   <div
                     key={i}
                     className={`filter-contents__size ${
-                      filters.sizes?.includes(size)
+                      searchParams.getAll('size')?.includes(size)
                         ? 'filter-contents__size--active'
                         : ''
                     }`}
@@ -190,7 +200,7 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
                   <div
                     key={option.id}
                     className={`filter-contents__option ${
-                      option.value === filters.sort
+                      searchParams.get('sort') === option.value
                         ? 'filter-contents__option--active'
                         : ''
                     }`}
@@ -207,7 +217,7 @@ const ProductsFilter = ({ filters, setFilter }: ProductsFilterProps) => {
             <Button
               className="btn--outline btn--round filter-toggle__clear-btn"
               rightIcon={<AiOutlineClear />}
-              onClick={() => setFilter({} as ProductFilters)}
+              onClick={() => setSearchParams({})}
             >
               Clear
             </Button>

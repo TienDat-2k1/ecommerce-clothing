@@ -1,8 +1,6 @@
 import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { setCategory } from '../../store/search/searchSlice';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 import imageCategory from '../../utils/imageCategory';
 import Button from '../UI/Button/Button';
@@ -15,10 +13,15 @@ interface ICollectionCard {
 }
 
 const CollectionCard = ({ id, name, imageUrl }: ICollectionCard) => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const clickCategoryCardHandler = (id: string) => {
-    dispatch(setCategory(id));
+    navigate({
+      pathname: '/products',
+      search: createSearchParams({
+        category: id,
+      }).toString(),
+    });
   };
 
   return (
@@ -30,16 +33,7 @@ const CollectionCard = ({ id, name, imageUrl }: ICollectionCard) => {
         wrapperClassName="collection-card__background"
         className="collection-card__image"
       />
-      {/* <div className="collection-card__background">
-        <img
-          className="collection-card__image"
-          src={imageCategory(imageUrl)}
-          alt={name}
-        />
-      </div> */}
       <Button
-        as={Link}
-        to="products"
         className="collection-card__rectangle"
         onClick={() => clickCategoryCardHandler(id)}
       >

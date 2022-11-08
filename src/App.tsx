@@ -1,6 +1,6 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'tippy.js/dist/tippy.css';
@@ -30,12 +30,14 @@ import UserInf from './pages/UserInf/UserInf';
 import UserOrders from './pages/UserOrders/UserOrders';
 import AboutUs from './pages/AboutUs/AboutUs';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
+import Products from './pages/Products/Products';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const DetailProduct = lazy(() => import('./pages/DetailProduct/DetailProduct'));
-const Products = lazy(() => import('./pages/Products/Products'));
+// const Products = lazy(() => import('./pages/Products/Products'));
 
 function App() {
+  const location = useLocation();
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
 
@@ -57,6 +59,10 @@ function App() {
       refresh();
     };
   }, [axiosPrivate, dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <Suspense>

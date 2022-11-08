@@ -31,8 +31,6 @@ const DetailProduct = () => {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     const fetchProduct = async (id: string | undefined) => {
       if (!id) return;
       const result = await productServices.getProduct(id);

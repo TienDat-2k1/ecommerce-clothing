@@ -21,11 +21,15 @@
   }
 
   &__grid {
+    margin-top: 2rem;
+    margin-right: 2rem;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
 
     @include responds(xl) {
+      margin: 0 2rem;
+
       grid-template-columns: repeat(4, 1fr);
     }
 
@@ -59,7 +63,3 @@
     cursor: pointer;
   }
 }
-
-// .filter-toggle {
-//   animation: hover 0.3s ease-in-out;
-// }

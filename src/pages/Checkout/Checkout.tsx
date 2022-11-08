@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
@@ -12,10 +11,6 @@ const Checkout = () => {
   const cartItems = useAppSelector(state => state.cart.cart);
   const totalPrice = useAppSelector(state => state.cart.totalPrice);
   const totalItem = useSelector(cartTotalItemSelector);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <>
