@@ -10,6 +10,7 @@ import './ProductsFilter.scss';
 import { CategoryModel } from '../../../utils/types';
 import { useSearchParams } from 'react-router-dom';
 import useCurrentParams from '../../../hooks/useCurrentParams';
+import useWindowDimension from '../../../hooks/useWindowDimension';
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 const options = [
@@ -27,9 +28,10 @@ type ProductsFilterProps = {
 };
 
 const ProductsFilter: React.FC<ProductsFilterProps> = ({ changePage }) => {
+  const { width } = useWindowDimension();
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentParams] = useCurrentParams();
-  const [isFilterToggle, setIsFilterToggle] = useState(true);
+  const [isFilterToggle, setIsFilterToggle] = useState(width > 1200);
   const [categories, setCategories] = useState<CategoryModel[]>([]);
   const [expandContent, setExpandContent] = useState({
     collection: true,

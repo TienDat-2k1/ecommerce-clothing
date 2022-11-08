@@ -24,7 +24,6 @@ const Products = () => {
   const [pageActive, setPageActive] = useState<number>(1);
 
   useEffect(() => {
-    console.log(pageActive);
     const category = searchParams.get('category');
     const size = searchParams.getAll('size');
     const sort = searchParams.get('sort');
