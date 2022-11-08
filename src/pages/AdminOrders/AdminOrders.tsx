@@ -4,7 +4,7 @@ import SearchInput from '../../components/UI/SearchInput/SearchInput';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useDebounce from '../../hooks/useDebounce';
-import { OrderModel } from '../../Model/orderModel';
+import { OrderModel } from '../../utils/types';
 import AdminOrderItem from './AdminOrderItem';
 import './AdminOrders.scss';
 

@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 import * as productServices from '../../services/productServices';
 import { GrUpdate } from 'react-icons/gr';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { ProductModel } from '../../Model/productModel';
 import imageProduct from '../../utils/imageProduct';
 import DeleteProductModal from '../ModalComponent/DeleteProductModal/DeleteProductModal';
 import UpdateProductModal from '../ModalComponent/UpdateProductModal/UpdateProductModal';
 import './AdminProductItem.scss';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { ProductModel } from '../../utils/types';
 
 type AdminProductProps = {
   product: ProductModel;
@@ -65,9 +66,14 @@ const AdminProductItem = ({ product: p, onDelete }: AdminProductProps) => {
         </div>
         <div className="col c-11 md-10">
           <div className="row">
-            <div className="admin-product-content admin-product__image  col c-2 md-3">
+            <LazyLoadImage
+              src={imageProduct(product.imageCover)}
+              effect="blur"
+              wrapperClassName="admin-product-content admin-product__image  col c-2 md-3"
+            />
+            {/* <div className="admin-product-content admin-product__image  col c-2 md-3">
               <img src={imageProduct(product.imageCover)} alt="" />
-            </div>
+            </div> */}
             <div className="admin-product-content admin-product__name  col c-3 sm-4">
               <h4>{product.name}</h4>
             </div>

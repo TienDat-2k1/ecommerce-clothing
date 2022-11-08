@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 
-import { OrderModel } from '../../../Model/orderModel';
 import imageProduct from '../../../utils/imageProduct';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import './AdminOrdersModal.scss';
+import { OrderModel } from '../../../utils/types';
 
 type AdminOrdersModalProps = {
   data: OrderModel;

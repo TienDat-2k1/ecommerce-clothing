@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'tippy.js/dist/tippy.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import AppLayout from './Layout/App/AppLayout';
 import RequireAuth from './components/RequireAuth/RequireAuth';

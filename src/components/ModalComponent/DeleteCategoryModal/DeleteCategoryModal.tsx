@@ -1,9 +1,9 @@
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
-import { CategoryModel } from '../../../Model/categoryModel';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import './DeleteCategoryModal.scss';
+import { CategoryModel } from '../../../utils/types';
 
 type DeleteCategoryModalProps = {
   category: CategoryModel;

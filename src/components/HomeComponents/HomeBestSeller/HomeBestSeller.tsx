@@ -10,7 +10,7 @@ import './HomeBestSeller.scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import ProductCard from '../../Products/ProductCard/ProductCard';
-import { ProductModel } from '../../../Model/productModel';
+import { ProductModel } from '../../../utils/types';
 
 const HomeBestSeller = () => {
   const [top5Products, setTop5Products] = useState<ProductModel[]>();

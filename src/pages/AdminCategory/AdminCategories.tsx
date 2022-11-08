@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import AdminCategoryItem from '../../components/AdminCategoryItem/AdminCategoryItem';
 import useDebounce from '../../hooks/useDebounce';
-import { CategoryModel } from '../../Model/categoryModel';
 
 import * as categoryServices from '../../services/categoryServices';
+import { CategoryModel } from '../../utils/types';
 import './AdminCategories.scss';
 import AdminCategoryHeading from './AdminCategoryHeading';
 

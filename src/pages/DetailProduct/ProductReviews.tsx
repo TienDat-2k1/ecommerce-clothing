@@ -4,12 +4,12 @@ import { toast } from 'react-toastify';
 import Rating from '../../components/UI/Rating/Rating';
 import Button from '../../components/UI/Button/Button';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { ReviewModel } from '../../Model/reviewModel';
 import { getAllReviewProduct } from '../../services/productServices';
 import imageUser from '../../utils/imageUser';
 import './ProductReview.scss';
 import { useSelector } from 'react-redux';
 import { isLoggedSelector } from '../../store/user/userSelector';
+import { ReviewModel } from '../../utils/types';
 
 const ProductReviews = () => {
   const { productId } = useParams();

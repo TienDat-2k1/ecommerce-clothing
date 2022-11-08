@@ -1,11 +1,12 @@
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
-import { CartModel } from '../../Model/cartModel';
 import {
   addCart,
   removeItemCart,
   removeFromCart,
 } from '../../store/cart/cartSlice';
 import imageProduct from '../../utils/imageProduct';
+import { CartModel } from '../../utils/types';
 import './CheckoutItem.scss';
 
 type CheckoutItemProps = {
@@ -29,9 +30,15 @@ const CheckoutItem = ({ item }: CheckoutItemProps) => {
 
   return (
     <div className="checkout-item-container">
-      <div className="image-container">
+      <LazyLoadImage
+        src={imageProduct(item.imageCover)}
+        alt="imageCover"
+        effect="blur"
+        wrapperClassName="image-container"
+      />
+      {/* <div className="image-container">
         <img src={imageProduct(item.imageCover)} alt="imageCover" />
-      </div>
+      </div> */}
       <span className="name">{item.name}</span>
       <span>{item.size}</span>
       <span className="quantity">

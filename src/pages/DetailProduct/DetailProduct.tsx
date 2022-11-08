@@ -3,8 +3,6 @@ import { useDispatch } from 'react-redux';
 
 import * as productServices from '../../services/productServices';
 import { useParams } from 'react-router-dom';
-import { CartModel } from '../../Model/cartModel';
-import { ProductModel } from '../../Model/productModel';
 import { addCart } from '../../store/cart/cartSlice';
 import './DetailProduct.scss';
 import Button from '../../components/UI/Button/Button';
@@ -13,6 +11,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import { BsCart4 } from 'react-icons/bs';
 import ProductReviews from './ProductReviews';
 import Rating from '../../components/UI/Rating/Rating';
+import { CartModel, ProductModel } from '../../utils/types';
 
 type OptionsCart = {
   size: string;

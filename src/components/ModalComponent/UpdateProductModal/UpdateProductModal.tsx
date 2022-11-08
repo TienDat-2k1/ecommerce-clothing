@@ -6,8 +6,6 @@ import { RiImageAddLine } from 'react-icons/ri';
 import * as categoryService from '../../../services/categoryServices';
 import * as productServices from '../../../services/productServices';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
-import { CategoryModel } from '../../../Model/categoryModel';
-import { ProductModel } from '../../../Model/productModel';
 import FormInput from '../../FormInput/FormInput';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
@@ -15,6 +13,7 @@ import './UpdateProductModal.scss';
 import imageProduct from '../../../utils/imageProduct';
 import { toast } from 'react-toastify';
 import Spinner from '../../UI/Spinner/Spinner';
+import { CategoryModel, ProductModel } from '../../../utils/types';
 
 type UpdateProductModalProps = {
   onClose: () => void;

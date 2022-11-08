@@ -5,13 +5,12 @@ import { BsCart4 } from 'react-icons/bs';
 
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
-import { ProductModel } from '../../../Model/productModel';
-import { CartModel } from '../../../Model/cartModel';
 import { useDispatch } from 'react-redux';
 import { addCart } from '../../../store/cart/cartSlice';
 import './ProductCardModal.scss';
 import ImageProductSlideShow from '../../ImageProductSlideShow/ImageProductSlideShow';
 import Rating from '../../UI/Rating/Rating';
+import { CartModel, ProductModel } from '../../../utils/types';
 
 type ProductCardModalProps = {
   product: ProductModel;

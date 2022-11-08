@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { OrderModel } from '../../Model/orderModel';
+import { OrderModel } from '../../utils/types';
 
 import './UserOrders.scss';
 

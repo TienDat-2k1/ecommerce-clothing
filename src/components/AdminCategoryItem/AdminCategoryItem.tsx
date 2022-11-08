@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { GrUpdate } from 'react-icons/gr';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import * as categoryServices from '../../services/categoryServices';
-import { CategoryModel } from '../../Model/categoryModel';
+
 import imageCategory from '../../utils/imageCategory';
 import UpdateCategoryModal from '../ModalComponent/UpdateCategoryModal/UpdateCategoryModal';
 import './AdminCategoryItem.scss';
 import DeleteCategoryModal from '../ModalComponent/DeleteCategoryModal/DeleteCategoryModal';
+import { CategoryModel } from '../../utils/types';
 
 type AdminCategoryItemProps = {
   category: CategoryModel;
@@ -67,9 +69,14 @@ const AdminCategoryItem = ({
         </div>
         <div className="col c-10">
           <div className="row" style={{ height: '100%' }}>
-            <div className="admin-category__content col c-2 l-3 sm-0">
+            <LazyLoadImage
+              src={imageCategory(category.imageCover)}
+              effect="blur"
+              wrapperClassName="admin-category__content col c-2 l-3 sm-0"
+            />
+            {/* <div className="admin-category__content col c-2 l-3 sm-0">
               <img src={imageCategory(category.imageCover)} alt="" />
-            </div>
+            </div> */}
             <div className="admin-category__content col c-5 l-4 sm-7">
               <h3>{category.name}</h3>
             </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { ProductModel } from '../../../Model/productModel';
 
 import * as productServices from '../../../services/productServices';
+import { ProductModel } from '../../../utils/types';
 import ProductCard from '../../Products/ProductCard/ProductCard';
 import Spinner from '../../UI/Spinner/Spinner';
 import './HomeProductsLatest.scss';

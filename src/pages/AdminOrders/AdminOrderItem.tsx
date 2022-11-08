@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Tippy from '@tippyjs/react';
 
-import { OrderModel } from '../../Model/orderModel';
 import AdminOrdersModal from '../../components/ModalComponent/AdminOrdersModal/AdminOrdersModal';
+import { OrderModel } from '../../utils/types';
 
 type AdminOrderItemProps = {
   date: string;

@@ -3,11 +3,11 @@ import Pagination from '../../components/Pagination/Pagination';
 
 import * as productServices from '../../services/productServices';
 import ProductCard from '../../components/Products/ProductCard/ProductCard';
-import { ProductModel } from '../../Model/productModel';
 import './Products.scss';
 import ProductsFilter from '../../components/ProductsComponent/ProductsFilter/ProductsFilter';
 import useDebounce from '../../hooks/useDebounce';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { ProductModel } from '../../utils/types';
 // import { useDispatch } from 'react-redux';
 // import { categorySelector } from '../../store/search/searchSelector';
 // import { setCategory } from '../../store/search/searchSlice';
@@ -83,7 +83,7 @@ const Products = () => {
     setIsLoading(true);
 
     fetchProducts(1, debounce);
-  }, [debounce]);
+  }, [debounce, fetchProducts]);
 
   const pageChangeHandler = useCallback((page: any) => {
     setPageActive(page.selected + 1);

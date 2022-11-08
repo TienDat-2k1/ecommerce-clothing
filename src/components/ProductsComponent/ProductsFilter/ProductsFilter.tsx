@@ -5,10 +5,10 @@ import { FiFilter } from 'react-icons/fi';
 import { IoCloseOutline } from 'react-icons/io5';
 
 import * as categoryServices from '../../../services/categoryServices';
-import { CategoryModel } from '../../../Model/categoryModel';
 import Button from '../../UI/Button/Button';
 import './ProductsFilter.scss';
 import { ProductFilters } from '../../../pages/Products/Products';
+import { CategoryModel } from '../../../utils/types';
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 const options = [

@@ -3,12 +3,12 @@ import AdminProductItem from '../../components/AdminProductItem/AdminProductItem
 
 import * as productServices from '../../services/productServices';
 import './AdminProduct.scss';
-import { ProductModel } from '../../Model/productModel';
 import Pagination from '../../components/Pagination/Pagination';
 import useDebounce from '../../hooks/useDebounce';
 import HeadingCta from './HeadingCta';
 import HeaderProductBlock from './HeaderProductBlock';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { ProductModel } from '../../utils/types';
 
 const AdminProduct = () => {
   const [searchInput, setSearchInput] = useState('');

@@ -59,7 +59,7 @@ const Checkout = () => {
           </div>
           {/* List item */}
           {cartItems &&
-            cartItems.map(cartItem => {
+            cartItems.map((cartItem: any) => {
               return (
                 <CheckoutItem
                   key={cartItem._id + cartItem.size}

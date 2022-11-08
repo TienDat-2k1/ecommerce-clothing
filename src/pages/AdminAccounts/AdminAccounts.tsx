@@ -5,8 +5,8 @@ import Pagination from '../../components/Pagination/Pagination';
 import SearchInput from '../../components/UI/SearchInput/SearchInput';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useDebounce from '../../hooks/useDebounce';
-import { AccountModel } from '../../Model/AccountModel';
 import { userSelector } from '../../store/user/userSelector';
+import { AccountModel } from '../../utils/types';
 
 import './AdminAccounts.scss';
 

@@ -2,12 +2,12 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 import * as productServices from '../../../services/productServices';
-import { ProductModel } from '../../../Model/productModel';
 import ProductCard from '../../Products/ProductCard/ProductCard';
 import './HomeProducts.scss';
 import Text from '../../UI/Text/Text';
 import Button from '../../UI/Button/Button';
 import Spinner from '../../UI/Spinner/Spinner';
+import { ProductModel } from '../../../utils/types';
 
 const HomeProducts = () => {
   const [products, setProducts] = useState<ProductModel[]>([]);

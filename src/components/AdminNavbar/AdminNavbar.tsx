@@ -1,13 +1,14 @@
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../store/user/userSelector';
 import { BsGrid1X2Fill, BsReceiptCutoff } from 'react-icons/bs';
-
-import './AdminNavbar.scss';
-import imageUser from '../../utils/imageUser';
 import { NavLink } from 'react-router-dom';
 import { AiOutlinePicLeft } from 'react-icons/ai';
 import { FaUserCircle } from 'react-icons/fa';
 import { BiCategoryAlt } from 'react-icons/bi';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import './AdminNavbar.scss';
+import imageUser from '../../utils/imageUser';
 
 type AdminNavbarProps = {
   isActive: boolean;
@@ -18,9 +19,14 @@ const AdminNavbar = ({ isActive }: AdminNavbarProps) => {
   return (
     <div className={`admin-navbar ${isActive ? 'admin-navbar--active' : ''}`}>
       <div className="navbar-account">
-        <div className="navbar-account__avatar">
+        <LazyLoadImage
+          src={imageUser(user.photo)}
+          wrapperClassName="navbar-account__avatar"
+          effect="blur"
+        />
+        {/* <div className="navbar-account__avatar">
           <img src={imageUser(user.photo)} alt="" />
-        </div>
+        </div> */}
         <h4>{user.name}</h4>
       </div>
       <span>MAIN MENU</span>

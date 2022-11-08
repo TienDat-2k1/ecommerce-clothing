@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { UserModel } from '../../Model/userModel';
+import { UserModel } from '../../utils/types';
 
 export type Login = {
   email: string;

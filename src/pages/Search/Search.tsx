@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 import Pagination from '../../components/Pagination/Pagination';
 import ProductCard from '../../components/Products/ProductCard/ProductCard';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { ProductModel } from '../../Model/productModel';
 
 import * as productServices from '../../services/productServices';
 import { keywordsSelector } from '../../store/search/searchSelector';
+import { ProductModel } from '../../utils/types';
 import './Search.scss';
 
 const Search = () => {

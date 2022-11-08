@@ -1,6 +1,5 @@
 import Tippy from '@tippyjs/react/headless';
 import { useState, useEffect } from 'react';
-import { ProductModel } from '../../Model/productModel';
 import Popper from '../UI/Popper/Popper';
 import SearchInput from '../UI/SearchInput/SearchInput';
 
@@ -12,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../UI/Button/Button';
 import { useDispatch } from 'react-redux';
 import { setKeyWords } from '../../store/search/searchSlice';
+import { ProductModel } from '../../utils/types';
 
 const HeaderSearch = () => {
   const navigate = useNavigate();

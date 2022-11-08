@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
-import { ProductModel } from '../../../Model/productModel';
 
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import './DeleteProductModal.scss';
+import { ProductModel } from '../../../utils/types';
 type DeleteProductModalProps = {
   onClose: () => void;
   onDelete: () => void;

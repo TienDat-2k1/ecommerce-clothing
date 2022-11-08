@@ -4,11 +4,12 @@ import './ProductCard.scss';
 import { useNavigate } from 'react-router-dom';
 import { BsCart4 } from 'react-icons/bs';
 
-import { ProductModel } from '../../../Model/productModel';
 import ProductCardModal from '../../ModalComponent/ProductCardModal/ProductCardModal';
 import { useState } from 'react';
 import imageProduct from '../../../utils/imageProduct';
 import Rating from '../../UI/Rating/Rating';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { ProductModel } from '../../../utils/types';
 
 type ProductCardProps = {
   product: ProductModel;
@@ -33,11 +34,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <>
       <figure className="product-card">
         <div className="product-card__image">
-          <img
+          <LazyLoadImage
+            src={imageProduct(product.imageCover)}
+            onClick={productCardClickHandler}
+            effect="blur"
+          />
+          {/* <img
             src={imageProduct(product.imageCover)}
             alt=""
             onClick={productCardClickHandler}
-          />
+          /> */}
           <div
             className="product-card__cart f-center"
             onClick={showProductModal}

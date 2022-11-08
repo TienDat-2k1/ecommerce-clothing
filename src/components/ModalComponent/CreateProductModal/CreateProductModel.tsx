@@ -5,12 +5,12 @@ import { RiImageAddLine } from 'react-icons/ri';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 
 import * as categoryService from '../../../services/categoryServices';
-import { CategoryModel } from '../../../Model/categoryModel';
 import FormInput from '../../FormInput/FormInput';
 import Modal from '../../UI/Modal/Modal';
 import './CreateProductModal.scss';
 import Button from '../../UI/Button/Button';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import { CategoryModel } from '../../../utils/types';
 
 type CreateProductModalProps = {
   onClose: () => void;
