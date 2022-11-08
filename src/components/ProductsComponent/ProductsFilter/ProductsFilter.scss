@@ -151,10 +151,6 @@
     overflow-y: hidden;
     transition: all 0.8s ease;
 
-    @include responds(md) {
-      height: 30px;
-    }
-
     &::-webkit-scrollbar {
       width: 4px;
     }
