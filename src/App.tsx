@@ -31,6 +31,7 @@ import UserOrders from './pages/UserOrders/UserOrders';
 import AboutUs from './pages/AboutUs/AboutUs';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Products from './pages/Products/Products';
+import { useRefreshQuery } from './features/Auth/authApiSlice';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const DetailProduct = lazy(() => import('./pages/DetailProduct/DetailProduct'));
@@ -40,6 +41,7 @@ function App() {
   const location = useLocation();
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
+  useRefreshQuery();
 
   useEffect(() => {
     const refresh = async () => {
@@ -56,7 +58,7 @@ function App() {
     };
 
     window.onload = () => {
-      refresh();
+      // refresh();
     };
   }, [axiosPrivate, dispatch]);
 
@@ -109,6 +111,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 
+      {/* hien thi thong bao */}
       <ToastContainer
         autoClose={2000}
         position="bottom-right"

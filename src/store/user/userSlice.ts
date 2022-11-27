@@ -33,10 +33,6 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    logginStart: (state, actions: PayloadAction<Login>) => {
-      state.error = undefined;
-      state.isLoading = true;
-    },
     logginSuccess: (
       state,
       action: PayloadAction<{ accessToken: string; user: UserModel }>
@@ -74,13 +70,7 @@ const userSlice = createSlice({
   },
 });
 
-export const {
-  logginStart,
-  logginSuccess,
-  signupStart,
-  signupSuccess,
-  logout,
-  setUser,
-} = userSlice.actions;
+export const { logginSuccess, signupStart, signupSuccess, logout, setUser } =
+  userSlice.actions;
 
 export default userSlice.reducer;

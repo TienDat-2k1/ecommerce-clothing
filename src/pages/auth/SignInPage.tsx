@@ -6,8 +6,9 @@ import { AiOutlineHome } from 'react-icons/ai';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../../components/UI/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { logginStart } from '../../store/user/userSlice';
 import { isLoggedSelector } from '../../store/user/userSelector';
+import { useLoginMutation } from '../../features/Auth/authApiSlice';
+import { toast } from 'react-toastify';
 
 interface IInputFields {
   email: string;
@@ -21,9 +22,10 @@ interface LocationState {
 }
 
 const SignInPage = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const [login, { isLoading, isError, error, isSuccess }] = useLoginMutation();
 
   const [inputFields, setInputFields] = useState<IInputFields>({
     email: '',
@@ -39,6 +41,17 @@ const SignInPage = () => {
     fm = from.pathname;
   }
 
+  //toast message login success
+  useEffect(() => {
+    if (isSuccess) toast.success('welcome you back!');
+  }, [isSuccess]);
+
+  //toast message login error
+  useEffect(() => {
+    if (!isError) return;
+    error && toast.error((error as any).data.message);
+  }, [isError, error]);
+
   useEffect(() => {
     if (isLogged && fm) navigate(fm, { replace: true });
     if (isLogged && !fm) navigate('/');
@@ -53,7 +66,7 @@ const SignInPage = () => {
   const formSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
 
-    dispatch(logginStart(inputFields));
+    login(inputFields);
   };
 
   return (
@@ -88,7 +101,7 @@ const SignInPage = () => {
 
         <div className="auth__cta">
           <Button className="auth__btn btn--grey btn--horizontal btn--shadow">
-            SIGN IN
+            {isLoading ? 'Pending...' : ' LOGIN'}
           </Button>
         </div>
       </form>

@@ -27,10 +27,7 @@ const useAxiosPrivate = () => {
       response => response,
       async error => {
         const prevRequest = error?.config;
-        if (
-          error?.response?.data.message === 'jwt expired' &&
-          !prevRequest?.sent
-        ) {
+        if (error?.response.status === 403 && !prevRequest?.sent) {
           prevRequest.sent = true;
           try {
             const newAccessToken = await refresh();

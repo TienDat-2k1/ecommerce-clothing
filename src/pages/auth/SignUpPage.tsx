@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../../components/UI/Button/Button';
+import { useSignupMutation } from '../../features/Auth/authApiSlice';
 import { isLoggedSelector } from '../../store/user/userSelector';
 import { signupStart } from '../../store/user/userSlice';
 import './auth.scss';
@@ -28,6 +30,16 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const [inputFields, setInputFields] = useState(initInputFields);
   const isLogged = useSelector(isLoggedSelector);
+  const [signup, result] = useSignupMutation();
+
+  useEffect(() => {
+    if (result.error) {
+      toast.warning((result.error as any).data?.message);
+    }
+    if (result.isSuccess) {
+      toast.success('register successful!');
+    }
+  }, [result]);
 
   useEffect(() => {
     if (!isLogged) return;
@@ -46,13 +58,19 @@ const SignUpPage = () => {
 
     const { displayName, confirmPassword, ...otherInputs } = inputFields;
 
-    dispatch(
-      signupStart({
-        name: displayName,
-        passwordConfirm: confirmPassword,
-        ...otherInputs,
-      })
-    );
+    signup({
+      name: displayName,
+      passwordConfirm: confirmPassword,
+      ...otherInputs,
+    });
+
+    // dispatch(
+    //   signupStart({
+    //     name: displayName,
+    //     passwordConfirm: confirmPassword,
+    //     ...otherInputs,
+    //   })
+    // );
   };
 
   const inputs = [
@@ -116,12 +134,12 @@ const SignUpPage = () => {
 
         <div className="auth__description">
           <span>If you have an account </span>
-          <Link to="/auth">SignIn now</Link>
+          <Link to="/auth">Login now</Link>
         </div>
 
         <div className="auth__cta">
           <Button className="auth__btn btn--grey btn--horizontal btn--shadow">
-            SIGN UP
+            {result.isLoading ? 'REGISTER' : 'Pending...'}
           </Button>
         </div>
       </form>

@@ -24,14 +24,10 @@ const UserOrders = () => {
       <h3>Your orders</h3>
       <div className="user-orders__list">
         {userOrders.map(order => {
-          console.log(order);
-
           const dateTime = new Intl.DateTimeFormat('vn-VN', {
             dateStyle: 'short',
             timeStyle: 'short',
           }).format(new Date(order.createAt));
-
-          console.log(dateTime);
 
           const [date, time] = dateTime.split(', ');
           return (

@@ -90,3 +90,10 @@ export type UserModel = {
   address?: string;
   phone?: string;
 };
+
+export type SignUp = {
+  email: string;
+  password: string;
+  name: string;
+  passwordConfirm: string;
+};

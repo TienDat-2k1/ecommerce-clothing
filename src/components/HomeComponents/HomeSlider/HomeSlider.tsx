@@ -16,7 +16,7 @@ const sliders = [
     img: hero_1,
     saleOff: 50,
     heading: 'Black Friday',
-    sub: '',
+    sub: `Best Buy's 2022 Black Friday sale runs from Nov. 20 to 27. During this time, you can find deals on everything. Best Buy stores will be closed for Thanksgiving Day, but open bright and early at 5 a.m. on Black Friday.`,
   },
   {
     img: hero_2,
@@ -27,8 +27,8 @@ const sliders = [
   {
     img: hero_3,
     saleOff: 40,
-    heading: 'Black Friday',
-    sub: 'A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality.',
+    heading: 'Christmas',
+    sub: '50% off thousands of premium designer jackets, wools, spandexes and shirts. – Get 20% off when customers choose to buy Veston products, casual pants.',
   },
 ];
 
@@ -57,12 +57,7 @@ const HomeSlider = () => {
                 <img src={slide.img} alt="" />
                 <div className="home-slide__contents">
                   <h2>{slide.heading}</h2>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Doloremque, maxime? Fugit ducimus dolore corrupti ea! Sequi,
-                    debitis aut. Ducimus, enim natus cum placeat error vel
-                    perferendis vero officia dolorum provident.
-                  </p>
+                  <p>{slide.sub}</p>
                   <Button
                     as={Link}
                     to="products"

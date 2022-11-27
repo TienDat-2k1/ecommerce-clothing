@@ -27,13 +27,14 @@ const Products = () => {
     const category = searchParams.get('category');
     const size = searchParams.getAll('size');
     const sort = searchParams.get('sort');
+
     setIsLoading(true);
     productServices
       .getAllProduct({
         page: pageActive,
         limit: 20,
         category,
-        size,
+        size: size.join(','),
         sort,
       })
       .then(res => {

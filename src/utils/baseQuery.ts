@@ -4,13 +4,14 @@ import {
   FetchArgs,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
+import { RootState } from '../store/store';
 import { logginSuccess, logout } from '../store/user/userSlice';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.REACT_APP_BASE_URL,
   credentials: 'include',
-  prepareHeaders: (headers, { getState }: any) => {
-    const token: any = getState().user?.token;
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState).user.accessToken;
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
     }
@@ -25,7 +26,7 @@ const baseQueryWithReauth = async (
 ) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.status === 403) {
+  if (result.error && result.error.status === 403) {
     console.log('sending refresh token');
     const refreshResult: any = await baseQuery(
       '/user/refresh',

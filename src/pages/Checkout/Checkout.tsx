@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks/hooks';
 import { cartTotalItemSelector } from '../../store/cart/cartSelector';
 import './Checkout.scss';
 import cart_empty from '../../assets/img/cart-empty.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Checkout = () => {
   const cartItems = useAppSelector(state => state.cart.cart);
@@ -23,11 +24,17 @@ const Checkout = () => {
             minHeight: '100vh',
           }}
         >
-          <img
+          <LazyLoadImage
             src={cart_empty}
             alt="cart empty"
             style={{ width: '800px', height: '400px', objectFit: 'cover' }}
+            effect="blur"
           />
+          {/* <img
+            src={cart_empty}
+            alt="cart empty"
+            style={{ width: '800px', height: '400px', objectFit: 'cover' }}
+          /> */}
         </div>
       )}
       {totalItem > 0 && (

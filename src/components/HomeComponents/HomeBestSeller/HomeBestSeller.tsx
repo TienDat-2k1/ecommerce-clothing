@@ -32,7 +32,11 @@ const HomeBestSeller = () => {
       <div className="container seller__container">
         <div className="seller-l">
           <h1 className="seller__heading">Best Seller Product</h1>
-          <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
+          <span>
+            SFashion best sellers are constantly changing in response to the
+            news, events, social trends, and other factors influencing consumer
+            behavior
+          </span>
           <Button
             as={Link}
             to="/products"
