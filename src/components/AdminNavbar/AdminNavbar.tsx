@@ -12,9 +12,38 @@ import imageUser from '../../utils/imageUser';
 
 type AdminNavbarProps = {
   isActive: boolean;
+  hideNav: () => void;
 };
 
-const AdminNavbar = ({ isActive }: AdminNavbarProps) => {
+const AdminNav = [
+  {
+    to: 'dashboard',
+    name: 'Dashboard',
+    icon: <BsGrid1X2Fill className="admin-navbar__icon" />,
+  },
+  {
+    to: 'category',
+    name: 'Category',
+    icon: <BiCategoryAlt className="admin-navbar__icon" />,
+  },
+  {
+    to: 'product',
+    name: 'Product',
+    icon: <AiOutlinePicLeft className="admin-navbar__icon" />,
+  },
+  {
+    to: 'order',
+    name: 'Order',
+    icon: <BsReceiptCutoff className="admin-navbar__icon" />,
+  },
+  {
+    to: 'account',
+    name: 'Account',
+    icon: <FaUserCircle className="admin-navbar__icon" />,
+  },
+];
+
+const AdminNavbar = ({ isActive, hideNav }: AdminNavbarProps) => {
   const user = useSelector(userSelector);
   return (
     <div className={`admin-navbar ${isActive ? 'admin-navbar--active' : ''}`}>
@@ -30,61 +59,23 @@ const AdminNavbar = ({ isActive }: AdminNavbarProps) => {
         <h4>{user.name}</h4>
       </div>
       <span>MAIN MENU</span>
-      <NavLink
-        to="dashboard"
-        className={({ isActive }) =>
-          isActive
-            ? 'admin-navbar__item admin-navbar__item--active'
-            : 'admin-navbar__item'
-        }
-      >
-        <BsGrid1X2Fill className="admin-navbar__icon" />
-        <h3 className="admin-navbar__heading">Dashboard</h3>
-      </NavLink>
-      <NavLink
-        to="category"
-        className={({ isActive }) =>
-          isActive
-            ? 'admin-navbar__item admin-navbar__item--active'
-            : 'admin-navbar__item'
-        }
-      >
-        <BiCategoryAlt className="admin-navbar__icon" />
-        <h3 className="admin-navbar__heading">Categories</h3>
-      </NavLink>
-      <NavLink
-        to="product"
-        className={({ isActive }) =>
-          isActive
-            ? 'admin-navbar__item admin-navbar__item--active'
-            : 'admin-navbar__item'
-        }
-      >
-        <AiOutlinePicLeft className="admin-navbar__icon" />
-        <h3 className="admin-navbar__heading">Products</h3>
-      </NavLink>
-      <NavLink
-        to="order"
-        className={({ isActive }) =>
-          isActive
-            ? 'admin-navbar__item admin-navbar__item--active'
-            : 'admin-navbar__item'
-        }
-      >
-        <BsReceiptCutoff className="admin-navbar__icon" />
-        <h3 className="admin-navbar__heading">Orders</h3>
-      </NavLink>
-      <NavLink
-        to="account"
-        className={({ isActive }) =>
-          isActive
-            ? 'admin-navbar__item admin-navbar__item--active'
-            : 'admin-navbar__item'
-        }
-      >
-        <FaUserCircle className="admin-navbar__icon" />
-        <h3 className="admin-navbar__heading">Accounts</h3>
-      </NavLink>
+      {AdminNav.map((nav, i) => {
+        return (
+          <NavLink
+            key={i}
+            to={nav.to}
+            className={({ isActive }) =>
+              isActive
+                ? 'admin-navbar__item admin-navbar__item--active'
+                : 'admin-navbar__item'
+            }
+            onClick={hideNav}
+          >
+            {nav.icon}
+            <h3 className="admin-navbar__heading">{nav.name}</h3>
+          </NavLink>
+        );
+      })}
     </div>
   );
 };

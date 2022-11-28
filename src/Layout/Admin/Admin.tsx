@@ -26,7 +26,7 @@ const Admin = () => {
         }`}
         onClick={hideNavHandler}
       ></div>
-      <AdminNavbar isActive={isNavbarActive} />
+      <AdminNavbar isActive={isNavbarActive} hideNav={hideNavHandler} />
       <div className="admin-data">
         <Outlet />
       </div>

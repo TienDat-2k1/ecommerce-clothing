@@ -36,7 +36,7 @@
     }
 
     @include responds(sm) {
-      display: none;
+      display: none !important;
     }
   }
   .name,

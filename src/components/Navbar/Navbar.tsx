@@ -11,7 +11,7 @@ interface INav {
   setIsNavActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Navbar = ({ isNavActive }: INav) => {
+const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
   const dispatch = useDispatch();
   const isLogged = useSelector(isLoggedSelector);
   const user = useSelector(userSelector);
@@ -22,7 +22,7 @@ const Navbar = ({ isNavActive }: INav) => {
         <div className="nav__user">
           <img src={imageUser(user.photo)} alt="user" />
           <h2>
-            <Link to="me">{user.name}</Link>
+            <Link to={user.role === 'user' ? 'me' : 'admin'}>{user.name}</Link>
           </h2>
           <AiOutlineLogout
             className="nav__user-icon"
@@ -47,6 +47,7 @@ const Navbar = ({ isNavActive }: INav) => {
                 ? 'nav__list--link nav__list--link--active'
                 : 'nav__list--link'
             }
+            onClick={() => setIsNavActive(false)}
           >
             Home
           </NavLink>
@@ -59,6 +60,7 @@ const Navbar = ({ isNavActive }: INav) => {
                 ? 'nav__list--link nav__list--link--active'
                 : 'nav__list--link'
             }
+            onClick={() => setIsNavActive(false)}
           >
             Shop
           </NavLink>
@@ -71,6 +73,7 @@ const Navbar = ({ isNavActive }: INav) => {
                 ? 'nav__list--link nav__list--link--active'
                 : 'nav__list--link'
             }
+            onClick={() => setIsNavActive(false)}
           >
             About us
           </NavLink>
