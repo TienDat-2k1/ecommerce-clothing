@@ -16,11 +16,11 @@ type AdminNavbarProps = {
 };
 
 const AdminNav = [
-  {
-    to: 'dashboard',
-    name: 'Dashboard',
-    icon: <BsGrid1X2Fill className="admin-navbar__icon" />,
-  },
+  // {
+  //   to: 'dashboard',
+  //   name: 'Dashboard',
+  //   icon: <BsGrid1X2Fill className="admin-navbar__icon" />,
+  // },
   {
     to: 'category',
     name: 'Category',
