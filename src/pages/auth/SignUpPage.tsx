@@ -139,7 +139,7 @@ const SignUpPage = () => {
 
         <div className="auth__cta">
           <Button className="auth__btn btn--grey btn--horizontal btn--shadow">
-            {result.isLoading ? 'REGISTER' : 'Pending...'}
+            {result.isLoading ? 'REGISTER' : 'Đang xử lý...'}
           </Button>
         </div>
       </form>

@@ -46,11 +46,9 @@ const OrderDetail = () => {
           <div className="order-detail__content order-detail__info">
             <div>
               <span>Địa chỉ nhận hàng</span>
-              <h4>Tiến Đạt</h4>
-              <span>0985071445</span>
-              <span>
-                Tổ dân phố 4, Phường Phổ Minh, Thị Xã Đức Phổ, Quảng Ngãi
-              </span>
+              <h4>{data.customer.name}</h4>
+              <span>{data.phone}</span>
+              <span>{data.address}</span>
             </div>
             <div>
               <span>

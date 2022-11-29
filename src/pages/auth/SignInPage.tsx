@@ -101,7 +101,7 @@ const SignInPage = () => {
 
         <div className="auth__cta">
           <Button className="auth__btn btn--grey btn--horizontal btn--shadow">
-            {isLoading ? 'Pending...' : ' LOGIN'}
+            {isLoading ? 'Đang xử lý...' : ' LOGIN'}
           </Button>
         </div>
       </form>
