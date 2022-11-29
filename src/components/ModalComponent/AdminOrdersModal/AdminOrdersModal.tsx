@@ -15,7 +15,14 @@ type AdminOrdersModalProps = {
   onUpdate: () => void;
 };
 
-const status = ['Receive order', 'Confirm', 'Shipped', 'Cancelled', 'Return'];
+const status = [
+  'Receive order',
+  'Confirm',
+  'Shipping',
+  'Success',
+  'Cancelled',
+  'Return',
+];
 
 const AdminOrdersModal = ({
   data,

@@ -224,8 +224,22 @@
       }
     }
 
-    &.shipped {
+    &.shipping {
       background-color: rgba($color--accent-violet, 0.95);
+      color: $color--white;
+
+      @include responds(lg) {
+        background-color: transparent;
+        color: $color--black;
+      }
+
+      & > :first-child {
+        background-color: $color--accent-violet;
+      }
+    }
+
+    &.success {
+      background-color: rgba(#33ad40, 0.95);
       color: $color--white;
 
       @include responds(lg) {
