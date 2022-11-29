@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { OrderModel } from '../../utils/types';
 
@@ -12,6 +13,8 @@ const UserOrders = () => {
   useEffect(() => {
     const fetchOrderFromUser = async () => {
       const res = await axiosPrivate.get('user/me');
+
+      console.log(res);
 
       setUserOrders(res.data.data.data.orders);
     };
@@ -31,7 +34,11 @@ const UserOrders = () => {
 
           const [date, time] = dateTime.split(', ');
           return (
-            <div key={order._id} className="user-orders__item">
+            <Link
+              to={`${order._id}`}
+              key={order._id}
+              className="user-orders__item"
+            >
               <div className="user-orders__content">
                 <span>{date}</span>
                 <span>{time}</span>
@@ -43,8 +50,17 @@ const UserOrders = () => {
                     return (
                       <div key={i} className="user-orders__product">
                         <h4>{item.product.name}</h4>
-                        <span>{item.size}</span>
-                        <span>x{item.quantity}</span>
+                        <div
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'flex-end',
+                            gap: '4px',
+                            minWidth: '40px',
+                          }}
+                        >
+                          <span>{item.size}</span>
+                          <span>x{item.quantity}</span>
+                        </div>
                       </div>
                     );
                   })}
@@ -58,7 +74,7 @@ const UserOrders = () => {
                 <span>Status </span>
                 <span>{order.status}</span>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

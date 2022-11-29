@@ -97,3 +97,12 @@ export type SignUp = {
   name: string;
   passwordConfirm: string;
 };
+
+// enum: ['Receive order', 'Confirm', 'Shipped', 'Cancelled', 'Return'],
+export enum StatusOrder {
+  'Receive order' = 'Tiếp nhận đơn hàng',
+  Confirm = 'Xác nhận đơn hàng',
+  Shipped = 'Đang vận chuyển',
+  Cancelled = 'Hủy đơn hàng',
+  Return = 'Đổi trả',
+}

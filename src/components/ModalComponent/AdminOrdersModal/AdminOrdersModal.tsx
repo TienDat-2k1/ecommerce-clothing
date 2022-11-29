@@ -15,7 +15,7 @@ type AdminOrdersModalProps = {
   onUpdate: () => void;
 };
 
-const status = ['Receive order', 'Pending', 'Shipped', 'Cancelled', 'Return'];
+const status = ['Receive order', 'Confirm', 'Shipped', 'Cancelled', 'Return'];
 
 const AdminOrdersModal = ({
   data,
@@ -43,7 +43,10 @@ const AdminOrdersModal = ({
         onUpdate();
         onClose();
       }
-    } catch (error) {}
+    } catch (error: any) {
+      const message = error.response.data.message;
+      message && toast.warning(message);
+    }
   };
 
   return (
@@ -73,6 +76,10 @@ const AdminOrdersModal = ({
       <div className="order-modal__content">
         <span>Phone Number</span>
         <span>{data.phone}</span>
+      </div>
+      <div className="order-modal__content">
+        <span>Address</span>
+        <span>{data.address}</span>
       </div>
       <div className="order-modal__content order-modal__orders">
         <span>Order</span>

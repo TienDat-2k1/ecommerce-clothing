@@ -1,0 +1,103 @@
+@use '../../sass/variables' as *;
+@use '../../sass/mixins' as *;
+
+.order-detail {
+  &__content {
+    padding: 2rem 1rem;
+    border-bottom: 1px solid rgba($color--black, 0.3);
+  }
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__heading > span {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__info {
+    display: flex;
+    gap: 1rem;
+
+    @include responds(sm) {
+      flex-direction: column;
+    }
+
+    & > * {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    & > *:first-child {
+      flex-basis: 40%;
+
+      & > *:not(:first-child, :nth-child(2)) {
+        font-weight: 100;
+      }
+    }
+
+    & > *:nth-of-type(2) {
+      border-left: 2px solid #ddd;
+      padding-left: 1rem;
+
+      @include responds(sm) {
+        padding-left: 0;
+        padding-top: 1rem;
+        border-top: 1px solid #ddd;
+        border-left: none;
+      }
+    }
+  }
+
+  &__cta {
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+// order product item
+
+.order-item {
+  display: flex;
+  gap: 16px;
+  color: inherit;
+  padding: 4px 0;
+
+  &:not(:first-child) {
+    border-top: 1px solid rgba($color--black, 0.1);
+  }
+
+  &__image {
+    flex-basis: 8rem;
+    width: 8rem;
+    height: 8rem;
+  }
+
+  &__detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__detail > *:first-child {
+    width: 400px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    @include responds(md) {
+      width: 300px;
+    }
+
+    @include responds(sm) {
+      width: 200px;
+    }
+  }
+}

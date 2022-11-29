@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -51,6 +51,17 @@ const Order = () => {
   const cartItems = useSelector(cartItemsSelector);
   const totalPrice = useSelector(cartTotalPriceSelector);
   const user = useSelector(userSelector);
+
+  console.log(user);
+
+  useEffect(() => {
+    user.address &&
+      setOrderInput(prev => {
+        return { ...prev, address: user.address as string };
+      });
+    user.phone &&
+      setOrderInput(prev => ({ ...prev, phone: user.phone as string }));
+  }, [user]);
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

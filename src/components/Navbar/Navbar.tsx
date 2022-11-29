@@ -78,6 +78,21 @@ const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
             About us
           </NavLink>
         </li>
+        {isLogged && (
+          <li className="nav__list-item only-mobile">
+            <NavLink
+              to="me"
+              className={({ isActive }) =>
+                isActive
+                  ? 'nav__list--link nav__list--link--active'
+                  : 'nav__list--link'
+              }
+              onClick={() => setIsNavActive(false)}
+            >
+              Order
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );

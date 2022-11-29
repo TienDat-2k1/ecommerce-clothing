@@ -10,7 +10,8 @@
   gap: 2rem;
 
   @include responds(md) {
-    grid-template-columns: 1fr;
+    // grid-template-columns: 1fr;
+    display: block;
   }
 }
 

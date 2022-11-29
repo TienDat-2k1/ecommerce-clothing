@@ -41,12 +41,12 @@ const User = () => {
         </ul>
       </section>
       <section className="user-r">
-        <div
+        {/* <div
           className="user__setting"
           onClick={() => setIsActiveUserNav(!isActiveUserNav)}
         >
           <IoMdSettings />
-        </div>
+        </div> */}
         <Outlet />
       </section>
     </main>

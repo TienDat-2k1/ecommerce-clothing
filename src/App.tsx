@@ -32,6 +32,7 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Products from './pages/Products/Products';
 import { useRefreshQuery } from './features/Auth/authApiSlice';
+import OrderDetail from './components/OrderDetail/OrderDetail';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const DetailProduct = lazy(() => import('./pages/DetailProduct/DetailProduct'));
@@ -93,13 +94,14 @@ function App() {
                 <Route index element={<Navigate to="info" replace />} />
                 <Route path="info" element={<UserInf />} />
                 <Route path="my-order" element={<UserOrders />} />
+                <Route path="my-order/:orderId" element={<OrderDetail />} />
               </Route>
             </Route>
           </Route>
           {/* protect route admin*/}
           <Route element={<RequireAuth allowedRoles="admin" />}>
             <Route path="admin" element={<Admin />}>
-              <Route index element={<Navigate to="dashboard" replace />} />
+              <Route index element={<Navigate to="category" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="category" element={<AdminCategories />} />
               <Route path="product" element={<AdminProduct />} />

@@ -85,6 +85,14 @@
     width: 100%;
     color: $color--grey-light-2;
 
+    &.only-mobile {
+      display: none;
+
+      @include responds(lg) {
+        display: block;
+      }
+    }
+
     @include responds(lg) {
       &:not(:last-child) {
         border-bottom: 1px solid #ccc;

@@ -16,24 +16,24 @@ const AdminAccounts = () => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [pageActive, setPageActive] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [sort, setSort] = useState({
-    role: 'user',
-    active: true,
-  });
+  // const [sort, setSort] = useState({
+  //   role: 'user',
+  //   active: true,
+  // });
   const axiosPrivate = useAxiosPrivate();
   const user = useSelector(userSelector);
 
   const searchUserDebounce = useDebounce(searchKey, 500);
 
   useEffect(() => {
-    const fetchAccount = async (key: string, page: number, sort: {}) => {
+    const fetchAccount = async (key: string, page: number) => {
       const res = await axiosPrivate.get('user', {
         params: {
           fields: 'active, id, name, email, role',
           limit: 20,
           page,
           key,
-          ...sort,
+          // ...sort,
         },
       });
 
@@ -44,8 +44,8 @@ const AdminAccounts = () => {
       }
     };
 
-    fetchAccount(searchUserDebounce, pageActive, sort);
-  }, [axiosPrivate, searchUserDebounce, isUpdate, pageActive, sort]);
+    fetchAccount(searchUserDebounce, pageActive);
+  }, [axiosPrivate, searchUserDebounce, isUpdate, pageActive]);
 
   const searchKeyChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKey(e.target.value);
@@ -85,8 +85,6 @@ const AdminAccounts = () => {
         return;
       }
 
-      console.log({ id, checked });
-
       const res = await axiosPrivate.patch(`user/${id}`, {
         active: checked,
       });
@@ -102,25 +100,25 @@ const AdminAccounts = () => {
     setPageActive(page.selected + 1);
   };
 
-  const sortChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, checked } = e.target;
-    if (id === 'role') {
-      setSort({ ...sort, role: checked ? 'admin' : 'user' });
-    }
-    if (id === 'active') {
-      setSort({ ...sort, active: checked });
-    }
-  };
+  // const sortChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { id, checked } = e.target;
+  //   if (id === 'role') {
+  //     setSort({ ...sort, role: checked ? 'admin' : 'user' });
+  //   }
+  //   if (id === 'active') {
+  //     setSort({ ...sort, active: checked });
+  //   }
+  // };
 
   return (
     <section className="admin-account">
       <div className="admin-account__header">
-        <div className="admin-account__sort">
+        {/* <div className="admin-account__sort">
           <label htmlFor="role">
             <input
               type="checkbox"
               id="role"
-              checked={sort.role === 'admin'}
+              // checked={sort.role === 'admin'}
               onChange={sortChangeHandler}
             />
             <i></i>
@@ -130,13 +128,13 @@ const AdminAccounts = () => {
             <input
               type="checkbox"
               id="active"
-              checked={sort.active}
+              // checked={sort.active}
               onChange={sortChangeHandler}
             />
             <i></i>
             <span>Active</span>
           </label>
-        </div>
+        </div> */}
         <div className="admin-account__search">
           <SearchInput
             value={searchKey}
