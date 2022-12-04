@@ -3,12 +3,12 @@ import { toast } from 'react-toastify';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const httpRequest = axios.create({
+export const httpRequest = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+  // withCredentials: true,
 });
 
 export const axiosPrivate = axios.create({

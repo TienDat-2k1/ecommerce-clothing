@@ -17,20 +17,21 @@
   }
 
   &__title {
-    font-size: 6.8rem;
+    font-size: 4rem;
     text-transform: capitalize;
+    font-weight: 600;
     font-family: $font-family--frankLibre;
 
     @include responds(xl) {
-      font-size: 6rem;
+      font-size: 3.8rem;
     }
 
     @include responds(lg) {
-      font-size: 5.6rem;
+      font-size: 3.2rem;
     }
 
     @include responds(md) {
-      font-size: 5rem;
+      font-size: 3rem;
     }
   }
 

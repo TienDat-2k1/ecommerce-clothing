@@ -2,12 +2,17 @@ import Multiselect from 'multiselect-react-dropdown';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
+import { BiMap } from 'react-icons/bi';
 
 import imageProduct from '../../../utils/imageProduct';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import './AdminOrdersModal.scss';
-import { OrderModel } from '../../../utils/types';
+import { OrderModel, StatusOrder } from '../../../utils/types';
+import { currencyFormat } from '../../../utils/currencyFormat';
+import { AiOutlinePhone } from 'react-icons/ai';
+import { FaUserTie } from 'react-icons/fa';
+import Select from 'react-select';
 
 type AdminOrdersModalProps = {
   data: OrderModel;
@@ -16,12 +21,12 @@ type AdminOrdersModalProps = {
 };
 
 const status = [
-  'Receive order',
-  'Confirm',
-  'Shipping',
-  'Success',
-  'Cancelled',
-  'Return',
+  { value: 'Receive order', label: 'Tiếp nhận đơn hàng' },
+  { value: 'Confirm', label: 'Xác nhận đơn hàng' },
+  { value: 'Shipping', label: 'Đang vận chuyển' },
+  { value: 'Success', label: 'Giao hàng thành công' },
+  { value: 'Cancelle', label: 'Hủy đơn hàng' },
+  { value: 'Return', label: 'Đổi trả' },
 ];
 
 const AdminOrdersModal = ({
@@ -30,7 +35,7 @@ const AdminOrdersModal = ({
   onUpdate,
 }: AdminOrdersModalProps) => {
   const axiosPrivate = useAxiosPrivate();
-  const [orderStatus, setOrderStatus] = useState();
+  const [orderStatus, setOrderStatus] = useState<keyof typeof StatusOrder>();
 
   const dateTime = new Intl.DateTimeFormat('vn-VN', {
     dateStyle: 'short',
@@ -63,8 +68,23 @@ const AdminOrdersModal = ({
         <span>{time}</span>
       </div>
       <div className="order-modal__content">
-        <span>Status</span>
-        <Multiselect
+        <span>Trạng thái</span>
+
+        <Select
+          options={status}
+          value={{
+            label: StatusOrder[
+              data.status as keyof typeof StatusOrder
+            ] as string,
+            value: data.status,
+          }}
+          onChange={e => {
+            if (!e?.value) return;
+            setOrderStatus(e?.value as keyof typeof StatusOrder);
+          }}
+        />
+
+        {/* <Multiselect
           options={status}
           selectedValues={[data.status]}
           isObject={false}
@@ -74,22 +94,28 @@ const AdminOrdersModal = ({
             const [status] = e;
             setOrderStatus(status);
           }}
-        />
+        /> */}
       </div>
       <div className="order-modal__content">
-        <span>Customer</span>
+        <span>
+          <FaUserTie /> Khách hàng
+        </span>
         <span>{data.customer.name}</span>
       </div>
       <div className="order-modal__content">
-        <span>Phone Number</span>
+        <span>
+          <AiOutlinePhone /> Số điện thoại
+        </span>
         <span>{data.phone}</span>
       </div>
       <div className="order-modal__content">
-        <span>Address</span>
+        <span>
+          <BiMap /> Địa chỉ
+        </span>
         <span>{data.address}</span>
       </div>
       <div className="order-modal__content order-modal__orders">
-        <span>Order</span>
+        <span>Đơn hàng</span>
         <div className="order-modal__list">
           {data.items.map((item, i) => (
             <div key={i} className="order-modal__order">
@@ -104,16 +130,16 @@ const AdminOrdersModal = ({
         </div>
       </div>
       <div className="order-modal__content">
-        <span>Total Price</span>
-        <span>{data.totalPrice}</span>
+        <span>Tổng tiền hàng</span>
+        <span>{currencyFormat(data.totalPrice)}</span>
       </div>
       {orderStatus && (
         <div className="order-modal__cta">
           <Button className="btn--round btn--outline" onClick={() => onClose()}>
-            Cancel
+            Hủy
           </Button>
           <Button className="btn--round btn--blue" onClick={saveStatus}>
-            Save
+            Lưu
           </Button>
         </div>
       )}

@@ -7,12 +7,12 @@ import { FiShoppingBag } from 'react-icons/fi';
 
 const userNav = [
   {
-    title: 'Setting',
+    title: 'Trang cá nhân',
     path: 'info',
     Icon: <IoMdSettings className="user__icon" />,
   },
   {
-    title: 'Order',
+    title: 'Đơn hàng',
     path: 'my-order',
     Icon: <FiShoppingBag className="user__icon" />,
   },

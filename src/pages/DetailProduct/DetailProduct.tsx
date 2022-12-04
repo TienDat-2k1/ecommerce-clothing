@@ -12,6 +12,7 @@ import { BsCart4 } from 'react-icons/bs';
 import ProductReviews from './ProductReviews';
 import Rating from '../../components/UI/Rating/Rating';
 import { CartModel, ProductModel } from '../../utils/types';
+import { currencyFormat, salePrice } from '../../utils/currencyFormat';
 
 type OptionsCart = {
   size: string;
@@ -98,32 +99,29 @@ const DetailProduct = () => {
                 />
                 {/* <span>{product.ratingsAverage}</span> */}
                 {!!product.ratingsQuantity && (
-                  <span>{product.ratingsQuantity} votes</span>
+                  <span>{product.ratingsQuantity} lượt đánh giá</span>
                 )}
               </div>
               <div className="product__material">
-                <h4>Material: </h4>
+                <h4>Chất liệu: </h4>
                 <span>{product.material}</span>
               </div>
 
               <div className="product__price">
                 {!!product.saleOff && (
                   <span className="product__price-origin">
-                    ${product.price}
+                    ${currencyFormat(product.price)}
                   </span>
                 )}
                 <span className="product__price-sale">
-                  $
-                  {Math.round(
-                    product.price - (product.price * product.saleOff) / 100
-                  )}
+                  {salePrice(product.price, product.saleOff)}
                 </span>
                 {!!product.saleOff && (
                   <div className="product__saleOff">- {product.saleOff} %</div>
                 )}
               </div>
               <div className="product__size">
-                <h4>Size: </h4>
+                <h4>Kích cỡ: </h4>
                 {product.sizes.length &&
                   product.sizes.map((s, i) => (
                     <kbd
@@ -144,7 +142,7 @@ const DetailProduct = () => {
                   <span style={{ backgroundColor: 'blue' }}></span>
                 </div> */}
               <div className="product__quantity">
-                <h4>Quantity:</h4>
+                <h4>Số lượng:</h4>
                 <span onClick={decreaseQuantityHandler}>-</span>
                 <span>{optionsCart.quantity}</span>
                 <span onClick={increaseQuantityHandler}>+</span>
@@ -155,16 +153,16 @@ const DetailProduct = () => {
                 disabled={!optionsCart.size}
                 leftIcon={<BsCart4 />}
               >
-                Add to cart
+                Thêm giỏ hàng
               </Button>
             </div>
           </div>
           <div className="product__description">
-            <h2>Description</h2>
+            <h2>Mô tả</h2>
             <pre>{product.description}</pre>
           </div>
           <div className="product__reviews">
-            <h2>Reviews</h2>
+            <h2>Đánh giá</h2>
             <ProductReviews />
           </div>
         </>

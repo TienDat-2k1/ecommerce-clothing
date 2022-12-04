@@ -88,7 +88,7 @@ const CreateCategoryModal = ({
         <div className="row">
           <div className='col c-12"'>
             <FormInput
-              label="name"
+              label="Tên danh mục"
               value={categoryName}
               onChange={nameChangeHandler}
             />
@@ -96,7 +96,7 @@ const CreateCategoryModal = ({
         </div>
         <div className="create-category__upload row">
           <div>
-            <h4>Images:</h4>
+            <h4>Hình ảnh:</h4>
             <input
               type="file"
               accept="image/*"
@@ -105,7 +105,7 @@ const CreateCategoryModal = ({
             />
             <div className="create-category__image-label">
               <label htmlFor="images">
-                Provide category image cover
+                Cung cấp hình ảnh đại diện
                 <RiImageAddLine />
               </label>
             </div>
@@ -127,13 +127,13 @@ const CreateCategoryModal = ({
             className="btn--round btn--outline btn--shadow"
             onClick={onClose}
           >
-            Cancel
+            Hủy
           </Button>
           <Button
             className="btn--round btn--shadow btn--blue"
             disabled={validate}
           >
-            Create
+            Tạo
           </Button>
         </div>
       </form>

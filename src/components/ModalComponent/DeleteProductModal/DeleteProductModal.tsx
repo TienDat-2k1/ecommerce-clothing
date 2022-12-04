@@ -34,12 +34,12 @@ const DeleteProductModal = ({
   return (
     <Modal onClose={onClose} className="delete-product-modal">
       <div>
-        <span> Do you want to delete </span>
+        <span> Bạn có chắc chắn muốn xóa </span>
         <h4>{product.name}</h4>
       </div>
       <div>
         <Button className="btn--outline btn--round" onClick={onClose}>
-          Cancel
+          Hủy bỏ
         </Button>
         <Button className="btn--red btn--round" onClick={deleteProductHandler}>
           OK

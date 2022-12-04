@@ -9,6 +9,7 @@ import UpdateProductModal from '../ModalComponent/UpdateProductModal/UpdateProdu
 import './AdminProductItem.scss';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { ProductModel } from '../../utils/types';
+import { currencyFormat } from '../../utils/currencyFormat';
 
 type AdminProductProps = {
   product: ProductModel;
@@ -92,7 +93,7 @@ const AdminProductItem = ({ product: p, onDelete }: AdminProductProps) => {
               <span>{product.ratingsAverage}</span>
             </div>
             <div className="admin-product-content col c-1 sm-0">
-              <span>${product.price}</span>
+              <span>{currencyFormat(product.price)}</span>
             </div>
             <div className="admin-product-content col c-1 sm-3">
               <span>{product.sold}</span>

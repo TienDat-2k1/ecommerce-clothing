@@ -31,18 +31,17 @@ const HomeBestSeller = () => {
     <section className="best-seller">
       <div className="container seller__container">
         <div className="seller-l">
-          <h1 className="seller__heading">Best Seller Product</h1>
+          <h1 className="seller__heading">Sản phẩm bán chạy</h1>
           <span>
-            SFashion best sellers are constantly changing in response to the
-            news, events, social trends, and other factors influencing consumer
-            behavior
+            Thời trang bán chạy nhất luôn thay đổi để đáp ứng với tin tức, sự
+            kiện, xu hướng xã hội.
           </span>
           <Button
             as={Link}
             to="/products"
             className="btn--outline-white btn--shadow"
           >
-            SEE MORE
+            Xem thêm
           </Button>
         </div>
         <div className="seller-r">

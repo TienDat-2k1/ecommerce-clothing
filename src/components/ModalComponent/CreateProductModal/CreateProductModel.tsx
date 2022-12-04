@@ -185,7 +185,7 @@ const CreateProductModel = ({
         <div className="row">
           <div className="col c-3">
             <FormInput
-              label="Name"
+              label="Tên sản phẩm"
               value={productInput.name}
               name="name"
               onChange={textChangeHandler}
@@ -193,7 +193,7 @@ const CreateProductModel = ({
           </div>
           <div className="col c-3">
             <FormInput
-              label="Material"
+              label="Chất liệu"
               value={productInput.material}
               name="material"
               onChange={textChangeHandler}
@@ -201,7 +201,7 @@ const CreateProductModel = ({
           </div>
           <div className="col c-3">
             <FormInput
-              label="Price"
+              label="Giá"
               type="number"
               min={0}
               value={productInput.price}
@@ -211,7 +211,7 @@ const CreateProductModel = ({
           </div>
           <div className="col c-3">
             <FormInput
-              label="Sale Off"
+              label="Khuyến mãi"
               type="number"
               min={0}
               max={100}
@@ -223,13 +223,13 @@ const CreateProductModel = ({
         </div>
         <div className="row">
           <div className="create-product__category  col c-3">
-            <span>Category</span>
+            <span>Danh mục</span>
             <select
               name="category"
               autoComplete="on"
               onChange={textChangeHandler}
             >
-              <option defaultValue="">Select a category</option>
+              <option defaultValue="">Lựa chọn danh mục</option>
               {categories.length &&
                 categories.map(category => (
                   <option key={category._id} value={category._id}>
@@ -239,10 +239,10 @@ const CreateProductModel = ({
             </select>
           </div>
           <div className="create-product__sizes col c-9">
-            <span>Sizes</span>
+            <span>Kích cỡ</span>
             <Multiselect
               className="create-product__sizes-select"
-              options={['S', 'M', 'L', 'XL', 'XXL', 'XXL']}
+              options={['S', 'M', 'L', 'XL', 'XXL']}
               isObject={false}
               style={{
                 chips: {
@@ -266,7 +266,7 @@ const CreateProductModel = ({
         </div>
         <div className="row">
           <div className="create-product__description col c-12">
-            <span>Description</span>
+            <span>Mô tả</span>
             <textarea
               className=""
               name="description"
@@ -279,7 +279,7 @@ const CreateProductModel = ({
 
         <div className="row create-product__image">
           <div>
-            <h4>Image Cover:</h4>
+            <h4>Hình ảnh đại diện:</h4>
             <input
               type="file"
               accept="image/*"
@@ -288,7 +288,7 @@ const CreateProductModel = ({
             />
             <div className="create-product__image-label">
               <label htmlFor="image-cover">
-                Choose your product photo
+                Chọn hình ảnh
                 <RiImageAddLine />
               </label>
             </div>
@@ -300,7 +300,7 @@ const CreateProductModel = ({
 
         <div className="row create-product__image">
           <div>
-            <h4>Images:</h4>
+            <h4>Hình ảnh bổ sung:</h4>
             <input
               type="file"
               accept="image/*"
@@ -310,7 +310,7 @@ const CreateProductModel = ({
             />
             <div className="create-product__image-label">
               <label htmlFor="images">
-                Provide more product photos (Can choose multiple)
+                Cung cấp thêm hình ảnh về sản phẩm (Có thể chọn nhiều)
                 <RiImageAddLine />
               </label>
             </div>

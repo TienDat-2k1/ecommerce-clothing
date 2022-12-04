@@ -68,9 +68,12 @@
   }
 
   &__info {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    // display: flex;
+    // justify-content: center;
+    // flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    justify-items: center;
     gap: 2rem;
     padding: 0 1.2rem;
   }

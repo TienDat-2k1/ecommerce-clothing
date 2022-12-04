@@ -107,3 +107,43 @@ export enum StatusOrder {
   Cancelled = 'Hủy đơn hàng',
   Return = 'Đổi trả',
 }
+
+// type address
+
+export type Ward = {
+  name: string;
+  code: number;
+  division_type: string;
+  codename: string;
+  district_code: number;
+};
+
+export type District = {
+  name: string;
+  code: number;
+  division_type: string;
+  codename: string;
+  province_code: number;
+  wards: Ward[];
+};
+
+export type Province = {
+  name: string;
+  code: number;
+  division_type: string;
+  codename: string;
+  phone_code: number;
+  districts: District[];
+};
+
+export type Division = {
+  provinces: Province[];
+  districts: District[];
+  wards: Ward[];
+};
+
+export type Address = {
+  provinces: Province;
+  districts: District;
+  wards: Ward;
+};

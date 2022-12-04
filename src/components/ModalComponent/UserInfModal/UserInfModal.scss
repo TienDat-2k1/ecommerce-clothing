@@ -1,6 +1,11 @@
 .user-inf-modal {
   padding: 1rem 2rem;
 
+  &__inputs {
+    display: flex;
+    gap: 2rem;
+  }
+
   &__cta {
     margin-top: 2rem;
     min-width: 30rem;

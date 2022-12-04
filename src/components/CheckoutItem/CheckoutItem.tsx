@@ -5,6 +5,7 @@ import {
   removeItemCart,
   removeFromCart,
 } from '../../store/cart/cartSlice';
+import { currencyFormat } from '../../utils/currencyFormat';
 import imageProduct from '../../utils/imageProduct';
 import { CartModel } from '../../utils/types';
 import './CheckoutItem.scss';
@@ -50,7 +51,7 @@ const CheckoutItem = ({ item }: CheckoutItemProps) => {
           &#10095;
         </div>
       </span>
-      <span className="price">{item.price}</span>
+      <span className="price">{currencyFormat(item.price)}</span>
       <div
         className="remove-button"
         onClick={() => removeFromCartHandler(item)}

@@ -149,7 +149,7 @@ const AdminAccounts = () => {
           <h3>ID</h3>
         </div>
         <div className="admin-account__h-block">
-          <h3>User name</h3>
+          <h3>Tên người dùng</h3>
         </div>
         <div className="admin-account__h-block">
           <h3>Email</h3>

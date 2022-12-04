@@ -33,7 +33,7 @@ const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
 
       {!isLogged && (
         <div className="nav__user">
-          <Link to="/auth">SIGN IN / REGISTER</Link>
+          <Link to="/auth">ĐĂNG NHẬP / ĐĂNG KÍ</Link>
           {/* <AiOutlineLogout className="nav__user-icon" /> */}
         </div>
       )}
@@ -49,7 +49,7 @@ const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
             }
             onClick={() => setIsNavActive(false)}
           >
-            Home
+            Trang chủ
           </NavLink>
         </li>
         <li className="nav__list-item">
@@ -62,10 +62,10 @@ const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
             }
             onClick={() => setIsNavActive(false)}
           >
-            Shop
+            Sản phẩm
           </NavLink>
         </li>
-        <li className="nav__list-item">
+        {/* <li className="nav__list-item">
           <NavLink
             to="about-us"
             className={({ isActive }) =>
@@ -75,9 +75,9 @@ const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
             }
             onClick={() => setIsNavActive(false)}
           >
-            About us
+            Giới thiệu
           </NavLink>
-        </li>
+        </li> */}
         {isLogged && (
           <li className="nav__list-item only-mobile">
             <NavLink
@@ -89,7 +89,7 @@ const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
               }
               onClick={() => setIsNavActive(false)}
             >
-              Order
+              Đơn hàng
             </NavLink>
           </li>
         )}

@@ -50,10 +50,10 @@ const AdminCategories = () => {
         <div className="col c-10">
           <div className="row">
             <div className="admin-category__header-block col c-2 l-3 sm-0">
-              <span>Image Cover</span>
+              <span>Hình ảnh</span>
             </div>
             <div className="admin-category__header-block col c-5 l-4 sm-7">
-              <span>name</span>
+              <span>Tên danh mục</span>
             </div>
             <div className="admin-category__header-block col c-5">
               <span>id</span>

@@ -1,8 +1,11 @@
+import { AiOutlinePhone } from 'react-icons/ai';
+import { BiMap } from 'react-icons/bi';
 import { FiArrowLeft } from 'react-icons/fi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useGetOrderQuery } from '../../features/Order/orderApiSlice';
+import { currencyFormat } from '../../utils/currencyFormat';
 import { axiosPrivate } from '../../utils/httpRequest';
 
 import imageProduct from '../../utils/imageProduct';
@@ -47,18 +50,23 @@ const OrderDetail = () => {
             <div>
               <span>Địa chỉ nhận hàng</span>
               <h4>{data.customer.name}</h4>
-              <span>{data.phone}</span>
-              <span>{data.address}</span>
+              <span>
+                <AiOutlinePhone /> {data.phone}
+              </span>
+              <span>
+                <BiMap />
+                {data.address}
+              </span>
             </div>
             <div>
               <span>
-                Trạng thái đơn hàng:{' '}
+                Trạng thái đơn hàng:
                 <i>{StatusOrder[data?.status as keyof typeof StatusOrder]}</i>
               </span>
               <span>
                 Phương thức thanh toán: <i>Thanh toán khi nhận hàng</i>
               </span>
-              <span>Tổng tiền hàng: ${data?.totalPrice}</span>
+              <span>Tổng tiền hàng: {currencyFormat(data?.totalPrice)}</span>
             </div>
           </div>
           <div className="order-detail__content">
@@ -83,9 +91,7 @@ const OrderDetail = () => {
                   <span>Phân loại hàng: {item.size}</span>
                   <span>x{item.quantity}</span>
                 </span>
-                <span>
-                  {item.price} <sup>$</sup>
-                </span>
+                <span>{currencyFormat(item.price)}</span>
               </Link>
             ))}
           </div>

@@ -36,15 +36,15 @@ const HomeProducts = () => {
   };
 
   const productType = [
-    { title: 'hot', name: 'top-hot' },
-    { title: 'on sale', name: 'top-sale' },
-    { title: 'trending now', name: 'top-trending' },
-    { title: 'new arrival', name: 'top-arrival' },
+    { title: 'Hot', name: 'top-hot' },
+    { title: 'Khuyến mãi', name: 'top-sale' },
+    { title: 'Xu hướng', name: 'top-trending' },
+    { title: 'Mẫu mới', name: 'top-arrival' },
   ];
 
   return (
     <section className="home-products container">
-      <h1 className="home-products__heading">Our Product</h1>
+      <h1 className="home-products__heading">Sản phẩm của chúng tôi</h1>
       <div className="home-products__types">
         {productType.map((type, index) => {
           return (
@@ -78,7 +78,7 @@ const HomeProducts = () => {
           className="btn--outline btn--shadow home-products__btn"
           onClick={showMoreHandler}
         >
-          Show more
+          Xem thêm
         </Button>
       )}
     </section>

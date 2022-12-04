@@ -26,6 +26,8 @@ const baseQueryWithReauth = async (
 ) => {
   let result = await baseQuery(args, api, extraOptions);
 
+  console.log(result);
+
   if (result.error && result.error.status === 403) {
     console.log('sending refresh token');
     const refreshResult: any = await baseQuery(
@@ -33,7 +35,6 @@ const baseQueryWithReauth = async (
       api,
       extraOptions
     );
-    console.log(refreshResult);
     if (refreshResult?.data) {
       api.dispatch(
         logginSuccess({

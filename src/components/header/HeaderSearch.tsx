@@ -66,7 +66,7 @@ const HeaderSearch = () => {
         appendTo="parent"
         render={attrs => (
           <Popper className="header-search__results" {...attrs}>
-            <span>Results...</span>
+            <span>Kết quả...</span>
             {!!searchResults.length &&
               searchResults
                 .filter((_, i) => i < 5)
@@ -83,7 +83,7 @@ const HeaderSearch = () => {
             {totalResults > 5 && (
               <div className="header-search__results-footer">
                 <Button as={Link} to="/search" onClick={searchEnterHandler}>
-                  View more {totalResults - 5} results
+                  Xem thêm {totalResults - 5} sản phẩm
                 </Button>
               </div>
             )}
@@ -99,7 +99,7 @@ const HeaderSearch = () => {
             onChange={searchInputChangeHandler}
             onSearch={searchEnterHandler}
             onClear={clearSearchInputHandler}
-            placeholder="Enter search..."
+            placeholder="Nhập để tìm kiếm..."
           />
         </div>
       </Tippy>

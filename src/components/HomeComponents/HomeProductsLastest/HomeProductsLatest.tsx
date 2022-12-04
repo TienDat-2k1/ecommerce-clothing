@@ -23,7 +23,7 @@ const HomeProductsLatest = () => {
 
   return (
     <div className="latest-products container">
-      <h2>Our Latest Products</h2>
+      <h2>Sản phẩm mới</h2>
       <div className="products-latest__grid">
         {!products.length && <Spinner />}
         {products.map(product => {

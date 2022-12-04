@@ -1,32 +1,121 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
-import { OrderModel } from '../../utils/types';
+import { currencyFormat } from '../../utils/currencyFormat';
+import { OrderModel, StatusOrder } from '../../utils/types';
 
 import './UserOrders.scss';
+
+type UserOrder = {
+  'Receive order': OrderModel[];
+  Confirm: OrderModel[];
+  Shipping: OrderModel[];
+  Success: OrderModel[];
+  Cancelled: OrderModel[];
+  Return: OrderModel[];
+};
+
+const statusShow = [
+  'Receive order',
+  'Confirm',
+  'Shipping',
+  'Success',
+  'Cancelled',
+  'Return',
+];
 
 const UserOrders = () => {
   const axiosPrivate = useAxiosPrivate();
 
-  const [userOrders, setUserOrders] = useState<OrderModel[]>([]);
+  const [userOrders, setUserOrders] = useState<UserOrder>({
+    'Receive order': [],
+    Confirm: [],
+    Shipping: [],
+    Success: [],
+    Cancelled: [],
+    Return: [],
+  } as UserOrder);
+  const [status, setStatus] =
+    useState<keyof typeof StatusOrder>('Receive order');
 
   useEffect(() => {
-    const fetchOrderFromUser = async () => {
-      const res = await axiosPrivate.get('user/me');
+    axiosPrivate
+      .get('user/me')
+      .then(res => {
+        const orders: OrderModel[] | undefined = res.data.data?.data?.orders;
 
-      console.log(res);
+        const userOr = orders?.reduce(
+          (finalOrder, order) => {
+            switch (order.status) {
+              case 'Receive order':
+                finalOrder['Receive order'] = [
+                  ...finalOrder['Receive order'],
+                  order,
+                ];
+                break;
+              case 'Confirm':
+                finalOrder.Confirm = [...finalOrder.Confirm, order];
+                break;
+              case 'Shipping':
+                finalOrder.Shipping = [...finalOrder.Shipping, order];
+                break;
+              case 'Success':
+                finalOrder.Success = [...finalOrder.Success, order];
+                break;
+              case 'Cancelled':
+                finalOrder.Cancelled = [...finalOrder.Cancelled, order];
+                break;
+              case 'Return':
+                finalOrder.Return = [...finalOrder.Return, order];
+                break;
+            }
+            return finalOrder;
+          },
+          {
+            'Receive order': [],
+            Confirm: [],
+            Shipping: [],
+            Success: [],
+            Cancelled: [],
+            Return: [],
+          } as UserOrder
+        );
 
-      setUserOrders(res.data.data.data.orders);
-    };
-
-    fetchOrderFromUser();
+        userOr && setUserOrders(userOr);
+      })
+      .catch(e => {
+        console.log(e);
+      });
   }, [axiosPrivate]);
 
   return (
     <div className="user-orders">
-      <h3>Your orders</h3>
+      {/* <h3>Đơn hàng của bạn</h3> */}
+      <div className="user-orders__status">
+        {statusShow.map((s, i) => {
+          return (
+            <span
+              key={i}
+              className={status === s ? 'active' : ''}
+              onClick={() => {
+                setStatus(s as keyof typeof StatusOrder);
+              }}
+            >
+              <span>{StatusOrder[s as keyof typeof StatusOrder]}</span>
+              {!!userOrders[s as keyof typeof StatusOrder].length && (
+                <span>{userOrders[s as keyof typeof StatusOrder].length}</span>
+              )}
+            </span>
+          );
+        })}
+      </div>
       <div className="user-orders__list">
-        {userOrders.map(order => {
+        {!userOrders[status].length && (
+          <i style={{ textAlign: 'center', marginTop: '2rem' }}>
+            Chưa có đơn hàng nào
+          </i>
+        )}
+        {userOrders[status].map(order => {
           const dateTime = new Intl.DateTimeFormat('vn-VN', {
             dateStyle: 'short',
             timeStyle: 'short',
@@ -44,7 +133,7 @@ const UserOrders = () => {
                 <span>{time}</span>
               </div>
               <div className="user-orders__content">
-                <span>Products </span>
+                <span>Sản phẩm </span>
                 <div className="user-orders__products">
                   {order.items.map((item, i) => {
                     return (
@@ -67,12 +156,14 @@ const UserOrders = () => {
                 </div>
               </div>
               <div className="user-orders__content">
-                <span>Total price </span>
-                <span>${order.totalPrice}</span>
+                <span>Tổng tiền</span>
+                <span>{currencyFormat(order.totalPrice)}</span>
               </div>
               <div className="user-orders__content">
-                <span>Status </span>
-                <span>{order.status}</span>
+                <span>Trạng thái </span>
+                <span>
+                  {StatusOrder[order.status as keyof typeof StatusOrder]}
+                </span>
               </div>
             </Link>
           );

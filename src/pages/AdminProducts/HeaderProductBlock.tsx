@@ -10,28 +10,28 @@ const HeaderProductBlock = () => {
       <div className="col c-11 md-10">
         <div className="row">
           <div className="product__header-block col c-2 md-3">
-            <span>Image</span>
+            <span>Hình ảnh</span>
           </div>
           <div className="product__header-block col c-3 sm-4">
-            <span>Name</span>
+            <span>Tên</span>
           </div>
           <div className="product__header-block col c-2  sm-0">
-            <span>Material</span>
+            <span>Chất liệu</span>
           </div>
           <div className="product__header-block col c-1 md-0">
-            <span>Sizes</span>
+            <span>Kích cỡ</span>
           </div>
           <div className="product__header-block col c-1 sm-2">
-            <span>Sale Off</span>
+            <span>Khuyến mãi</span>
           </div>
           <div className="product__header-block col c-1 sm-0">
-            <span>Rating</span>
+            <span>Đánh giá</span>
           </div>
           <div className="product__header-block col c-1 sm-0">
-            <span>Price</span>
+            <span>Giá</span>
           </div>
           <div className="product__header-block col c-1 sm-3">
-            <span>Sold</span>
+            <span>Lượt bán</span>
           </div>
         </div>
       </div>

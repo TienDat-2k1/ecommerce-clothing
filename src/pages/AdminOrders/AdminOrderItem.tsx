@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Tippy from '@tippyjs/react';
 
 import AdminOrdersModal from '../../components/ModalComponent/AdminOrdersModal/AdminOrdersModal';
-import { OrderModel } from '../../utils/types';
+import { OrderModel, StatusOrder } from '../../utils/types';
+import { currencyFormat } from '../../utils/currencyFormat';
 
 type AdminOrderItemProps = {
   date: string;
@@ -70,12 +71,21 @@ const AdminOrderItem = ({
             }`}
           >
             <div></div>
-            <span>{order.status}</span>
+            <span
+              style={{
+                width: '100%',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              {StatusOrder[order.status as keyof typeof StatusOrder]}
+            </span>
           </div>
         </div>
         <div className="admin-order__content">
           <span>Price</span>
-          <span>{order.totalPrice}$</span>
+          <span>{currencyFormat(order.totalPrice)}</span>
         </div>
       </div>
 

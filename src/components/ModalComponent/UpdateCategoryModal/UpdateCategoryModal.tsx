@@ -86,7 +86,7 @@ const UpdateCategoryModal = ({
         </div>
         <div className="create-category__upload row">
           <div>
-            <h4>Images:</h4>
+            <h4>Hình ảnh:</h4>
             <input
               type="file"
               accept="image/*"
@@ -95,7 +95,7 @@ const UpdateCategoryModal = ({
             />
             <div className="create-category__image-label">
               <label htmlFor="images">
-                Provide category image cover
+                Cung cấp hình ảnh đại diện
                 <RiImageAddLine />
               </label>
             </div>
@@ -124,7 +124,7 @@ const UpdateCategoryModal = ({
             className="btn--round btn--outline btn--shadow"
             onClick={onClose}
           >
-            Cancel
+            Hủy bỏ
           </Button>
           <Button
             className="btn--round btn--shadow btn--yellow"

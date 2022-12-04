@@ -23,22 +23,22 @@ const AdminNav = [
   // },
   {
     to: 'category',
-    name: 'Category',
+    name: 'Danh mục',
     icon: <BiCategoryAlt className="admin-navbar__icon" />,
   },
   {
     to: 'product',
-    name: 'Product',
+    name: 'Sản phẩm',
     icon: <AiOutlinePicLeft className="admin-navbar__icon" />,
   },
   {
     to: 'order',
-    name: 'Order',
+    name: 'Đơn hàng',
     icon: <BsReceiptCutoff className="admin-navbar__icon" />,
   },
   {
     to: 'account',
-    name: 'Account',
+    name: 'Tài khoản',
     icon: <FaUserCircle className="admin-navbar__icon" />,
   },
 ];
@@ -58,7 +58,7 @@ const AdminNavbar = ({ isActive, hideNav }: AdminNavbarProps) => {
         </div> */}
         <h4>{user.name}</h4>
       </div>
-      <span>MAIN MENU</span>
+      <span> MENU</span>
       {AdminNav.map((nav, i) => {
         return (
           <NavLink

@@ -10,18 +10,34 @@
 
   &__heading {
     font-family: $font-family--frankLibre;
-    font-size: 4.8rem;
+    font-size: 3.8rem;
+    font-weight: 600;
   }
 
   &__types {
     display: flex;
     gap: 2rem;
+
+    & > *:not(:first-child) {
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 1px;
+        height: 40%;
+        transform: translateY(-50%);
+        top: 50%;
+        left: -1rem;
+        background-color: rgba($color--black, 0.8);
+      }
+    }
   }
 
   &__type {
+    position: relative;
     padding: 0.8rem 0;
     font-family: $font-family--frankLibre;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     font-weight: 300;
     font-size: 2.2rem;
     cursor: pointer;
@@ -52,7 +68,10 @@
   &__grid {
     padding: 2rem 0;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
     gap: 2rem;
 
     min-height: 20rem;

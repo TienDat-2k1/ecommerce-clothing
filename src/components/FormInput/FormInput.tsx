@@ -13,6 +13,7 @@ const FormInput = ({
   label,
   errorMessage,
   type,
+  style,
   ...otherProps
 }: FormInputProps) => {
   const [focused, setFocused] = useState(false);
@@ -21,7 +22,7 @@ const FormInput = ({
     setFocused(true);
   };
   return (
-    <div className="input-group">
+    <div className="input-group" style={style}>
       <input
         type={type}
         className={`form-input `}

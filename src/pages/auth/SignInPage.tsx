@@ -5,7 +5,7 @@ import './auth.scss';
 import { AiOutlineHome } from 'react-icons/ai';
 import FormInput from '../../components/FormInput/FormInput';
 import Button from '../../components/UI/Button/Button';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { isLoggedSelector } from '../../store/user/userSelector';
 import { useLoginMutation } from '../../features/Auth/authApiSlice';
 import { toast } from 'react-toastify';
@@ -75,7 +75,7 @@ const SignInPage = () => {
         <Link to="/">
           <AiOutlineHome />
         </Link>
-        <h1>Sign in with your email and password</h1>
+        <h1>Đăng nhập với email và mật khẩu</h1>
       </div>
       <form className="auth__inputs" onSubmit={formSubmitHandler}>
         <FormInput
@@ -95,13 +95,13 @@ const SignInPage = () => {
           // required
         />
         <div className="auth__description">
-          <span>If you don't have an account </span>
-          <Link to="./sign-up">Register now</Link>
+          <span>Nếu bạn chưa có tài khoản </span>
+          <Link to="./sign-up">Đăng kí ngay</Link>
         </div>
 
         <div className="auth__cta">
           <Button className="auth__btn btn--grey btn--horizontal btn--shadow">
-            {isLoading ? 'Đang xử lý...' : ' LOGIN'}
+            {isLoading ? 'Đang xử lý...' : ' ĐĂNG NHẬP'}
           </Button>
         </div>
       </form>

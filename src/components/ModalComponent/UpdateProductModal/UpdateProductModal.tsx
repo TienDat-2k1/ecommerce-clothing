@@ -14,6 +14,7 @@ import imageProduct from '../../../utils/imageProduct';
 import { toast } from 'react-toastify';
 import Spinner from '../../UI/Spinner/Spinner';
 import { CategoryModel, ProductModel } from '../../../utils/types';
+import { currencyFormat } from '../../../utils/currencyFormat';
 
 type UpdateProductModalProps = {
   onClose: () => void;
@@ -228,7 +229,7 @@ const UpdateProductModal = ({
             <div className="row">
               <div className="col c-3">
                 <FormInput
-                  label="Name"
+                  label="Tên sản phẩm"
                   value={productInput.name}
                   name="name"
                   onChange={textChangeHandler}
@@ -236,7 +237,7 @@ const UpdateProductModal = ({
               </div>
               <div className="col c-3">
                 <FormInput
-                  label="Material"
+                  label="Chất liệu"
                   value={productInput.material}
                   name="material"
                   onChange={textChangeHandler}
@@ -244,7 +245,7 @@ const UpdateProductModal = ({
               </div>
               <div className="col c-3">
                 <FormInput
-                  label="Price"
+                  label="Giá"
                   type="number"
                   min={0}
                   value={productInput.price}
@@ -254,7 +255,7 @@ const UpdateProductModal = ({
               </div>
               <div className="col c-3">
                 <FormInput
-                  label="Sale Off"
+                  label="Khuyến mãi"
                   type="number"
                   min={0}
                   max={100}
@@ -266,7 +267,7 @@ const UpdateProductModal = ({
             </div>
             <div className="row">
               <div className="create-product__category col c-3">
-                <span>Category</span>
+                <span>Danh mục</span>
                 <Multiselect
                   options={categories}
                   selectedValues={categories.filter(category => {
@@ -297,10 +298,10 @@ const UpdateProductModal = ({
                 />
               </div>
               <div className="create-product__sizes col c-9">
-                <span>Sizes</span>
+                <span>Kích cỡ</span>
                 <Multiselect
                   className="create-product__sizes-select"
-                  options={['S', 'M', 'L', 'XL', 'XXL', 'XXXL']}
+                  options={['S', 'M', 'L', 'XL', 'XXL']}
                   selectedValues={product.sizes}
                   isObject={false}
                   style={{
@@ -329,7 +330,7 @@ const UpdateProductModal = ({
 
             <div className="row">
               <div className="create-product__description col c-12">
-                <span>Description</span>
+                <span>Mô tả</span>
                 <textarea
                   className=""
                   name="description"
@@ -342,7 +343,7 @@ const UpdateProductModal = ({
 
             <div className="row create-product__image">
               <div>
-                <h4>Image Cover:</h4>
+                <h4>Hình ảnh đại diện:</h4>
                 <input
                   type="file"
                   accept="image/*"
@@ -351,7 +352,7 @@ const UpdateProductModal = ({
                 />
                 <div className="create-product__image-label">
                   <label htmlFor="image-cover">
-                    Choose your product photo
+                    Chọn hình ảnh
                     <RiImageAddLine />
                   </label>
                 </div>
@@ -367,7 +368,7 @@ const UpdateProductModal = ({
 
             <div className="row create-product__image">
               <div>
-                <h4>Images:</h4>
+                <h4>Hình ảnh bổ sung:</h4>
                 <input
                   type="file"
                   accept="image/*"
@@ -377,7 +378,7 @@ const UpdateProductModal = ({
                 />
                 <div className="create-product__image-label">
                   <label htmlFor="images">
-                    Provide more product photos (Can choose multiple)
+                    Cung cấp thêm hình ảnh (Có thể chọn nhiều)
                     <RiImageAddLine />
                   </label>
                 </div>
@@ -411,13 +412,13 @@ const UpdateProductModal = ({
                 className="btn--round btn--outline btn--shadow"
                 onClick={onClose}
               >
-                Cancel
+                Hủy bỏ
               </Button>
               <Button
                 className="btn--round btn--outline btn--violet btn--shadow"
                 disabled={validate}
               >
-                Update
+                Cập nhật
               </Button>
             </div>
           </form>

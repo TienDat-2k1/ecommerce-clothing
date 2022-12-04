@@ -8,7 +8,6 @@ import FormInput from '../../components/FormInput/FormInput';
 import Button from '../../components/UI/Button/Button';
 import { useSignupMutation } from '../../features/Auth/authApiSlice';
 import { isLoggedSelector } from '../../store/user/userSelector';
-import { signupStart } from '../../store/user/userSlice';
 import './auth.scss';
 
 interface IInputFields {
@@ -26,7 +25,6 @@ const initInputFields: IInputFields = {
 };
 
 const SignUpPage = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputFields, setInputFields] = useState(initInputFields);
   const isLogged = useSelector(isLoggedSelector);
@@ -78,15 +76,15 @@ const SignUpPage = () => {
       id: 1,
       name: 'displayName',
       type: 'text',
-      errorMessage: 'Display Name should be 3-16 characters and it not empty',
-      label: 'Display Name',
+      errorMessage: 'Tên hiển thị nên có ít nhất 3 kí tự!',
+      label: 'Tên hiển thị',
       required: true,
     },
     {
       id: 2,
       name: 'email',
       type: 'email',
-      errorMessage: 'It should be a valid email address!!',
+      errorMessage: 'Địa chỉ email không hợp lệ!',
       label: 'Email',
       required: true,
     },
@@ -94,9 +92,8 @@ const SignUpPage = () => {
       id: 3,
       name: 'password',
       type: 'password',
-      errorMessage:
-        'Password must least 8 characters! (include single character and digit)',
-      label: 'Password',
+      errorMessage: 'Mật khẩu ít nhất phải 8 kí tự (bao gồm chữ và số)',
+      label: 'Mật khẩu',
       pattern: `^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d][A-Za-z\\d!@#$%^&*()_+]{7,19}$`,
       required: true,
     },
@@ -104,8 +101,8 @@ const SignUpPage = () => {
       id: 4,
       name: 'confirmPassword',
       type: 'password',
-      errorMessage: 'Password does not match',
-      label: 'Confirm Password',
+      errorMessage: 'Không hợp lệ',
+      label: 'Nhập lại mật khẩu',
       pattern: inputFields.password,
       required: true,
     },
@@ -117,7 +114,7 @@ const SignUpPage = () => {
         <Link to="/">
           <AiOutlineHome />
         </Link>
-        <h1>Sign up</h1>
+        <h1>Đăng ký</h1>
       </div>
       <form className="auth__inputs">
         {inputs.map(input => {
@@ -133,13 +130,13 @@ const SignUpPage = () => {
         })}
 
         <div className="auth__description">
-          <span>If you have an account </span>
-          <Link to="/auth">Login now</Link>
+          <span>Nếu bạn đã có tài khoản</span>
+          <Link to="/auth">Đăng nhập ngay</Link>
         </div>
 
         <div className="auth__cta">
           <Button className="auth__btn btn--grey btn--horizontal btn--shadow">
-            {result.isLoading ? 'REGISTER' : 'Đang xử lý...'}
+            {result.isLoading ? 'Đang xử lý...' : 'REGISTER'}
           </Button>
         </div>
       </form>

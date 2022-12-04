@@ -8,6 +8,55 @@
     // margin-top: 6.6rem;
   }
 
+  &__status {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+
+    & > span {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0;
+        height: 2px;
+        left: 50%;
+        bottom: -4px;
+        transform: translateX(-50%);
+        background-color: $color--accent-red;
+        transition: all 0.3s;
+      }
+    }
+
+    & > span.active::after {
+      width: 70%;
+    }
+
+    & > span > :first-child {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 2px;
+      cursor: pointer;
+      transition: all 0.25s;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    & > span > :nth-child(2) {
+      position: absolute;
+      top: -4px;
+      right: -8px;
+      color: $color--accent-red;
+    }
+  }
+
   &__list {
     margin-top: 2rem;
     display: flex;

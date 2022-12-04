@@ -63,7 +63,7 @@ const Products = () => {
     <main className="products ">
       {isLoading && <Spinner />}
       <ProductsFilter changePage={pageChange} />
-      <div>
+      <div style={{ width: '100%' }}>
         <div className="products__grid">
           {products.map(product => (
             <ProductCard key={product._id} product={product} />

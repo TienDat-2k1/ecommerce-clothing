@@ -7,6 +7,7 @@ import { cartTotalItemSelector } from '../../store/cart/cartSelector';
 import './Checkout.scss';
 import cart_empty from '../../assets/img/cart-empty.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { currencyFormat } from '../../utils/currencyFormat';
 
 const Checkout = () => {
   const cartItems = useAppSelector(state => state.cart.cart);
@@ -41,22 +42,22 @@ const Checkout = () => {
         <div className="checkout-container">
           <div className="checkout-header">
             <div className="header-block">
-              <span>Products</span>
+              <span>Hình ảnh</span>
             </div>
             <div className="header-block">
-              <span>Description</span>
+              <span>Tên sản phẩm</span>
             </div>
             <div className="header-block">
-              <span>Size</span>
+              <span>Kích cỡ</span>
             </div>
             <div className="header-block">
-              <span>Quantity</span>
+              <span>Số lượng</span>
             </div>
             <div className="header-block">
-              <span>Price</span>
+              <span>Giá</span>
             </div>
             <div className="header-block">
-              <span>Remove</span>
+              <span>Xóa</span>
             </div>
           </div>
           {/* List item */}
@@ -69,14 +70,17 @@ const Checkout = () => {
                 />
               );
             })}
-          <span className="total">Total: {totalPrice}$</span>
+          <span className="total">
+            <span>Tổng tiền hàng:</span>
+            <span>{currencyFormat(totalPrice)}</span>
+          </span>
           <div className="checkout-cta">
             <Button
               as={Link}
               to="/order"
               className="btn--blue btn--shadow checkout-btn"
             >
-              Continue
+              Tiếp tục
             </Button>
           </div>
         </div>

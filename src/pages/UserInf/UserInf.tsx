@@ -68,7 +68,7 @@ const UserInf = () => {
             className="btn--round  btn--shadow btn--blue user-inf__edit"
             onClick={showEditor}
           >
-            Edit
+            Chỉnh sửa
           </Button>
           <div className="user-inf__avatar">
             <div className="user-inf__img">
@@ -92,19 +92,19 @@ const UserInf = () => {
           </div>
           <div className="user-inf__info">
             <div className="user-inf__content">
-              <span>Email:</span>
+              <span>Tài khoản:</span>
               <h3>{user.email}</h3>
             </div>
             <div className="user-inf__content">
-              <span>Name:</span>
+              <span>Tên hiển thị:</span>
               <h3>{user.name}</h3>
             </div>
             <div className="user-inf__content">
-              <span>Phone Number:</span>
+              <span>Số điện thoại:</span>
               <h3>{user.phone}</h3>
             </div>
             <div className="user-inf__content">
-              <span>Address:</span>
+              <span>Địa chỉ:</span>
               <h3>{user.address}</h3>
             </div>
           </div>
@@ -114,13 +114,13 @@ const UserInf = () => {
                 className="btn--round btn--outline user-inf__btn"
                 onClick={() => setAvatarPreview(undefined)}
               >
-                Cancel
+                Hủy
               </Button>
               <Button
                 className="btn--round btn--blue user-inf__btn"
                 onClick={onSave}
               >
-                Save
+                Lưu
               </Button>
             </div>
           )}

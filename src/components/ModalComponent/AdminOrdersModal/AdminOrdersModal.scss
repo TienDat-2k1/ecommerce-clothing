@@ -1,14 +1,32 @@
+@use '../../../sass/mixins' as *;
+
 .admin-order-modal {
   padding: 1rem 2rem;
   min-height: 40rem;
+  width: 80rem;
+
+  @include responds(lg) {
+    width: 70rem;
+  }
+
+  @include responds(md) {
+    width: 60rem;
+  }
+
+  @include responds(sm) {
+    width: 50rem;
+  }
 }
 
 .order-modal {
   &__content {
-    width: 40rem;
     display: flex;
     justify-content: space-between;
     gap: 8px;
+
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
   }
 
   &__orders {

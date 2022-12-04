@@ -2,6 +2,7 @@
 
 .product-card {
   width: 100%;
+  // width: 200px;
   // width: 26rem;
   // height: 40rem;
   background-color: $color--grey-light-1;
@@ -24,6 +25,11 @@
     height: 70%;
     position: relative;
     overflow: hidden;
+
+    & > span {
+      width: 100%;
+      height: 100%;
+    }
 
     &:hover img {
       // transform: scale(1.04);
@@ -78,16 +84,18 @@
   }
 
   &__name {
-    font-family: $font-family--frankLibre;
+    // font-family: $font-family--frankLibre;
+    font-size: 2.2rem;
+    font-weight: 500;
     width: 100%;
-    height: 3.5rem;
+    // height: 7rem;
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: capitalize;
     padding-top: 0.5rem;
 
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
 
@@ -102,8 +110,8 @@
 
   &__price-original {
     color: $color--accent-red;
-    font-weight: 600;
-    font-size: 1.6rem;
+    font-weight: 500;
+    font-size: 1.7rem;
     position: relative;
 
     &::after {
@@ -119,8 +127,8 @@
   }
 
   &__price-sale {
-    font-weight: 700;
-    font-size: 2.2rem;
+    font-weight: 600;
+    font-size: 1.8rem;
   }
 
   &__saleOff {

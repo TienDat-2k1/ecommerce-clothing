@@ -24,7 +24,7 @@ const HeaderUser = () => {
       {!isLogged && (
         <div className="header__feature header__feature-login">
           <Button as={Link} to="/auth" className="btn--outline-white">
-            LOGIN
+            Đăng nhập
           </Button>
         </div>
       )}
@@ -46,12 +46,12 @@ const HeaderUser = () => {
                 {user.role === 'user' && (
                   <Link to="me/my-order" className="user-popper__item">
                     <BsReceiptCutoff className="user-popper__icon" />
-                    <span className="user-popper__content">Orders</span>
+                    <span className="user-popper__content">Đơn hàng</span>
                   </Link>
                 )}
                 <div className="user-popper__item" onClick={logOutHandler}>
                   <FiLogOut className="user-popper__icon" />
-                  <span className="user-popper__content">Log Out</span>
+                  <span className="user-popper__content">Đăng xuất</span>
                 </div>
               </Popper>
             );

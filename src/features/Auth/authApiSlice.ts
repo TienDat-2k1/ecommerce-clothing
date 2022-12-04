@@ -44,7 +44,7 @@ const authApiSlice = apiSlice.injectEndpoints({
         body: { ...credential },
       }),
       transformResponse: (result: any, meta) => {
-        if (result.status === 'success') {
+        if (result.status === 'success' && meta?.response?.status === 200) {
           const {
             token: accessToken,
             data: { user },

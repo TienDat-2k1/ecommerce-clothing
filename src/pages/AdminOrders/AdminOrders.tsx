@@ -67,22 +67,22 @@ const AdminOrders = () => {
         </div>
         <div className="admin-order__heading">
           <div className="admin-order__title">
-            <h4>CREATED</h4>
+            <h4>Thời gian tạo</h4>
           </div>
           <div className="admin-order__title">
-            <h4>CUSTOMER</h4>
+            <h4>Khách hàng</h4>
           </div>
           <div className="admin-order__title">
-            <h4>PHONE</h4>
+            <h4>Số điện thoại</h4>
           </div>
           <div className="admin-order__title">
-            <h4>PRODUCTS</h4>
+            <h4>Sản phẩm</h4>
           </div>
           <div className="admin-order__title">
-            <h4>STATUS</h4>
+            <h4>Trạng thái</h4>
           </div>
           <div className="admin-order__title">
-            <h4>PRICE</h4>
+            <h4>Giá</h4>
           </div>
         </div>
         <div className="admin-order__list">

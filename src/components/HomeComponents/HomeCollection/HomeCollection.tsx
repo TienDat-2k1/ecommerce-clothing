@@ -26,8 +26,8 @@ const HomeCollection = () => {
       {data && (
         <section className="collection container">
           <div className="collection__heading">
-            <h1 className="collection__title">new collection</h1>
-            <span className="collection__description">2022 Collection</span>
+            <h1 className="collection__title">Danh mục mới</h1>
+            <span className="collection__description">Danh mục 2022</span>
           </div>
           <div className="collection__top">
             <div className="dot-texture"></div>

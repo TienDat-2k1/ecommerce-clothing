@@ -10,6 +10,7 @@ import imageProduct from '../../../utils/imageProduct';
 import Rating from '../../UI/Rating/Rating';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { ProductModel } from '../../../utils/types';
+import { currencyFormat, salePrice } from '../../../utils/currencyFormat';
 
 type ProductCardProps = {
   product: ProductModel;
@@ -65,11 +66,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <h2 className="product-card__name">{product.name}</h2>
           <div className="product-card__price">
             {!!product.saleOff && (
-              <span className="product-card__price-original">{`$${product.price}`}</span>
+              <span className="product-card__price-original">
+                {currencyFormat(product.price)}
+              </span>
             )}
-            <span className="product-card__price-sale">{`$${Math.round(
+            <span className="product-card__price-sale">
+              {salePrice(product.price, product.saleOff)}
+            </span>
+            {/* <span className="product-card__price-sale">{`$${Math.round(
               product.price - (product.price * product.saleOff) / 100
-            )}`}</span>
+            )}`}</span> */}
           </div>
         </div>
         {!!product.saleOff && (

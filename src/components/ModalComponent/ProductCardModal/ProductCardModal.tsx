@@ -11,6 +11,7 @@ import './ProductCardModal.scss';
 import ImageProductSlideShow from '../../ImageProductSlideShow/ImageProductSlideShow';
 import Rating from '../../UI/Rating/Rating';
 import { CartModel, ProductModel } from '../../../utils/types';
+import { currencyFormat, salePrice } from '../../../utils/currencyFormat';
 
 type ProductCardModalProps = {
   product: ProductModel;
@@ -74,17 +75,17 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
             />
           </div>
           <div className="product-modal__material">
-            <h4>Material:</h4>
+            <h4>Chất liệu:</h4>
             <span>{product.material}</span>
           </div>
           <div className="product-modal__price">
             {!!product.saleOff && (
               <span className="product-modal__price--original">
-                ${product.price}
+                {currencyFormat(product.price)}
               </span>
             )}
             <span className="product-modal__price--sale">
-              ${productPriceSale}
+              {salePrice(product.price, product.saleOff)}
             </span>
             {!!product.saleOff && (
               <span className="product-modal__price--saleOff">
@@ -93,7 +94,7 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
             )}
           </div>
           <div className="product-modal__sizes">
-            <h4>Size:</h4>
+            <h4>Kích cỡ:</h4>
             {product.sizes.map((sz, i) => (
               <kbd
                 key={i}
@@ -106,7 +107,7 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
           </div>
           <div className="product-modal__colors"></div>
           <div className="product-modal__quantity">
-            <h4>Quantity:</h4>
+            <h4>Số lượng:</h4>
             <span onClick={decreaseQuantityHandler}>-</span>
             <span>{cartOptions.quantity}</span>
             <span onClick={increaseQuantityHandler}>+</span>
@@ -118,7 +119,7 @@ const ProductCardModal = ({ product, onClose }: ProductCardModalProps) => {
               onClick={() => addToCartHandler(product)}
               disabled={!cartOptions.size}
             >
-              Add to cart
+              Thêm giỏ hàng
             </Button>
           </div>
         </div>

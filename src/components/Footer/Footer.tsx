@@ -19,7 +19,7 @@ const Footer = () => {
           </div>
 
           <div className="footer__contact">
-            <h2>Contact with us</h2>
+            <h2>Liên hệ với chúng tôi</h2>
             <Button
               as="a"
               href="https://www.facebook.com/"
@@ -33,32 +33,31 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer__item">
-          <h2>About us</h2>
-          <p className="footer__about">Other provisions</p>
-          <p className="footer__about">Co-operate</p>
-          <p className="footer__about">Ask and answer</p>
-          <p className="footer__about">Obligations of the seller</p>
-          <p className="footer__about">Shipping Policy</p>
+          <h2>Giới thiệu</h2>
+          <p className="footer__about">Những điều khoản khác</p>
+          <p className="footer__about">Đối tác</p>
+          <p className="footer__about">Giải đáp</p>
+          <p className="footer__about">Chính sách vận chuyển</p>
         </div>
         <div className="footer__item">
-          <h2>Policy</h2>
-          <span className="footer__policy">Privacy Policy</span>
-          <span className="footer__policy">Terms of Service</span>
-          <span className="footer__policy">Membership Policy</span>
-          <span className="footer__policy">Return policy</span>
-          <span className="footer__policy">Payment Privacy Policy</span>
-          <span className="footer__policy">Policy for customers</span>
-          <span className="footer__policy">Product warranty policy</span>
+          <h2>Chính sách</h2>
+          <span className="footer__policy">Chính sách bảo mật</span>
+          <span className="footer__policy">Điều khoản dịch vụ</span>
+          <span className="footer__policy">Chính sách thành viên</span>
+          <span className="footer__policy">Chính sách đổi trả</span>
+          <span className="footer__policy">Chính sách bảo mật thanh toán</span>
+          <span className="footer__policy">Chính sách dành cho khách hàng</span>
+          <span className="footer__policy">Chính sách bảo hành</span>
         </div>
         <div className="footer__item">
           <div className="footer__payment">
-            <h2>Payment method</h2>
+            <h2>Phương thức thanh toán</h2>
             <div>
               <Button
                 className="btn--outline-white footer__icon"
                 leftIcon={<BsCashCoin className="footer__icon" />}
               >
-                Cash
+                Tiền mặt
               </Button>
               <Button
                 className="btn--outline-white footer__icon"
@@ -70,12 +69,12 @@ const Footer = () => {
                 className="btn--outline-white footer__icon"
                 leftIcon={<RiBankCard2Line className="footer__icon" />}
               >
-                Internet Banking
+                Ngân hàng
               </Button>
             </div>
           </div>
           <div className="footer__shipping">
-            <h2>Shipping Partner</h2>
+            <h2>Đối tác vận chuyển</h2>
             <Button
               className="btn--outline-white footer__icon"
               leftIcon={<FaShippingFast className="footer__icon" />}
@@ -83,7 +82,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer__item">
-          <h2>Register now</h2>
+          <h2>Đăng kí ngay</h2>
           <div>
             <input type="text" placeholder="Email" />
             <Button>Register</Button>

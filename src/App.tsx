@@ -42,7 +42,7 @@ function App() {
   const location = useLocation();
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
-  useRefreshQuery();
+  // useRefreshQuery();
 
   useEffect(() => {
     const refresh = async () => {
@@ -59,7 +59,7 @@ function App() {
     };
 
     window.onload = () => {
-      // refresh();
+      refresh();
     };
   }, [axiosPrivate, dispatch]);
 

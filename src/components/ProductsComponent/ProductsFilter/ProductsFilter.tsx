@@ -12,7 +12,7 @@ import { useSearchParams } from 'react-router-dom';
 import useCurrentParams from '../../../hooks/useCurrentParams';
 import useWindowDimension from '../../../hooks/useWindowDimension';
 
-const sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 const options = [
   { id: 1, name: 'Newest', value: '-createAt' },
   { id: 2, name: 'Oldest', value: 'createAt' },
@@ -103,7 +103,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({ changePage }) => {
           rightIcon={<FiFilter />}
           onClick={showFilterToggle}
         >
-          Filter
+          Bộ lọc
         </Button>
       </div>
       <div className="filter-toggle">
@@ -116,7 +116,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({ changePage }) => {
           }`}
         >
           <div className="filter-toggle__header">
-            <h2>filters</h2>
+            <h2>Bộ lọc</h2>
             <Button leftIcon={<IoCloseOutline />} onClick={hideFilterToggle} />
           </div>
           <div className="filter-toggle__wrapper">
@@ -130,7 +130,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({ changePage }) => {
                   })
                 }
               >
-                <h2>Collection</h2>
+                <h2>Danh mục</h2>
                 {expandContent.collection ? <BsChevronUp /> : <BsChevronDown />}
               </div>
               <div
@@ -164,7 +164,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({ changePage }) => {
                   })
                 }
               >
-                <h2>Size</h2>
+                <h2>Kích cỡ</h2>
                 {expandContent.size ? <BsChevronUp /> : <BsChevronDown />}
               </div>
               <div
@@ -197,7 +197,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({ changePage }) => {
                   })
                 }
               >
-                <h2>Options</h2>
+                <h2>Tùy chọn </h2>
                 {expandContent.options ? <BsChevronUp /> : <BsChevronDown />}
               </div>
               <div
@@ -228,7 +228,7 @@ const ProductsFilter: React.FC<ProductsFilterProps> = ({ changePage }) => {
               rightIcon={<AiOutlineClear />}
               onClick={() => setSearchParams({})}
             >
-              Clear
+              Bỏ chọn
             </Button>
           </div>
         </div>
