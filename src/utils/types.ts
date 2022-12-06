@@ -21,6 +21,8 @@ export type CategoryModel = {
   _id: string;
   name: string;
   imageCover: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 type ProductOrder = {
@@ -45,11 +47,12 @@ export type OrderModel = {
   _id: string;
   address: string;
   phone: string;
-  createAt: string;
   status: string;
   customer: Customer;
   items: ProductItem[];
   totalPrice: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ProductModel = {
@@ -67,6 +70,8 @@ export type ProductModel = {
   saleOff: number;
   description: string;
   sold: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ReviewModel = {
@@ -78,7 +83,8 @@ export type ReviewModel = {
     name: string;
     photo: string;
   };
-  createAt: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type UserModel = {

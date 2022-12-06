@@ -6,13 +6,19 @@ import './Pagination.scss';
 type PaginationProps = {
   totalPages: number;
   onPageChange: (page: any) => void;
+  activePage?: number;
 };
 
-const Pagination = ({ totalPages, onPageChange }: PaginationProps) => {
+const Pagination = ({
+  totalPages,
+  onPageChange,
+  activePage,
+}: PaginationProps) => {
   if (totalPages === 0) return <></>;
 
   return (
     <ReactPaginate
+      forcePage={activePage}
       onPageChange={onPageChange}
       className="pagination"
       pageClassName="pagination__page"

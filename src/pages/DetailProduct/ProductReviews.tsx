@@ -108,7 +108,7 @@ const ProductReviews = () => {
             dateStyle: 'short',
             timeStyle: 'short',
           })
-            .format(new Date(review.createAt))
+            .format(new Date(review.createdAt))
             .split(', ')
             .join(' ');
 

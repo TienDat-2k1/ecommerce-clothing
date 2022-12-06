@@ -16,19 +16,19 @@ const sliders = [
     img: hero_1,
     saleOff: 50,
     heading: 'Black Friday',
-    sub: `Best Buy's 2022 Black Friday sale runs from Nov. 20 to 27. During this time, you can find deals on everything. Best Buy stores will be closed for Thanksgiving Day, but open bright and early at 5 a.m. on Black Friday.`,
+    sub: `Chương trình giảm giá Thứ Sáu Đen năm 2022 của Best Buy diễn ra từ ngày 20 đến ngày 27 tháng 11`,
   },
   {
     img: hero_2,
     saleOff: 80,
     heading: 'Fall - Winter',
-    sub: 'A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality.',
+    sub: 'Một nhãn hiệu chuyên nghiệp tạo ra những thứ thiết yếu sang trọng. Được chế tác một cách có đạo đức với cam kết vững chắc về chất lượng vượt trội.',
   },
   {
     img: hero_3,
     saleOff: 40,
     heading: 'Christmas',
-    sub: '50% off thousands of premium designer jackets, wools, spandexes and shirts. – Get 20% off when customers choose to buy Veston products, casual pants.',
+    sub: 'Giảm 50% hàng nghìn mẫu áo khoác– Giảm ngay 20% khi khách hàng chọn mua sản phẩm quần',
   },
 ];
 
@@ -63,7 +63,7 @@ const HomeSlider = () => {
                     to="products"
                     className="btn--shadow btn--yellow "
                   >
-                    SHOP NOW
+                    Mua ngay
                   </Button>
                 </div>
                 <div className="home-slide__sale">

@@ -14,13 +14,13 @@ import useWindowDimension from '../../../hooks/useWindowDimension';
 
 const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
 const options = [
-  { id: 1, name: 'Newest', value: '-createAt' },
-  { id: 2, name: 'Oldest', value: 'createAt' },
-  { id: 3, name: 'Best Sale', value: '-saleOff' },
-  { id: 4, name: 'Name: A-Z', value: 'name' },
-  { id: 5, name: 'Name: Z-A', value: '-name' },
-  { id: 6, name: 'Price: Low to Hight', value: 'price' },
-  { id: 7, name: 'Price: Hight to Low', value: '-price' },
+  { id: 1, name: 'Mới nhất', value: '-createdAt' },
+  { id: 2, name: 'Cũ nhất', value: 'createdAt' },
+  { id: 3, name: 'Khuyến mãi', value: '-saleOff' },
+  { id: 4, name: 'Tên: A-Z', value: '-name' },
+  { id: 5, name: 'Tên: Z-A', value: 'name' },
+  { id: 6, name: 'Giá tăng dần', value: 'price' },
+  { id: 7, name: 'Giá giảm dần', value: '-price' },
 ];
 
 type ProductsFilterProps = {

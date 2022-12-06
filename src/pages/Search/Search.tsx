@@ -41,7 +41,7 @@ const Search = () => {
       {isLoading && <Spinner />}
       <div className="search-heading">
         <h2>
-          Result for <span>{keywords}</span>...
+          <span>Kết quả tìm kiếm cho từ khóa</span> <span>{keywords}</span>
         </h2>
       </div>
       <div className="search-result-grid">
@@ -60,7 +60,7 @@ const Search = () => {
       )}
       {!results.length && (
         <div className="search-notfound">
-          <p>No relevant results were found</p>
+          <p>Không có kết quả nào phù hợp với từ khóa!!</p>
         </div>
       )}
     </main>

@@ -40,7 +40,7 @@ const AdminOrdersModal = ({
   const dateTime = new Intl.DateTimeFormat('vn-VN', {
     dateStyle: 'short',
     timeStyle: 'short',
-  }).format(new Date(data.createAt));
+  }).format(new Date(data.createdAt));
 
   const [date, time] = dateTime.split(', ');
 

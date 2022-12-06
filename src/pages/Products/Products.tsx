@@ -56,6 +56,7 @@ const Products = () => {
   }, []);
 
   const pageChange = (page: number) => {
+    console.log(page);
     setPageActive(page);
   };
 
@@ -75,6 +76,7 @@ const Products = () => {
             <Pagination
               totalPages={totalPages}
               onPageChange={pageChangeHandler}
+              activePage={pageActive - 1}
             />
           )}
         </div>

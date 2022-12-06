@@ -44,6 +44,12 @@ const UserOrders = () => {
       .then(res => {
         const orders: OrderModel[] | undefined = res.data.data?.data?.orders;
 
+        orders?.sort((a, b) => {
+          return (
+            (new Date(b.updatedAt) as any) - (new Date(a.updatedAt) as any)
+          );
+        });
+
         const userOr = orders?.reduce(
           (finalOrder, order) => {
             switch (order.status) {
@@ -119,7 +125,7 @@ const UserOrders = () => {
           const dateTime = new Intl.DateTimeFormat('vn-VN', {
             dateStyle: 'short',
             timeStyle: 'short',
-          }).format(new Date(order.createAt));
+          }).format(new Date(order.updatedAt));
 
           const [date, time] = dateTime.split(', ');
           return (

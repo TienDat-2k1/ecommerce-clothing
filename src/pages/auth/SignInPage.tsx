@@ -25,21 +25,38 @@ const SignInPage = () => {
   // const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const [login, { isLoading, isError, error, isSuccess }] = useLoginMutation();
+  const [login, { isLoading, isError, error, isSuccess, data }] =
+    useLoginMutation();
 
   const [inputFields, setInputFields] = useState<IInputFields>({
     email: '',
     password: '',
   });
-  const isLogged = useSelector(isLoggedSelector);
 
-  let fm = '';
+  // navigate route with login
+  useEffect(() => {
+    if (!data) return;
+    console.log(data);
 
-  if (location.state) {
-    const { from } = location.state as LocationState;
+    const role = data.data.user.role;
 
-    fm = from.pathname;
-  }
+    switch (role) {
+      case 'admin':
+        navigate('/admin');
+        break;
+
+      default:
+        if (location.state) {
+          const { from } = location.state as LocationState;
+          navigate(from.pathname);
+        } else {
+          navigate('/');
+        }
+        break;
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, location]);
 
   //toast message login success
   useEffect(() => {
@@ -51,12 +68,6 @@ const SignInPage = () => {
     if (!isError) return;
     error && toast.error((error as any).data.message);
   }, [isError, error]);
-
-  useEffect(() => {
-    if (isLogged && fm) navigate(fm, { replace: true });
-    if (isLogged && !fm) navigate('/');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLogged, navigate]);
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

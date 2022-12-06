@@ -98,7 +98,7 @@ const Order = () => {
       if (res.status === 201) {
         toast.success('Order successful!!');
         dispatch(removeAllCart());
-        navigate('/');
+        navigate('/me/my-order');
       }
     } catch (error: any) {
       const message = error.response.data.message;
