@@ -50,7 +50,9 @@ const SignInPage = () => {
       default:
         if (location.state) {
           const { from } = location.state as LocationState;
-          navigate(from.pathname);
+          from.pathname.includes('admin') || from.pathname.includes('shipper')
+            ? navigate('/')
+            : navigate(from.pathname);
         } else {
           navigate('/');
         }
