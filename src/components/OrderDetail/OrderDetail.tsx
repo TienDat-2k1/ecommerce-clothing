@@ -1,10 +1,16 @@
+import { useEffect } from 'react';
 import { AiOutlinePhone } from 'react-icons/ai';
 import { BiMap } from 'react-icons/bi';
 import { FiArrowLeft } from 'react-icons/fi';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useGetOrderQuery } from '../../features/Order/orderApiSlice';
+import {
+  useGetOrderQuery,
+  useUpdateOrderMutation,
+} from '../../features/Order/orderApiSlice';
+import { userSelector } from '../../store/user/userSelector';
 import { currencyFormat } from '../../utils/currencyFormat';
 import { axiosPrivate } from '../../utils/httpRequest';
 
@@ -14,10 +20,17 @@ import Button from '../UI/Button/Button';
 import Spinner from '../UI/Spinner/Spinner';
 import './OrderDetail.scss';
 
-const OrderDetail = () => {
+type OrderDetailProps = {
+  role?: 'admin' | 'shipper' | 'user';
+};
+
+const OrderDetail = ({ role = 'user' }: OrderDetailProps) => {
   const navigate = useNavigate();
   const { orderId } = useParams();
   const { data, isFetching, refetch } = useGetOrderQuery(orderId);
+
+  const [updateOrder, result] = useUpdateOrderMutation();
+  const user = useSelector(userSelector);
 
   const cancelOrderHandler = (id: string | undefined) => {
     if (!id) return;
@@ -32,10 +45,35 @@ const OrderDetail = () => {
       });
   };
 
+  useEffect(() => {
+    if (result.isError) toast.warn('Có lỗi xảy ra. Vui lòng thử lại!!');
+    if (result.isSuccess) toast.success('Thành công!');
+  }, [result]);
+
+  // const cancelOrder = (id: string) => {
+  //   updateOrder({ id, status: 'Confirm' });
+  //   refetch();
+  // };
+
+  const confirmOrder = (id: string) => {
+    updateOrder({ id, status: 'Confirm' });
+    refetch();
+  };
+
+  const getOrder = (id: string) => {
+    updateOrder({ id, status: 'Shipping', shipper: user.id });
+    refetch();
+  };
+
+  const shipped = (id: string) => {
+    updateOrder({ id, status: 'Success', shipper: user.id });
+    refetch();
+  };
+
   return (
     <>
       {isFetching && <Spinner />}
-      {data && (
+      {data && orderId && (
         <div className="order-detail">
           <div className="order-detail__content order-detail__heading">
             <span onClick={() => navigate(-1)}>
@@ -59,6 +97,15 @@ const OrderDetail = () => {
               </span>
             </div>
             <div>
+              <span>
+                Cập nhật:
+                <i>
+                  {Intl.DateTimeFormat('vi-VN', {
+                    dateStyle: 'short',
+                    timeStyle: 'short',
+                  }).format(new Date(data.updatedAt))}
+                </i>
+              </span>
               <span>
                 Trạng thái đơn hàng:
                 <i>{StatusOrder[data?.status as keyof typeof StatusOrder]}</i>
@@ -96,13 +143,36 @@ const OrderDetail = () => {
             ))}
           </div>
           <div className="order-detail__cta">
-            <Button
-              className="btn--red"
-              disabled={!['Receive order', 'Confirm'].includes(data.status)}
-              onClick={() => cancelOrderHandler(orderId)}
-            >
-              Hủy đơn hàng
-            </Button>
+            {role === 'user' && (
+              <Button
+                className="btn--red"
+                disabled={!['Receive order', 'Confirm'].includes(data.status)}
+                onClick={() => cancelOrderHandler(orderId)}
+              >
+                Hủy đơn hàng
+              </Button>
+            )}
+            {role === 'admin' && data.status === 'Receive order' && (
+              <Button
+                className="btn--yellow"
+                onClick={() => confirmOrder(orderId)}
+              >
+                Xác nhận đơn hàng
+              </Button>
+            )}
+            {role === 'shipper' && data.status === 'Confirm' && (
+              <Button
+                className="btn--primary"
+                onClick={() => getOrder(orderId)}
+              >
+                Nhận đơn
+              </Button>
+            )}
+            {role === 'shipper' && data.status === 'Shipping' && (
+              <Button className="btn--blue" onClick={() => shipped(orderId)}>
+                Giao hàng
+              </Button>
+            )}
           </div>
         </div>
       )}

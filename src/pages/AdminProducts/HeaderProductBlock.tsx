@@ -9,13 +9,13 @@ const HeaderProductBlock = () => {
       </div>
       <div className="col c-11 md-10">
         <div className="row">
-          <div className="product__header-block col c-2 md-3">
+          <div className="product__header-block col c-2 md-3 sm-0">
             <span>Hình ảnh</span>
           </div>
           <div className="product__header-block col c-3 sm-4">
             <span>Tên</span>
           </div>
-          <div className="product__header-block col c-2  sm-0">
+          <div className="product__header-block col c-2  sm-3">
             <span>Chất liệu</span>
           </div>
           <div className="product__header-block col c-1 md-0">

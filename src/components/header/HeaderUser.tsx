@@ -37,7 +37,8 @@ const HeaderUser = () => {
             return (
               <Popper className="user-popper" {...attrs}>
                 <Link
-                  to={user.role === 'user' ? 'me' : 'admin'}
+                  to={user.role === 'user' ? 'me' : ''}
+                  // to=""
                   className="user-popper__item"
                 >
                   <img src={imageUser(user.photo)} alt="" />

@@ -3,7 +3,7 @@ import { useLocation, Navigate, Outlet } from 'react-router-dom';
 import { isLoggedSelector, userSelector } from '../../store/user/userSelector';
 
 type RequireAuthProps = {
-  allowedRoles: 'admin' | 'user';
+  allowedRoles: 'admin' | 'user' | 'shipper';
 };
 
 const RequireAuth = ({ allowedRoles }: RequireAuthProps) => {

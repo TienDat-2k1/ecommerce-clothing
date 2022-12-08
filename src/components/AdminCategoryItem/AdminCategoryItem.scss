@@ -1,8 +1,8 @@
 @use '../../sass/variables' as *;
 .admin-category-item {
   cursor: pointer;
-  border-bottom: 1px solid #000;
-
+  border-bottom: 1px solid #ddd;
+  color: $color--text;
   transition: all 0.2s;
 
   &:hover {
@@ -28,7 +28,7 @@
   }
 
   &__icon {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2.8rem;

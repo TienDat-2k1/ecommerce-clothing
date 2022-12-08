@@ -23,6 +23,7 @@ const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
           <img src={imageUser(user.photo)} alt="user" />
           <h2>
             <Link to={user.role === 'user' ? 'me' : 'admin'}>{user.name}</Link>
+            {/* <Link to="">{user.name}</Link> */}
           </h2>
           <AiOutlineLogout
             className="nav__user-icon"

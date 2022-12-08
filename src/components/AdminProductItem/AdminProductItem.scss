@@ -4,7 +4,8 @@
 .admin-product-item {
   width: 100%;
   transition: all 0.2s;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #ccc;
+  color: $color--text;
 
   &:nth-of-type(2n + 2) {
     background-color: rgba($color--black, 0.05);
@@ -22,6 +23,9 @@
 }
 
 .admin-product-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 160px;
 
   @include responds(sm) {
@@ -49,15 +53,6 @@
   @include responds(sm) {
     font-size: 3.2rem;
   }
-
-  & > * {
-    display: none;
-  }
-
-  & > *:hover {
-    color: $color--accent-violet;
-    cursor: pointer;
-  }
 }
 
 .admin-product__image {
@@ -71,17 +66,20 @@
     object-fit: cover;
     border: 1px solid $color--accent-orange;
   }
+
+  @include responds(sm) {
+    display: none !important;
+  }
 }
 
 .admin-product__name {
   padding: 1.2rem;
-
   display: flex;
   justify-content: center;
+  align-items: center;
 
   & > h4 {
     width: 100%;
-    height: 92%;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
@@ -107,5 +105,16 @@
 .admin-product__size {
   & > span {
     height: fit-content;
+  }
+
+  @include responds(md) {
+    display: none;
+  }
+}
+
+.admin-product__rate,
+.admin-product__price {
+  @include responds(md) {
+    display: none;
   }
 }

@@ -53,6 +53,7 @@ export type OrderModel = {
   totalPrice: number;
   createdAt: string;
   updatedAt: string;
+  shipper: Customer | string;
 };
 
 export type ProductModel = {
@@ -95,6 +96,8 @@ export type UserModel = {
   photo: string;
   address?: string;
   phone?: string;
+  orders?: OrderModel[];
+  ships?: OrderModel[];
 };
 
 export type SignUp = {

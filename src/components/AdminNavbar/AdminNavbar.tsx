@@ -1,26 +1,25 @@
-import { useSelector } from 'react-redux';
-import { userSelector } from '../../store/user/userSelector';
 import { BsGrid1X2Fill, BsReceiptCutoff } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
 import { AiOutlinePicLeft } from 'react-icons/ai';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaShippingFast, FaUserCircle } from 'react-icons/fa';
 import { BiCategoryAlt } from 'react-icons/bi';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { FcShipped } from 'react-icons/fc';
 
 import './AdminNavbar.scss';
-import imageUser from '../../utils/imageUser';
 
 type AdminNavbarProps = {
   isActive: boolean;
   hideNav: () => void;
+  isOnlyIcon: boolean;
+  role: 'admin' | 'shipper';
 };
 
 const AdminNav = [
-  // {
-  //   to: 'dashboard',
-  //   name: 'Dashboard',
-  //   icon: <BsGrid1X2Fill className="admin-navbar__icon" />,
-  // },
+  {
+    to: 'dashboard',
+    name: 'Dashboard',
+    icon: <BsGrid1X2Fill className="admin-navbar__icon" />,
+  },
   {
     to: 'category',
     name: 'Danh mục',
@@ -43,23 +42,39 @@ const AdminNav = [
   },
 ];
 
-const AdminNavbar = ({ isActive, hideNav }: AdminNavbarProps) => {
-  const user = useSelector(userSelector);
+const ShipperNav = [
+  {
+    to: 'order',
+    name: 'Nhận đơn',
+    icon: <BsReceiptCutoff className="admin-navbar__icon" />,
+  },
+  {
+    to: 'shipping',
+    name: 'Đang giao',
+    icon: <FaShippingFast className="admin-navbar__icon" />,
+  },
+  {
+    to: 'success',
+    name: 'Đã giao',
+    icon: <FcShipped className="admin-navbar__icon" />,
+  },
+];
+
+const AdminNavbar = ({
+  isActive,
+  isOnlyIcon,
+  role,
+  hideNav,
+}: AdminNavbarProps) => {
+  const nav = role === 'admin' ? AdminNav : ShipperNav;
   return (
-    <div className={`admin-navbar ${isActive ? 'admin-navbar--active' : ''}`}>
-      <div className="navbar-account">
-        <LazyLoadImage
-          src={imageUser(user.photo)}
-          wrapperClassName="navbar-account__avatar"
-          effect="blur"
-        />
-        {/* <div className="navbar-account__avatar">
-          <img src={imageUser(user.photo)} alt="" />
-        </div> */}
-        <h4>{user.name}</h4>
-      </div>
+    <div
+      className={`admin-navbar ${isActive ? 'admin-navbar--active' : ''} ${
+        isOnlyIcon ? 'only-icon' : ''
+      }`}
+    >
       <span> MENU</span>
-      {AdminNav.map((nav, i) => {
+      {nav.map((nav, i) => {
         return (
           <NavLink
             key={i}
@@ -80,3 +95,15 @@ const AdminNavbar = ({ isActive, hideNav }: AdminNavbarProps) => {
   );
 };
 export default AdminNavbar;
+
+// <div className="navbar-account">
+// <LazyLoadImage
+//   src={imageUser(user.photo)}
+//   wrapperClassName="navbar-account__avatar"
+//   effect="blur"
+// />
+// {/* <div className="navbar-account__avatar">
+//   <img src={imageUser(user.photo)} alt="" />
+// </div> */}
+// <h4>{user.name}</h4>
+// </div>

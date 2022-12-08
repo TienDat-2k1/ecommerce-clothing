@@ -1,0 +1,25 @@
+.shipper {
+  &__order {
+    display: block;
+    color: inherit;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:not(:last-of-type) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__order-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  &__order-cta {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

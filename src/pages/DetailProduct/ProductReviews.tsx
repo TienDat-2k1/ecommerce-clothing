@@ -104,13 +104,10 @@ const ProductReviews = () => {
 
       <div className="reviews__list">
         {reviews.map(review => {
-          const dateTime = new Intl.DateTimeFormat('vn-VN', {
+          const dateTime = new Intl.DateTimeFormat('vi-VN', {
             dateStyle: 'short',
             timeStyle: 'short',
-          })
-            .format(new Date(review.createdAt))
-            .split(', ')
-            .join(' ');
+          }).format(new Date(review.createdAt));
 
           return (
             <div key={review.id} className="reviews__item">

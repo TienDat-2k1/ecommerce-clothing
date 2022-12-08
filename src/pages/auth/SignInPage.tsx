@@ -36,13 +36,15 @@ const SignInPage = () => {
   // navigate route with login
   useEffect(() => {
     if (!data) return;
-    console.log(data);
 
     const role = data.data.user.role;
 
     switch (role) {
       case 'admin':
         navigate('/admin');
+        break;
+      case 'shipper':
+        navigate('/shipper');
         break;
 
       default:

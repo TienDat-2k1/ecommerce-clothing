@@ -87,23 +87,29 @@ const AdminOrders = () => {
         </div>
         <div className="admin-order__list">
           {isLoading && <Spinner />}
-          {orders.map(order => {
-            const dateTime = new Intl.DateTimeFormat('vn-VN', {
-              dateStyle: 'short',
-              timeStyle: 'short',
-            }).format(new Date(order.createdAt));
-            const [date, time] = dateTime.split(', ');
+          {orders
+            .sort((a, b) => {
+              return (
+                (new Date(b.updatedAt) as any) - (new Date(a.updatedAt) as any)
+              );
+            })
+            .map(order => {
+              const dateTime = new Intl.DateTimeFormat('vn-VN', {
+                dateStyle: 'short',
+                timeStyle: 'short',
+              }).format(new Date(order.createdAt));
+              const [date, time] = dateTime.split(', ');
 
-            return (
-              <AdminOrderItem
-                key={order._id}
-                date={date}
-                time={time}
-                order={order}
-                onUpdate={onUpdate}
-              />
-            );
-          })}
+              return (
+                <AdminOrderItem
+                  key={order._id}
+                  date={date}
+                  time={time}
+                  order={order}
+                  onUpdate={onUpdate}
+                />
+              );
+            })}
         </div>
         {totalPage > 1 && (
           <div className="admin-order__footer">

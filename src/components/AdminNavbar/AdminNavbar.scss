@@ -6,7 +6,19 @@
   }
 }
 
+.admin-navbar.only-icon {
+  & h3 {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.admin-navbar.only-icon {
+  width: 75px;
+}
+
 .navbar-account {
+  margin-right: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +28,7 @@
     width: 3.8rem;
     height: 3.8rem;
     border-radius: 50%;
-    border: 2px solid $color--white;
+    border: 2px solid $color--accent-orange;
     overflow: hidden;
   }
 

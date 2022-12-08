@@ -56,7 +56,7 @@ const AdminCategoryItem = ({
 
   return (
     <>
-      <div className="admin-category-item row">
+      <div className="admin-category-item row" onClick={showUpdateModal}>
         <div className="col c-2">
           <div className="row" style={{ height: '100%' }}>
             <div className="admin-category__icon col c-6">
@@ -69,14 +69,14 @@ const AdminCategoryItem = ({
         </div>
         <div className="col c-10">
           <div className="row" style={{ height: '100%' }}>
-            <LazyLoadImage
+            {/* <LazyLoadImage
               src={imageCategory(category.imageCover)}
               effect="blur"
               wrapperClassName="admin-category__content col c-2 l-3 sm-0"
-            />
-            {/* <div className="admin-category__content col c-2 l-3 sm-0">
+            /> */}
+            <div className="admin-category__content col c-2 l-3 sm-0">
               <img src={imageCategory(category.imageCover)} alt="" />
-            </div> */}
+            </div>
             <div className="admin-category__content col c-5 l-4 sm-7">
               <h3>{category.name}</h3>
             </div>

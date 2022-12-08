@@ -4,6 +4,7 @@ import Tippy from '@tippyjs/react';
 import AdminOrdersModal from '../../components/ModalComponent/AdminOrdersModal/AdminOrdersModal';
 import { OrderModel, StatusOrder } from '../../utils/types';
 import { currencyFormat } from '../../utils/currencyFormat';
+import { useNavigate } from 'react-router-dom';
 
 type AdminOrderItemProps = {
   date: string;
@@ -18,6 +19,7 @@ const AdminOrderItem = ({
   order,
   onUpdate,
 }: AdminOrderItemProps) => {
+  const navigate = useNavigate();
   const [isOrderModal, setIsItemModal] = useState(false);
 
   const showOrderModal = () => {
@@ -30,7 +32,7 @@ const AdminOrderItem = ({
 
   return (
     <>
-      <div className="admin-order__item" onClick={showOrderModal}>
+      <div className="admin-order__item" onClick={() => navigate(order._id)}>
         <div className="admin-order__content admin-order__content-created">
           <span>{date}</span>
           <span>{time}</span>

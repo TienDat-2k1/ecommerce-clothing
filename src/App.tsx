@@ -19,7 +19,6 @@ import Search from './pages/Search/Search';
 import Unauthorized from './pages/Unauthorized/Unauthorized';
 import Main from './router/Main';
 import './sass/_global.scss';
-import { logginSuccess } from './store/user/userSlice';
 import AdminAccounts from './pages/AdminAccounts/AdminAccounts';
 import AdminCategories from './pages/AdminCategory/AdminCategories';
 import Dashboard from './pages/AdminDashboard/Dashboard';
@@ -33,6 +32,8 @@ import PageNotFound from './pages/PageNotFound/PageNotFound';
 import Products from './pages/Products/Products';
 import { useRefreshQuery } from './features/Auth/authApiSlice';
 import OrderDetail from './components/OrderDetail/OrderDetail';
+import ShipperOrder from './components/Shipper/ShipperOrder/ShipperOrder';
+import ShipOrder from './components/Shipper/ShipOrder/ShipOrder';
 
 const Home = lazy(() => import('./pages/Home/Home'));
 const DetailProduct = lazy(() => import('./pages/DetailProduct/DetailProduct'));
@@ -42,26 +43,26 @@ function App() {
   const location = useLocation();
   const axiosPrivate = useAxiosPrivate();
   const dispatch = useDispatch();
-  // useRefreshQuery();
+  useRefreshQuery();
 
-  useEffect(() => {
-    const refresh = async () => {
-      try {
-        const res = await axiosPrivate.get('/user/refresh');
+  // useEffect(() => {
+  //   const refresh = async () => {
+  //     try {
+  //       const res = await axiosPrivate.get('/user/refresh');
 
-        dispatch(
-          logginSuccess({
-            accessToken: res.data.token,
-            user: res.data.data.user,
-          })
-        );
-      } catch (error: any) {}
-    };
+  //       dispatch(
+  //         logginSuccess({
+  //           accessToken: res.data.token,
+  //           user: res.data.data.user,
+  //         })
+  //       );
+  //     } catch (error: any) {}
+  //   };
 
-    window.onload = () => {
-      refresh();
-    };
-  }, [axiosPrivate, dispatch]);
+  //   window.onload = () => {
+  //     refresh();
+  //   };
+  // }, [axiosPrivate, dispatch]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -106,7 +107,34 @@ function App() {
               <Route path="category" element={<AdminCategories />} />
               <Route path="product" element={<AdminProduct />} />
               <Route path="order" element={<AdminOrders />} />
+              <Route
+                path="order/:orderId"
+                element={<OrderDetail role="admin" />}
+              />
               <Route path="account" element={<AdminAccounts />} />
+            </Route>
+          </Route>
+          <Route element={<RequireAuth allowedRoles="shipper" />}>
+            <Route path="shipper" element={<Admin role="shipper" />}>
+              <Route index element={<Navigate to="order" replace />} />
+              <Route path="order" element={<ShipperOrder />} />
+              <Route
+                path="shipping"
+                element={<ShipOrder status="Shipping" />}
+              />
+              <Route path="success" element={<ShipOrder status="Success" />} />
+              <Route
+                path="order/:orderId"
+                element={<OrderDetail role="shipper" />}
+              />
+              <Route
+                path="shipping/:orderId"
+                element={<OrderDetail role="shipper" />}
+              />
+              <Route
+                path="success/:orderId"
+                element={<OrderDetail role="shipper" />}
+              />
             </Route>
           </Route>
         </Route>

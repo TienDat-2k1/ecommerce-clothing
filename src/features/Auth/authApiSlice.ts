@@ -1,7 +1,7 @@
 import store from '../../store/store';
 import { logginSuccess, signupSuccess } from '../../store/user/userSlice';
 import { apiSlice } from '../../utils/baseQuery';
-import { SignUp } from '../../utils/types';
+import { SignUp, UserModel } from '../../utils/types';
 
 const authApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
@@ -56,8 +56,19 @@ const authApiSlice = apiSlice.injectEndpoints({
         return result;
       },
     }),
+    getMe: builder.query<UserModel, void>({
+      query: () => '/user/me',
+      transformResponse: (res: any, meta) => {
+        const data = res.data?.data;
+        return data;
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation, useRefreshQuery, useSignupMutation } =
-  authApiSlice;
+export const {
+  useLoginMutation,
+  useRefreshQuery,
+  useSignupMutation,
+  useGetMeQuery,
+} = authApiSlice;

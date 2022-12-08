@@ -54,7 +54,7 @@ const AdminProductItem = ({ product: p, onDelete }: AdminProductProps) => {
 
   return (
     <>
-      <div className="admin-product-item row">
+      <div className="admin-product-item row" onClick={showUpdateModal}>
         <div className="col c-1 md-2">
           <div className="row">
             <div className="admin-product-content admin-product-cta col c-6">
@@ -78,21 +78,25 @@ const AdminProductItem = ({ product: p, onDelete }: AdminProductProps) => {
             <div className="admin-product-content admin-product__name  col c-3 sm-4">
               <h4>{product.name}</h4>
             </div>
-            <div className="admin-product-content col c-2 sm-0">
+            <div className="admin-product-content admin-product__material col c-2 sm-3">
               <span>{product.material}</span>
             </div>
             <div className="admin-product-content admin-product__size col c-1 md-0">
-              {product.sizes.map((size, i) => {
-                return <span key={i}>{size}</span>;
-              })}
+              <span
+                style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
+              >
+                {product.sizes.map((size, i) => {
+                  return <span key={i}>{size}</span>;
+                })}
+              </span>
             </div>
             <div className="admin-product-content col c-1 sm-2">
               <span>{product.saleOff}%</span>
             </div>
-            <div className="admin-product-content col c-1 sm-0">
+            <div className="admin-product-content admin-product__rate col c-1 sm-0">
               <span>{product.ratingsAverage}</span>
             </div>
-            <div className="admin-product-content col c-1 sm-0">
+            <div className="admin-product-content admin-product__price col c-1 sm-0">
               <span>{currencyFormat(product.price)}</span>
             </div>
             <div className="admin-product-content col c-1 sm-3">

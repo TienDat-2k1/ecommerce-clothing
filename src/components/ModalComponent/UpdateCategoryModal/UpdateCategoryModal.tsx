@@ -78,7 +78,7 @@ const UpdateCategoryModal = ({
         <div className="row">
           <div className='col c-12"'>
             <FormInput
-              label="name"
+              label="Tên danh mục"
               value={categoryName}
               onChange={nameChangeHandler}
             />

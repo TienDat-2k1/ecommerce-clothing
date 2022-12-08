@@ -40,7 +40,7 @@ export const getAllReviewProduct = async (id: string) => {
   try {
     const res = await httpRequest.get(`/products/${id}/reviews`, {
       params: {
-        fields: 'createAt, id, rating, review, user',
+        fields: 'createdAt, id, rating, review, user',
       },
     });
 
