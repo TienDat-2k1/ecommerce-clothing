@@ -27,11 +27,20 @@ const SignInPage = () => {
   const navigate = useNavigate();
   const [login, { isLoading, isError, error, isSuccess, data }] =
     useLoginMutation();
+  const isLogged = useSelector(isLoggedSelector);
 
   const [inputFields, setInputFields] = useState<IInputFields>({
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    if (!isLogged) return;
+
+    if (location.state)
+      navigate((location.state as LocationState)?.from.pathname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLogged, location]);
 
   // navigate route with login
   useEffect(() => {

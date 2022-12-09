@@ -62,6 +62,7 @@ const authApiSlice = apiSlice.injectEndpoints({
         const data = res.data?.data;
         return data;
       },
+      providesTags: ['Order'],
     }),
   }),
 });
