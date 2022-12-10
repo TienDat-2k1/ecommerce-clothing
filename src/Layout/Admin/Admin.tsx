@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link, Outlet } from 'react-router-dom';
 import AdminNavbar from '../../components/AdminNavbar/AdminNavbar';
@@ -23,6 +23,13 @@ const Admin = ({ role = 'admin' }: AdminProps) => {
       setIsNavbarActive(true);
     }
   };
+
+  useEffect(() => {
+    if (width > 992) return;
+
+    isOnlyIcon && setIsOnlyIcon(false);
+  }, [width, isOnlyIcon]);
+
   const hideNavHandler = () => {
     setIsNavbarActive(false);
   };
@@ -39,7 +46,7 @@ const Admin = ({ role = 'admin' }: AdminProps) => {
           </Link>
         </section>
         <section>
-          <HeaderUser />
+          <HeaderUser isHideMobile={false} />
           {/* <div className="navbar-account">
             <h4>{user.name}</h4>
             <LazyLoadImage

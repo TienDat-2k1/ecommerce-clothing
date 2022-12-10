@@ -1,5 +1,5 @@
 import { apiSlice } from '../../utils/baseQuery';
-import { OrderModel } from '../../utils/types';
+import { OrderModel, OrderStat } from '../../utils/types';
 
 const orderApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
@@ -15,7 +15,6 @@ const orderApiSlice = apiSlice.injectEndpoints({
         };
       },
       transformResponse: (res: any, meta) => {
-        console.log(res);
         return res;
       },
       invalidatesTags: ['Order'],
@@ -30,6 +29,7 @@ const orderApiSlice = apiSlice.injectEndpoints({
       transformResponse: (res: any, meta) => {
         return res.data?.data || [];
       },
+      providesTags: ['Order'],
     }),
     getOrder: builder.query<OrderModel, string | undefined>({
       query: id => {
@@ -42,8 +42,21 @@ const orderApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: ['Order'],
     }),
+    getStats: builder.query<OrderStat, void>({
+      query: () => '/orders/order-stat',
+      transformResponse: (res: any, meta) => {
+        if (meta?.response?.status === 200) {
+          return res.data;
+        }
+      },
+      providesTags: ['Order'],
+    }),
   }),
 });
 
-export const { useGetOrderQuery, useGetOrdersQuery, useUpdateOrderMutation } =
-  orderApiSlice;
+export const {
+  useGetOrderQuery,
+  useGetOrdersQuery,
+  useGetStatsQuery,
+  useUpdateOrderMutation,
+} = orderApiSlice;

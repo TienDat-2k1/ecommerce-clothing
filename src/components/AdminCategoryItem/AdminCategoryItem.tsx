@@ -63,7 +63,12 @@ const AdminCategoryItem = ({
               <GrUpdate onClick={showUpdateModal} />
             </div>
             <div className="admin-category__icon col c-6">
-              <RiDeleteBin6Line onClick={showDeleteCategoryModal} />
+              <RiDeleteBin6Line
+                onClick={e => {
+                  e.stopPropagation();
+                  showDeleteCategoryModal();
+                }}
+              />
             </div>
           </div>
         </div>

@@ -61,7 +61,12 @@ const AdminProductItem = ({ product: p, onDelete }: AdminProductProps) => {
               <GrUpdate onClick={showUpdateModal} />
             </div>
             <div className="admin-product-content admin-product-cta  col c-6">
-              <RiDeleteBin6Line onClick={showDeleteModal} />
+              <RiDeleteBin6Line
+                onClick={e => {
+                  e.stopPropagation();
+                  showDeleteModal();
+                }}
+              />
             </div>
           </div>
         </div>

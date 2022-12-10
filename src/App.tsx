@@ -102,7 +102,7 @@ function App() {
           {/* protect route admin*/}
           <Route element={<RequireAuth allowedRoles="admin" />}>
             <Route path="admin" element={<Admin />}>
-              <Route index element={<Navigate to="category" replace />} />
+              <Route index element={<Navigate to="dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="category" element={<AdminCategories />} />
               <Route path="product" element={<AdminProduct />} />

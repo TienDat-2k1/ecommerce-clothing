@@ -11,7 +11,11 @@ import Popper from '../UI/Popper/Popper';
 import './HeaderUser.scss';
 import { logout } from '../../store/user/userSlice';
 
-const HeaderUser = () => {
+type HeaderUserProps = {
+  isHideMobile?: boolean;
+};
+
+const HeaderUser = ({ isHideMobile = true }: HeaderUserProps) => {
   const dispatch = useDispatch();
   const isLogged = useSelector(isLoggedSelector);
   const user = useSelector(userSelector);
@@ -37,7 +41,7 @@ const HeaderUser = () => {
             return (
               <Popper className="user-popper" {...attrs}>
                 <Link
-                  to={user.role === 'user' ? 'me' : ''}
+                  to={user.role === 'user' ? 'me' : `/${user.role}`}
                   // to=""
                   className="user-popper__item"
                 >
@@ -58,7 +62,10 @@ const HeaderUser = () => {
             );
           }}
         >
-          <div className="header__feature header__feature-user">
+          <div
+            className={`header__feature header__feature-user `}
+            style={!isHideMobile ? { display: 'flex' } : {}}
+          >
             <img src={imageUser(user.photo)} alt="" />
           </div>
         </Tippy>

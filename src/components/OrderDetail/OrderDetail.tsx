@@ -15,7 +15,7 @@ import { currencyFormat } from '../../utils/currencyFormat';
 import { axiosPrivate } from '../../utils/httpRequest';
 
 import imageProduct from '../../utils/imageProduct';
-import { StatusOrder } from '../../utils/types';
+import { Customer, StatusOrder } from '../../utils/types';
 import Button from '../UI/Button/Button';
 import Spinner from '../UI/Spinner/Spinner';
 import './OrderDetail.scss';
@@ -57,16 +57,19 @@ const OrderDetail = ({ role = 'user' }: OrderDetailProps) => {
 
   const confirmOrder = (id: string) => {
     updateOrder({ id, status: 'Confirm' });
+    navigate(-1);
     refetch();
   };
 
   const getOrder = (id: string) => {
     updateOrder({ id, status: 'Shipping', shipper: user.id });
+    navigate(-1);
     refetch();
   };
 
   const shipped = (id: string) => {
     updateOrder({ id, status: 'Success', shipper: user.id });
+    navigate(-1);
     refetch();
   };
 
@@ -84,6 +87,30 @@ const OrderDetail = ({ role = 'user' }: OrderDetailProps) => {
               <span>ID ĐƠN HÀNG: {orderId}</span>
             </span>
           </div>
+          {data.shipper && (
+            <div className="order-detail__content">
+              {data.status === 'Shipping' && (
+                <p>
+                  Đơn hàng đang được giao bởi
+                  <i style={{ marginLeft: '4px' }}>
+                    {user.role === 'shipper'
+                      ? 'bạn'
+                      : (data.shipper as Customer).name}
+                  </i>
+                </p>
+              )}
+              {data.status === 'Success' && (
+                <p>
+                  Đơn hàng này đã được giao bởi
+                  <i style={{ marginLeft: '4px' }}>
+                    {user.role === 'shipper'
+                      ? 'bạn'
+                      : (data.shipper as Customer).name}
+                  </i>
+                </p>
+              )}
+            </div>
+          )}
           <div className="order-detail__content order-detail__info">
             <div>
               <span>Địa chỉ nhận hàng</span>
