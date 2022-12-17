@@ -33,12 +33,12 @@ const HomeCollection = () => {
             <div className="dot-texture"></div>
             <div className="dot-texture"></div>
 
-            <div className="row" style={{ width: '100%' }}>
+            <div className="collection__list" style={{ width: '100%' }}>
               {(data.results as CategoryModel[])
                 .filter((_, i) => i < 4)
                 .map(collection => {
                   return (
-                    <div key={collection._id} className="col c-3 md-6">
+                    <div key={collection._id}>
                       <CollectionCard
                         name={collection.name}
                         imageUrl={collection.imageCover}

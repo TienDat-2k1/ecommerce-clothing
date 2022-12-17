@@ -62,4 +62,10 @@
       right: 2rem;
     }
   }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    gap: 12px;
+  }
 }

@@ -101,12 +101,13 @@ const DetailProduct = () => {
                 {!!product.ratingsQuantity && (
                   <span>{product.ratingsQuantity} lượt đánh giá</span>
                 )}
+
+                {!!product.sold && <span>{product.sold} lượt bán</span>}
               </div>
               <div className="product__material">
                 <h4>Chất liệu: </h4>
                 <span>{product.material}</span>
               </div>
-
               <div className="product__price">
                 {!!product.saleOff && (
                   <span className="product__price-origin">

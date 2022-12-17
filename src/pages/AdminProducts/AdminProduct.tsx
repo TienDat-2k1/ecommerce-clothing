@@ -28,7 +28,7 @@ const AdminProduct = () => {
         page,
         limit: 10,
         keywords,
-        sort: '-sold',
+        sort: '-createdAt',
       });
       setIsSearchLoading(false);
       setProducts(res.data.data);

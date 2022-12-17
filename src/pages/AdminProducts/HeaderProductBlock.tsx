@@ -31,7 +31,7 @@ const HeaderProductBlock = () => {
             <span>Giá</span>
           </div>
           <div className="product__header-block col c-1 sm-3">
-            <span>Lượt bán</span>
+            <span>Đã bán</span>
           </div>
         </div>
       </div>

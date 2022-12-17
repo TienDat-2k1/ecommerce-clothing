@@ -13,6 +13,7 @@ const HomeProductsLatest = () => {
     const fetchProducts = async () => {
       const res = await productServices.getAllProduct({
         limit: 4,
+        sort: '-createdAt',
       });
 
       setProducts(res.data.data);

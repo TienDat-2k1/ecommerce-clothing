@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isLoggedSelector, userSelector } from '../../store/user/userSelector';
 import imageUser from '../../utils/imageUser';
 import { logout } from '../../store/user/userSlice';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { toast } from 'react-toastify';
 
 interface INav {
   isNavActive: boolean;
@@ -13,8 +15,22 @@ interface INav {
 
 const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
   const dispatch = useDispatch();
+  const axiosPrivate = useAxiosPrivate();
   const isLogged = useSelector(isLoggedSelector);
   const user = useSelector(userSelector);
+
+  const logOutHandler = () => {
+    axiosPrivate
+      .get('user/logout')
+      .then(res => {
+        console.log(res);
+        res.status === 200 && dispatch(logout());
+      })
+      .catch(() => {
+        toast.warning('Có lỗi xảy ra! Vui lòng thử lại!!');
+      });
+    // dispatch(logout());
+  };
 
   return (
     <nav className={`nav ${isNavActive ? 'nav--active' : ''}`}>
@@ -27,10 +43,7 @@ const Navbar = ({ isNavActive, setIsNavActive }: INav) => {
             </Link>
             {/* <Link to="">{user.name}</Link> */}
           </h2>
-          <AiOutlineLogout
-            className="nav__user-icon"
-            onClick={() => dispatch(logout())}
-          />
+          <AiOutlineLogout className="nav__user-icon" onClick={logOutHandler} />
         </div>
       )}
 

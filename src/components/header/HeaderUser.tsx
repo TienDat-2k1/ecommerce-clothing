@@ -10,6 +10,9 @@ import Button from '../UI/Button/Button';
 import Popper from '../UI/Popper/Popper';
 import './HeaderUser.scss';
 import { logout } from '../../store/user/userSlice';
+import { axiosPrivate } from '../../utils/httpRequest';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { toast } from 'react-toastify';
 
 type HeaderUserProps = {
   isHideMobile?: boolean;
@@ -17,11 +20,21 @@ type HeaderUserProps = {
 
 const HeaderUser = ({ isHideMobile = true }: HeaderUserProps) => {
   const dispatch = useDispatch();
+  const axiosPrivate = useAxiosPrivate();
   const isLogged = useSelector(isLoggedSelector);
   const user = useSelector(userSelector);
 
   const logOutHandler = () => {
-    dispatch(logout());
+    axiosPrivate
+      .get('user/logout')
+      .then(res => {
+        console.log(res);
+        res.status === 200 && dispatch(logout());
+      })
+      .catch(() => {
+        toast.warning('Có lỗi xảy ra! Vui lòng thử lại!!');
+      });
+    // dispatch(logout());
   };
   return (
     <>
