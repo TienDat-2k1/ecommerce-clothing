@@ -28,7 +28,7 @@ const Checkout = () => {
           <LazyLoadImage
             src={cart_empty}
             alt="cart empty"
-            style={{ width: '800px', height: '400px', objectFit: 'cover' }}
+            style={{ width: '100%', height: '400px', objectFit: 'cover' }}
             effect="blur"
           />
           {/* <img

@@ -76,8 +76,9 @@ const SignUpPage = () => {
       id: 1,
       name: 'displayName',
       type: 'text',
-      errorMessage: 'Tên hiển thị nên có ít nhất 3 kí tự!',
+      errorMessage: 'Tên hiển thị nên có từ 3-20 kí tự!!',
       label: 'Tên hiển thị',
+      pattern: '.{3,20}',
       required: true,
     },
     {

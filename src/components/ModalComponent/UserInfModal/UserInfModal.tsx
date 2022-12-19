@@ -233,7 +233,7 @@ const UserInfModal = ({ data, onClose }: UserInfModalProps) => {
                 setUserAddress(prev => ({ ...prev, address: e.target.value }));
               }}
               type="text"
-              label="Địa chỉ"
+              label="Tên đường, số nhà"
               style={{ margin: 0 }}
             />
           </div>

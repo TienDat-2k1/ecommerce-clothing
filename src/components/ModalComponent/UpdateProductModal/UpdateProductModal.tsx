@@ -227,7 +227,7 @@ const UpdateProductModal = ({
         <>
           <form action="" onSubmit={formSubmitHandler}>
             <div className="row">
-              <div className="col c-3">
+              <div className="col c-3 md-12">
                 <FormInput
                   label="Tên sản phẩm"
                   value={productInput.name}
@@ -235,7 +235,7 @@ const UpdateProductModal = ({
                   onChange={textChangeHandler}
                 />
               </div>
-              <div className="col c-3">
+              <div className="col c-3 md-12">
                 <FormInput
                   label="Chất liệu"
                   value={productInput.material}
@@ -243,7 +243,7 @@ const UpdateProductModal = ({
                   onChange={textChangeHandler}
                 />
               </div>
-              <div className="col c-3">
+              <div className="col c-3 md-12">
                 <FormInput
                   label="Giá"
                   type="number"
@@ -253,7 +253,7 @@ const UpdateProductModal = ({
                   onChange={textChangeHandler}
                 />
               </div>
-              <div className="col c-3">
+              <div className="col c-3 md-12">
                 <FormInput
                   label="Khuyến mãi"
                   type="number"
@@ -266,7 +266,7 @@ const UpdateProductModal = ({
               </div>
             </div>
             <div className="row">
-              <div className="create-product__category col c-3">
+              <div className="create-product__category col c-3 md-12">
                 <span>Danh mục</span>
                 <Multiselect
                   options={categories}
@@ -297,7 +297,7 @@ const UpdateProductModal = ({
                   customCloseIcon={<></>}
                 />
               </div>
-              <div className="create-product__sizes col c-9">
+              <div className="create-product__sizes col c-9 md-12">
                 <span>Kích cỡ</span>
                 <Multiselect
                   className="create-product__sizes-select"

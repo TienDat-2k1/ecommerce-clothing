@@ -1,9 +1,17 @@
+@use '../../../sass/mixins' as *;
+
 .user-inf-modal {
   padding: 1rem 2rem;
 
   &__inputs {
     display: flex;
     gap: 2rem;
+
+    @include responds(md) {
+      flex-direction: column;
+      max-height: 60vh;
+      overflow: auto;
+    }
   }
 
   &__cta {

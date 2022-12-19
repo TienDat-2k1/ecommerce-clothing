@@ -183,7 +183,7 @@ const CreateProductModel = ({
     <Modal onClose={onClose} className="create-product-modal">
       <form action="" onSubmit={formSubmitHandler}>
         <div className="row">
-          <div className="col c-3">
+          <div className="col c-3 md-12">
             <FormInput
               label="Tên sản phẩm"
               value={productInput.name}
@@ -191,7 +191,7 @@ const CreateProductModel = ({
               onChange={textChangeHandler}
             />
           </div>
-          <div className="col c-3">
+          <div className="col c-3 md-12">
             <FormInput
               label="Chất liệu"
               value={productInput.material}
@@ -199,7 +199,7 @@ const CreateProductModel = ({
               onChange={textChangeHandler}
             />
           </div>
-          <div className="col c-3">
+          <div className="col c-3 md-12">
             <FormInput
               label="Giá"
               type="number"
@@ -209,7 +209,7 @@ const CreateProductModel = ({
               onChange={textChangeHandler}
             />
           </div>
-          <div className="col c-3">
+          <div className="col c-3 md-12">
             <FormInput
               label="Khuyến mãi"
               type="number"
@@ -222,7 +222,7 @@ const CreateProductModel = ({
           </div>
         </div>
         <div className="row">
-          <div className="create-product__category  col c-3">
+          <div className="create-product__category  col c-3 md-12">
             <span>Danh mục</span>
             <select
               name="category"
@@ -238,7 +238,7 @@ const CreateProductModel = ({
                 ))}
             </select>
           </div>
-          <div className="create-product__sizes col c-9">
+          <div className="create-product__sizes col c-9 md-12">
             <span>Kích cỡ</span>
             <Multiselect
               className="create-product__sizes-select"
